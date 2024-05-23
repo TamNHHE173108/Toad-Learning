@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Course</title>
+    <title>New Subject</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,7 +29,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
         }
 
@@ -40,6 +40,7 @@
         }
 
         input[type="text"],
+        input[type="file"],
         textarea,
         select {
             width: 100%;
@@ -48,6 +49,10 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             box-sizing: border-box;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
         }
 
         input[type="submit"] {
@@ -71,35 +76,52 @@
     </style>
 </head>
 <body>
-    <h1>Add Course</h1>
-    <form id="addCourseForm" action="/addCourse" method="post">
+    <h1>New Subject</h1>
+    <form id="newSubjectForm" action="/addSubject" method="post" enctype="multipart/form-data">
         <div class="error" id="error"></div>
-        <label for="courseName">Course ID:</label><br>
-        <input type="text" id="courseID" name="courseID"><br>
-        <label for="courseName">Course Name:</label><br>
-        <input type="text" id="courseName" name="courseName"><br>
-        <label for="description">Description:</label><br>
-        <textarea id="description" name="description"></textarea><br>
-        <label for="category">Category:</label><br>
+        <label for="subjectName">Subject Name:</label>
+        <input type="text" id="subjectName" name="subjectName">
+        
+        <label for="thumbnail">Thumbnail Image:</label>
+        <input type="file" id="thumbnail" name="thumbnail">
+        
+        <label for="category">Category:</label>
         <select id="category" name="category">
             <option value="">Select Category</option>
             <option value="SW">Software</option>
             <option value="AI">Artificial Intelligence</option>
             <option value="CS">Computer Science</option>
             <option value="IB">International Business</option>
-        </select><br>
-        <input type="submit" value="Add Course">
+        </select>
+        
+        
+        
+        <label for="owner">Owner:</label>
+        <input type="text" id="owner" name="owner">
+        
+        <label for="status">Status:</label>
+        <select id="status" name="status">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+        </select>
+        
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea>
+        
+        <input type="submit" value="Add Subject">
     </form>
 
     <script>
-        document.getElementById('addCourseForm').addEventListener('submit', function(event) {
+        document.getElementById('newSubjectForm').addEventListener('submit', function(event) {
             let errorElement = document.getElementById('error');
-            let courseName = document.getElementById('courseName').value.trim();
-            let description = document.getElementById('description').value.trim();
+            let subjectName = document.getElementById('subjectName').value.trim();
             let category = document.getElementById('category').value;
+            let owner = document.getElementById('owner').value.trim();
+            let status = document.getElementById('status').value;
+            let description = document.getElementById('description').value.trim();
 
-            if (courseName === "" || description === "" || category === "") {
-                errorElement.textContent = "All fields are required.";
+            if (subjectName === "" || category === "" || owner === "" || status === "" || description === "") {
+                errorElement.textContent = "All fields except thumbnail and featured flag are required.";
                 errorElement.style.display = "block";
                 event.preventDefault();
             } else {
@@ -109,4 +131,5 @@
     </script>
 </body>
 </html>
+
 
