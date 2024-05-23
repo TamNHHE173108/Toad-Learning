@@ -94,7 +94,8 @@
             <option value="IB">International Business</option>
         </select>
         
-        
+        <label for="featured">Featured:</label>
+        <input type="checkbox" id="featured" name="featured">
         
         <label for="owner">Owner:</label>
         <input type="text" id="owner" name="owner">
