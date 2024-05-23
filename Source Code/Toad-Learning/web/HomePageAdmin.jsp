@@ -34,7 +34,7 @@
                 <!-- Sidebar - Brand -->
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.jsp">
                     <div class="sidebar-brand-icon">
-                        <img src="logo.png" alt="New Logo">
+                        <img style="width: 150px" src="./img/logo/logo.png" alt="New Logo">
                     </div>
                 </a>
 
