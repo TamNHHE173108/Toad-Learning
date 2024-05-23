@@ -74,6 +74,8 @@
     <h1>Add Course</h1>
     <form id="addCourseForm" action="/addCourse" method="post">
         <div class="error" id="error"></div>
+        <label for="courseName">Course ID:</label><br>
+        <input type="text" id="courseID" name="courseID"><br>
         <label for="courseName">Course Name:</label><br>
         <input type="text" id="courseName" name="courseName"><br>
         <label for="description">Description:</label><br>
