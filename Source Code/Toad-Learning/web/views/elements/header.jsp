@@ -16,7 +16,7 @@
         <!-- Navbar Start -->
         <nav class=" navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
             <a href="Home" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-                <img style="width:  150px" src="img/logo/logo.png" alt="Toad Learning"/>
+                <img style="width:150px" src="img/logo/logo.png" alt="Toad Learning"/>
             </a>
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
