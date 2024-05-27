@@ -34,7 +34,7 @@
                 <!-- Sidebar - Brand -->
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.jsp">
                     <div class="sidebar-brand-icon">
-                        <img src="logo.png" alt="New Logo">
+                        <img style="width: 150px" src="./img/logo/logo.png" alt="New Logo">
                     </div>
                 </a>
 
@@ -57,7 +57,7 @@
                     Interface
                 </div>
 
-                <!-- Nav Item - Pages Professors Menu -->
+<!--                 Nav Item - Pages Professors Menu 
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePro"
                        aria-expanded="true" aria-controls="collapsePro">
@@ -73,7 +73,7 @@
                             <a class="collapse-item" href="#">Professor Profile </a>
                         </div>
                     </div>
-                </li>
+                </li>-->
 
                 <!-- Nav Item - Pages Students Menu -->
                 <li class="nav-item">
