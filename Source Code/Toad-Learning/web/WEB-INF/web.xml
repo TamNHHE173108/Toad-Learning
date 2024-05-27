@@ -8,6 +8,10 @@
         <servlet-name>ListStudent</servlet-name>
         <servlet-class>controller.ListStudent</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DashboardLectures</servlet-name>
+        <servlet-class>controller.DashboardLectures</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListProfessor</servlet-name>
         <url-pattern>/ListProfessor</url-pattern>
@@ -15,5 +19,9 @@
     <servlet-mapping>
         <servlet-name>ListStudent</servlet-name>
         <url-pattern>/ListStudent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DashboardLectures</servlet-name>
+        <url-pattern>/dashboardlectures</url-pattern>
     </servlet-mapping>
 </web-app>
