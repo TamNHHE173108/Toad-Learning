@@ -23,7 +23,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav col-lg-12">
-                    <form class="d-flex col-lg-6 p-4" role="search">
+                    <form class="d-flex col-lg-6 p-4 search-items" role="search">
                         <input  class="form-control " type="search" placeholder="Search" aria-label="Search">
                         <button  class="btn btn-outline-success  " type="submit">Search</button>
                     </form>
