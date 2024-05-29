@@ -30,7 +30,7 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">List Professor</h1>                      
+                <h1 class="h3 mb-2 text-gray-800">List Students</h1>                      
                 <!-- DataTales -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">  
@@ -99,12 +99,7 @@
     <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
-
+    
 </body>
 
 </html>

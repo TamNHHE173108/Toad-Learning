@@ -43,15 +43,12 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePro"
                    aria-expanded="true" aria-controls="collapsePro">
                     <i class="fas fa-fw fa-user-circle"></i>
-                    <span>Professors</span>
+                    <span>User</span>
                 </a>
                 <div id="collapsePro" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Professors</h6>
-                        <a class="collapse-item" href="ListProfessor">All Professors</a>
-                        <a class="collapse-item" href="#">Add Professor</a>
-                        <a class="collapse-item" href="#">Edit Professor</a>
-                        <a class="collapse-item" href="#">Professor Profile </a>
+                        <h6 class="collapse-header">Custom User</h6>
+                        <a class="collapse-item" href="listuser">ListUser</a>
                     </div>
                 </div>
             </li>
@@ -61,15 +58,12 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStu"
                    aria-expanded="true" aria-controls="collapseStu">
                     <i class="fas fa-fw fa-user-friends"></i>
-                    <span>Students</span>
+                    <span>Setting</span>
                 </a>
                 <div id="collapseStu" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Students</h6>
-                        <a class="collapse-item" href="ListStudent">All Students</a>
-                        <a class="collapse-item" href="#">Add Students</a>
-                        <a class="collapse-item" href="#">Edit Students</a>
-                        <a class="collapse-item" href="#">Students Profile </a>
+                        <h6 class="collapse-header">Custom Setting</h6>
+                        <a class="collapse-item" href="ListSetting  ">Setting List</a>
                     </div>
                 </div>
             </li>
