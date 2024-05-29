@@ -90,10 +90,10 @@
 </head>
 <body>
     <h1>Add Courses</h1>
-    <form id="newSubjectForm" action="/addSubject" method="post" enctype="multipart/form-data">
+    <form id="newCourseForm" action="/addCourse" method="post" enctype="multipart/form-data">
         <div class="error" id="error"></div>
-        <label for="subjectName">Subject Name:</label>
-        <input type="text" id="subjectName" name="subjectName">
+        <label for="courseName">Course Name:</label>
+        <input type="text" id="courseName" name="courseName">
         
         <label for="thumbnail">Thumbnail Image:</label>
         <input type="file" id="thumbnail" name="thumbnail">
@@ -123,8 +123,8 @@
         <textarea id="description" name="description"></textarea>
         
         <div class="buttons">
-            <a href="javascript:history.back()" class="back-button">Back</a>
-            <input type="submit" value="Add Subject">
+            <a href="/Toad-Learning/views/Havt/HomePageForLectures/Dashboard.jsp" class="back-button">Back</a>
+            <input type="submit" value="Add Course">
         </div>
     </form>
 
@@ -133,15 +133,15 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="js/sb-admin-2.min.js"></script>
     <script>
-        document.getElementById('newSubjectForm').addEventListener('submit', function(event) {
+        document.getElementById('newCourseForm').addEventListener('submit', function(event) {
             let errorElement = document.getElementById('error');
-            let subjectName = document.getElementById('subjectName').value.trim();
+            let courseName = document.getElementById('courseName').value.trim();
             let category = document.getElementById('category').value;
             let owner = document.getElementById('owner').value.trim();
             let status = document.getElementById('status').value;
             let description = document.getElementById('description').value.trim();
 
-            if (subjectName === "" || category === "" || owner === "" || status === "" || description === "") {
+            if (courseName === "" || category === "" || owner === "" || status === "" || description === "") {
                 errorElement.textContent = "All fields except thumbnail and featured flag are required.";
                 errorElement.style.display = "block";
                 event.preventDefault();
