@@ -123,7 +123,7 @@
         <textarea id="description" name="description"></textarea>
         
         <div class="buttons">
-            <a href="/Toad-Learning/views/Havt/HomePageForLectures/Dashboard.jsp" class="back-button">Back</a>
+            <a href="/Toad-Learning/Dashboard" class="back-button">Back</a>
             <input type="submit" value="Add Course">
         </div>
     </form>
