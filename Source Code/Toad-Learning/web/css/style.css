@@ -20,9 +20,7 @@
     bottom: 45px;
     z-index: 99;
 }
-#search-box{
-    width: 80%;
-}
+
 
 /*** Spinner ***/
 #spinner {

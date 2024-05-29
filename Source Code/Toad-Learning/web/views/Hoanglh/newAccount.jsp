@@ -67,8 +67,8 @@
                  <div class="form-group">
                     Bạn là ai?
                     <select name="role">
-                        <option value="+">Học Sinh</option>
-                        <option value="-">Giáo viên</option>
+                        <option value="hs">Học Sinh</option>
+                        <option value="gv">Giáo viên</option>
 
                     </select>
                 </div>
@@ -77,9 +77,14 @@
                     <input type="text" id="username" name="username" required>
                 </div>
                 <div class="form-group">
+                    <label for="sdt">Số điện thoại</label>
+                    <input type="number" id="sdt" name="sdt" required>
+                </div>
+                <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required>
                 </div>
+                
                 <div class="form-group">
                     <label for="password">Mật khẩu</label>
                     <input type="password" id="password" name="password" required>
