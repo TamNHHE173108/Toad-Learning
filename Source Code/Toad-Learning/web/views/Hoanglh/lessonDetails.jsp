@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="my-4">Lesson Details</h1>
+    <h1 class="my-4">Add Lesson</h1>
     <form action="SaveLessonServlet" method="post">
         <div class="form-group">
             <label for="title">Title:</label>
