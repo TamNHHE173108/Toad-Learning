@@ -13,8 +13,12 @@
         <servlet-class>controller.DashboardLectures</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ListLesson</servlet-name>
-        <servlet-class>controller.ListLesson</servlet-class>
+
+       
+
+        <servlet-name>NewSubject</servlet-name>
+        <servlet-class>controller.NewSubject</servlet-class>
+
     </servlet>
     <servlet-mapping>
         <servlet-name>ListProfessor</servlet-name>
@@ -29,7 +33,11 @@
         <url-pattern>/dashboardlectures</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ListLesson</servlet-name>
-        <url-pattern>/listLesson</url-pattern>
+
+        
+=======
+        <servlet-name>NewSubject</servlet-name>
+        <url-pattern>/newsubject</url-pattern>
+
     </servlet-mapping>
 </web-app>

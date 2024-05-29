@@ -8,17 +8,15 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author lehoa
+ * @author Admin
  */
-@WebServlet(name="ListLesson", urlPatterns={"/ListLesson"})
-public class ListLesson extends HttpServlet {
+public class NewSubject extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -35,10 +33,10 @@ public class ListLesson extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ListLesson</title>");  
+            out.println("<title>Servlet NewSubject</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ListLesson at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet NewSubject at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -55,7 +53,7 @@ public class ListLesson extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-       request.getRequestDispatcher("/views/Hoanglh/lessonList.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/Dangph/newSubject.jsp").forward(request, response);
     } 
 
     /** 
