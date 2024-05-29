@@ -16,14 +16,14 @@
         <!-- Navbar Start -->
         <nav class=" navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
             <a href="Home" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-                <img style="width: 150px" src="img/logo/logo.png" alt="Toad Learning"/>
+                <img style="width:150px" src="img/logo/logo.png" alt="Toad Learning"/>
             </a>
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav col-lg-12">
-                    <form class="d-flex col-lg-6 p-4" role="search">
+                    <form class="d-flex col-lg-6 p-4 search-items" role="search">
                         <input  class="form-control " type="search" placeholder="Search" aria-label="Search">
                         <button  class="btn btn-outline-success  " type="submit">Search</button>
                     </form>
