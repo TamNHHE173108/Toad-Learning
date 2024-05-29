@@ -33,7 +33,8 @@
                         <tr>
                             <th>#</th>
                             <th>Lesson Name</th>
-
+                            <th>Content</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -53,7 +54,17 @@
             function addLesson() {
                 alert('Add New Lesson');
                 // Redirect to lesson details page for adding a new lesson
-                window.location.href = 'lessonDetails.jsp';
+                  window.location.href = '/Toad-Learning/views/Hoanglh/lessonDetails.jsp';
+            }
+            function toggleStatus(lessonId) {
+                var statusCell = document.getElementById('status-' + lessonId);
+                if (statusCell.innerText === 'Active') {
+                    statusCell.innerHTML = '<span class="badge badge-secondary">Inactive</span>';
+                    alert('Lesson Deactivated');
+                } else {
+                    statusCell.innerHTML = '<span class="badge badge-success">Active</span>';
+                    alert('Lesson Activated');
+                }
             }
 
 
