@@ -58,16 +58,26 @@
             margin-right: 10px;
         }
 
-        input[type="submit"] {
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        input[type="submit"],
+        .back-button {
             background-color: #4CAF50;
             color: white;
             padding: 10px 15px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
         }
 
-        input[type="submit"]:hover {
+        input[type="submit"]:hover,
+        .back-button:hover {
             background-color: #45a049;
         }
 
@@ -112,7 +122,10 @@
         <label for="description">Description:</label>
         <textarea id="description" name="description"></textarea>
         
-        <input type="submit" value="Add Subject">
+        <div class="buttons">
+            <a href="javascript:history.back()" class="back-button">Back</a>
+            <input type="submit" value="Add Subject">
+        </div>
     </form>
 
     <script src="vendor/jquery/jquery.min.js"></script>
