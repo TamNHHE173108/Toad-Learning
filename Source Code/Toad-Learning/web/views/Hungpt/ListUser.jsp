@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addNewUser"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>					
+                            <a href="#addNewUser"  class="btn btn-success" data-toggle="modal"><i class="material-icons"></i> <span>Add New User</span></a>					
                         </div>
                     </div>
                     <div class="card-body">
@@ -72,7 +72,8 @@
                                             <td>${o.address}</td>
                                             <td>${o.status}</td>
                                             <td>
-
+                                                <a href="load?uid=${o.user_id}""><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+                                                <a href="delete?uid=${o.user_id}"><i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
                                             </td>   
                                         </tr>
                                     </c:forEach>
@@ -140,6 +141,63 @@
                     </div>
                 </div>
             </div>
+            <div id="load?uid=${o.user_id}" class="modal fade">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="add" method="post">
+                                        <div class="modal-header">						
+                                            <h4 class="modal-title">Edit User</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        </div>
+                                        <div class="modal-body">					
+                                            <div class="form-group">
+                                                <label>Name</label>
+                                                <input name="name" type="text" class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Gender</label>
+                                                <select name="gender" class="form-select" aria-label="Default select example">                              
+                                                    <option value="Male">Male</option>
+                                                    <option value="Fermale">Fermale</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Role</label>
+                                                <select name="role" class="form-select" aria-label="Default select example">                              
+                                                    <option value="Lecture">Lecture</option>
+                                                    <option value="Student">Student</option>
+                                                    <option value="Admin">Admin</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Gmail</label>
+                                                <textarea name="gmail" class="form-control" required></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Mobile</label>
+                                                <textarea name="mobile" class="form-control" required></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                <textarea name="address" class="form-control" required></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Status</label>
+                                                <select name="status" class="form-select" aria-label="Default select example">                              
+                                                    <option value="Active">Active</option>
+                                                    <option value="Inactive">Inactive</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                            <input type="submit" class="btn btn-success" value="Add">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
             <!-- Content Row -->
             <!-- End of Main Content -->
 
