@@ -13,9 +13,24 @@ public class Course {
     private boolean featured;
     private String owner;
     private String status;
+    private String category;
+
+    // Constructors
+    public Course() {
+    }
+
+    public Course(String courseID, String courseName, String description, String categoryID, String thumbnail, boolean featured, String owner, String status) {
+        this.courseID = courseID;
+        this.courseName = courseName;
+        this.description = description;
+        this.categoryID = categoryID;
+        this.thumbnail = thumbnail;
+        this.featured = featured;
+        this.owner = owner;
+        this.status = status;
+    }
 
     // Getters and Setters
-
     public String getCourseID() {
         return courseID;
     }
@@ -79,5 +94,13 @@ public class Course {
     public void setStatus(String status) {
         this.status = status;
     }
-}
 
+    public String getCategory() {
+        String category = null;
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+}

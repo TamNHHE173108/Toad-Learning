@@ -3,8 +3,6 @@
     Created on : May 20, 2024, 10:27:07 AM
     Author     : My Lap
 --%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,50 +94,60 @@
     </style>
 </head>
 <body>
-    <h1>Add Courses</h1>
-    <div class="success" id="success">Add new courses successful</div>
-    <form id="newCourseForm" action="/addCourse" method="post" enctype="multipart/form-data">
-        <div class="error" id="error"></div>
-        <label for="courseName">Course Name:</label>
-        <input type="text" id="courseName" name="courseName">
-        
-        <label for="thumbnail">Thumbnail Image:</label>
-        <input type="file" id="thumbnail" name="thumbnail">
-        
-        <label for="category">Category:</label>
-        <select id="category" name="category">
-            <option value="">Select Category</option>
-            <option value="SW">Software</option>
-            <option value="AI">Artificial Intelligence</option>
-            <option value="CS">Computer Science</option>
-            <option value="IB">International Business</option>
-        </select>
-        
-        <label for="featured">Featured:</label>
-        <input type="checkbox" id="featured" name="featured">
-        
-        <label for="owner">Owner:</label>
-        <input type="text" id="owner" name="owner">
-        
-        <label for="status">Status:</label>
-        <select id="status" name="status">
-            <option value="Active">Active</option>
-            <option value="Inactive">Inactive</option>
-        </select>
-        
-        <label for="description">Description:</label>
-        <textarea id="description" name="description"></textarea>
-        
-        <div class="buttons">
-            <a href="/Toad-Learning/Dashboard" class="back-button">Return to Dashboard</a>
-            <input type="submit" value="Add Course">
-        </div>
-    </form>
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <h1>Add Courses</h1>
+        <div class="success" id="success">Add new courses successful</div>
+        <form id="newCourseForm" action="/addCourse" method="post" enctype="multipart/form-data">
+            <div class="error" id="error"></div>
+            <label for="courseName">Course Name:</label>
+            <input type="text" id="courseName" name="courseName">
+            
+            <label for="thumbnail">Thumbnail Image:</label>
+            <input type="file" id="thumbnail" name="thumbnail">
+            
+            <label for="category">Category:</label>
+            <select id="category" name="category">
+                <option value="">Select Category</option>
+                <option value="SW">Software</option>
+                <option value="AI">Artificial Intelligence</option>
+                <option value="CS">Computer Science</option>
+                <option value="IB">International Business</option>
+            </select>
+            
+            <label for="featured">Featured:</label>
+            <input type="checkbox" id="featured" name="featured">
+            
+            <label for="owner">Owner:</label>
+            <input type="text" id="owner" name="owner">
+            
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+            </select>
+            
+            <label for="description">Description:</label>
+            <textarea id="description" name="description"></textarea>
+            
+            <div class="buttons">
+                <a href="/Toad-Learning/Dashboard" class="back-button">Back</a>
+                <input type="submit" value="Add Course">
+            </div>
+        </form>
+    </div>
+    <!-- End of Main Content -->
 
+    <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
     <script>
         document.getElementById('newCourseForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the default form submission
@@ -167,5 +175,6 @@
             }
         });
     </script>
+
 </body>
 </html>
