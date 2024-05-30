@@ -95,6 +95,7 @@
         </style>
     </head>
     <body>
+        
         <!-- Begin Page Content -->
         <div class="container-fluid">
             <h1>Add Courses</h1>
