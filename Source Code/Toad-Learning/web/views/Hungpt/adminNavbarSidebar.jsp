@@ -79,7 +79,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Courses</h6>
                         <a class="collapse-item" href="#">All Courses</a>
-                        <a class="collapse-item" href="#">Add Courses</a>
+                        <a class="collapse-item" href="Addcourses">Add Courses</a>
                         <a class="collapse-item" href="#">Edit Courses</a>
                         <a class="collapse-item" href="#">About Courses </a>
                     </div>
