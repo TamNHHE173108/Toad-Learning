@@ -41,7 +41,7 @@ public class AddUser extends HttpServlet {
         String status = request.getParameter("status");
         AddUserDAO dao = new AddUserDAO();
         dao.insertUser(name, gender, role, gmail, mobile, address, status);
-        request.getRequestDispatcher("listuser").forward(request, response);
+        response.sendRedirect("listuser");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
