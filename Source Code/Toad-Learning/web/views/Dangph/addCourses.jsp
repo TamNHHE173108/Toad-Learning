@@ -86,10 +86,18 @@
             margin-bottom: 20px;
             display: none;
         }
+
+        .success {
+            color: green;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <h1>Add Courses</h1>
+    <div class="success" id="success">Add new courses successful</div>
     <form id="newCourseForm" action="/addCourse" method="post" enctype="multipart/form-data">
         <div class="error" id="error"></div>
         <label for="courseName">Course Name:</label>
@@ -123,7 +131,7 @@
         <textarea id="description" name="description"></textarea>
         
         <div class="buttons">
-            <a href="/Toad-Learning/Dashboard" class="back-button">Back</a>
+            <a href="/Toad-Learning/Dashboard" class="back-button">Return to Dashboard</a>
             <input type="submit" value="Add Course">
         </div>
     </form>
@@ -134,7 +142,10 @@
     <script src="js/sb-admin-2.min.js"></script>
     <script>
         document.getElementById('newCourseForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
             let errorElement = document.getElementById('error');
+            let successElement = document.getElementById('success');
             let courseName = document.getElementById('courseName').value.trim();
             let category = document.getElementById('category').value;
             let owner = document.getElementById('owner').value.trim();
@@ -144,9 +155,15 @@
             if (courseName === "" || category === "" || owner === "" || status === "" || description === "") {
                 errorElement.textContent = "All fields except thumbnail and featured flag are required.";
                 errorElement.style.display = "block";
-                event.preventDefault();
+                successElement.style.display = "none";
             } else {
                 errorElement.style.display = "none";
+
+                // Simulate a successful form submission (replace with actual AJAX call if needed)
+                setTimeout(function() {
+                    document.getElementById('newCourseForm').reset();
+                    successElement.style.display = "block";
+                }, 500);
             }
         });
     </script>
