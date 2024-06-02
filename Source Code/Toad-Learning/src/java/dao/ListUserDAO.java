@@ -17,35 +17,39 @@ import java.util.List;
  * @author laptop lenovo
  */
 public class ListUserDAO {
+
     Connection connection = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
 
     public List<User> getUserList() {
         List<User> list = new ArrayList<>();
-        String query = "SELECT * from users";
+        String query = "SELECT * from Users";
         try {
             connection = new DBContext().getConnection();
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new User(rs.getInt(1),
+                list.add(new User(rs.getString(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
                         rs.getString(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getString(8)));
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10)));
             }
         } catch (Exception e) {
         }
         return list;
     }
+
     public static void main(String[] args) {
         ListUserDAO dao = new ListUserDAO();
         List<User> list = dao.getUserList();
-        for(User o:list) {
+        for (User o : list) {
             System.out.println(o);
         }
     }

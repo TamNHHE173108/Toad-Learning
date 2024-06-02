@@ -32,15 +32,18 @@ public class AddUser extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String user_id = request.getParameter("user_id");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
         String name = request.getParameter("name");
         String gender = request.getParameter("gender");
         String role = request.getParameter("role");
-        String gmail = request.getParameter("gmail");
+        String email = request.getParameter("email");
         String mobile = request.getParameter("mobile");
         String address = request.getParameter("address");
         String status = request.getParameter("status");
         AddUserDAO dao = new AddUserDAO();
-        dao.insertUser(name, gender, role, gmail, mobile, address, status);
+        dao.insertUser(user_id,username,password, name, gender, email, mobile,role,status, address );
         response.sendRedirect("listuser");
     }
 
