@@ -32,16 +32,18 @@ public class EditUser extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
         String uid =request.getParameter("user_id");
         String name = request.getParameter("name");
         String gender = request.getParameter("gender");
         String role = request.getParameter("role");
-        String gmail = request.getParameter("gmail");
+        String email = request.getParameter("email");
         String mobile = request.getParameter("mobile");
         String address = request.getParameter("address");
         String status = request.getParameter("status");
         EditUserDAO dao = new EditUserDAO();
-        dao.editUser(name, gender, role, gmail, mobile, address, status, uid);
+        dao.editUser(username,password, name, gender, email, mobile,role, address,status,uid );
         response.sendRedirect("listuser");
     } 
 
