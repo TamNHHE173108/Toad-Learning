@@ -83,7 +83,8 @@
                 color: red;
                 margin-bottom: 20px;
                 display: none;
-                font-size: 16px; /* Thay ??i kích th??c font */
+                font-size: 16px;
+                text-align: center; /* Hi?n th? cùng m?t dòng */
             }
 
             .success {
@@ -100,7 +101,7 @@
         <div class="container-fluid">
             <h1>Add Courses</h1>
             <div class="success" id="success">Add new courses successful</div>
-            <form id="newCourseForm" action="/addCourse" method="post" enctype="multipart/form-data">
+            <form id="newCourseForm" action="/Addcourses" method="post" enctype="multipart/form-data">
                 <div class="error" id="error"></div>
                 <label for="courseName">Course Name:</label>
                 <input type="text" id="courseName" name="courseName">
@@ -180,4 +181,5 @@
 
     </body>
 </html>
+
 
