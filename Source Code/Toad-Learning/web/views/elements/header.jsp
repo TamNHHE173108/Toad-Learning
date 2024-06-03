@@ -34,7 +34,7 @@
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
                     <div class="d-flex align-items-center">
-                        <button  class="btn btn-outline-primary  " type="submit">Login</button>
+                        <button  class="btn btn-outline-primary  "  type="submit">Login</button>
                         <button  class="btn btn-outline-success  " type="submit">Sign Up</button>
                     </div>
                 </div>

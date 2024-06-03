@@ -50,31 +50,34 @@
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
-                                    <tr>
-                                        <th>Name</th>
+                                    <tr>                
+                                        <th>FullName</th>
                                         <th>Gender</th>
                                         <th>Role</th>
-                                        <th>Gmail</th>
+                                        <th>Email</th>
                                         <th>Mobile</th>
                                         <th>Address</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <c:forEach items="${listU}" var ="o">
-                                        <tr>
+                                        <tr> 
                                             <td>${o.name}</td>
                                             <td>${o.gender}</td>
                                             <td>${o.role}</td>
-                                            <td>${o.gmail}</td>
+                                            <td>${o.email}</td>
                                             <td>${o.mobile}</td>
                                             <td>${o.address}</td>
                                             <td>${o.status}</td>
                                             <td>
                                                 <a href="load?uid=${o.user_id}""><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+                                            </td>
+                                            <td>
                                                 <a href="delete?uid=${o.user_id}"><i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-                                            </td>   
+                                            </td>                                          
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -92,9 +95,21 @@
                                 <h4 class="modal-title">Add User</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             </div>
-                            <div class="modal-body">					
+                            <div class="modal-body">	
                                 <div class="form-group">
-                                    <label>Name</label>
+                                    <label>UserID</label>
+                                    <input name="user_id" type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>UserName</label>
+                                    <input name="username" type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input name="password" type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>FullName</label>
                                     <input name="name" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
@@ -107,14 +122,14 @@
                                 <div class="form-group">
                                     <label>Role</label>
                                     <select name="role" class="form-select" aria-label="Default select example">                              
-                                        <option value="Lecture">Lecture</option>
+                                        <option value="Teacher">Teacher</option>
                                         <option value="Student">Student</option>
                                         <option value="Admin">Admin</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Gmail</label>
-                                    <textarea name="gmail" class="form-control" required></textarea>
+                                    <label>Email</label>
+                                    <textarea name="email" class="form-control" required></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Mobile</label>
@@ -141,63 +156,7 @@
                     </div>
                 </div>
             </div>
-            <div id="load?uid=${o.user_id}" class="modal fade">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <form action="add" method="post">
-                                        <div class="modal-header">						
-                                            <h4 class="modal-title">Edit User</h4>
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        </div>
-                                        <div class="modal-body">					
-                                            <div class="form-group">
-                                                <label>Name</label>
-                                                <input name="name" type="text" class="form-control" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Gender</label>
-                                                <select name="gender" class="form-select" aria-label="Default select example">                              
-                                                    <option value="Male">Male</option>
-                                                    <option value="Fermale">Fermale</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Role</label>
-                                                <select name="role" class="form-select" aria-label="Default select example">                              
-                                                    <option value="Lecture">Lecture</option>
-                                                    <option value="Student">Student</option>
-                                                    <option value="Admin">Admin</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Gmail</label>
-                                                <textarea name="gmail" class="form-control" required></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Mobile</label>
-                                                <textarea name="mobile" class="form-control" required></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Address</label>
-                                                <textarea name="address" class="form-control" required></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Status</label>
-                                                <select name="status" class="form-select" aria-label="Default select example">                              
-                                                    <option value="Active">Active</option>
-                                                    <option value="Inactive">Inactive</option>
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                            <input type="submit" class="btn btn-success" value="Add">
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+            
             <!-- Content Row -->
             <!-- End of Main Content -->
 

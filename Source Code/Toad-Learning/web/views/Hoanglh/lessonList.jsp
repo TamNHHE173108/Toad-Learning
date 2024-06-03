@@ -39,6 +39,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                    <td>1</td>
+                    <td>Lesson 1</td>
+                    <td>Content 1</td>
+                    <td id="status-1"><span class="badge badge-success">Active</span></td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="editLesson('Lesson 1')">Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteLesson(1)">Delete</button>
+                    </td>
+                </tr>
                     <%-- Your lesson list content goes here --%>
                 </tbody>
             </table>
@@ -48,7 +58,7 @@
             function editLesson(lessonName) {
                 alert('Edit Lesson: ' + lessonName);
                 // Redirect to lesson details page for editing
-                window.location.href = 'lessonDetails.jsp?lesson=' + encodeURIComponent(lessonName);
+                window.location.href = '/Toad-Learning/views/Hoanglh/lessonDetails.jsp?lesson=' + encodeURIComponent(lessonName);
             }
 
             function addLesson() {
@@ -66,6 +76,13 @@
                     alert('Lesson Activated');
                 }
             }
+             function deleteLesson(lessonId) {
+            if (confirm('Are you sure you want to delete this lesson?')) {
+                // Xóa bài học với lessonId
+                alert('Lesson ' + lessonId + ' deleted');
+                // Thực hiện các hành động xóa bài học ở đây, ví dụ như gọi API hoặc cập nhật giao diện người dùng
+            }
+        }
 
 
         </script>
