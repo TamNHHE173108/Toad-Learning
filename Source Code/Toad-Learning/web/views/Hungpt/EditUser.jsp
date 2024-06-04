@@ -50,16 +50,16 @@
                                                 <input value="${detail.user_id}" name="user_id" type="text" class="form-control" readonly required>
                                             </div>
                                             <div class="form-group">
-                                                <label>UserName</label>
-                                                <input value="${detail.username}" name="username" type="text" class="form-control" readonly required>
+                                                <label>Username</label>
+                                                <input value="${detail.username}" name="username" type="text" class="form-control" >
                                             </div>
                                             <div class="form-group">
                                                 <label>Password</label>
-                                                <input value="${detail.password}" name="password" type="text" class="form-control" readonly required>
+                                                <input value="${detail.password}" name="password" type="text" class="form-control" >
                                             </div>
                                             <div class="form-group">
                                                 <label>Name</label>
-                                                <input value="${detail.name}" name="name" type="text" class="form-control" required>
+                                                <input value="${detail.name}" name="name" type="text" class="form-control">
                                             </div>
                                             <div class="form-group">
                                                 <label>Gender</label>
