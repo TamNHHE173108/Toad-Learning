@@ -64,8 +64,8 @@
                                             <div class="form-group">
                                                 <label>Gender</label>
                                                 <select name="gender" class="form-select">                              
-                                                    <option value="Male" ${detail.gender eq 'Male' ? 'selected' : ''}>Male</option>
-                                                    <option value="Fermale" ${detail.gender eq 'Fermale' ? 'selected' : ''}>Fermale</option>
+                                                    <option value="Male" ${detail.gender == 'Male' ? 'selected' : ''}>Male</option>
+                                                    <option value="Fermale" ${detail.gender == 'Fermale' ? 'selected' : ''}>Fermale</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">

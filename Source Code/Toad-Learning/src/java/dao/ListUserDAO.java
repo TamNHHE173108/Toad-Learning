@@ -24,7 +24,7 @@ public class ListUserDAO {
 
     public List<User> getUserList() {
         List<User> list = new ArrayList<>();
-        String query = "SELECT * from Users";
+        String query = "SELECT * FROM Users";
         try {
             connection = new DBContext().getConnection();
             PreparedStatement ps = connection.prepareStatement(query);
