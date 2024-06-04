@@ -101,7 +101,7 @@
                                     <input name="user_id" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>UserName</label>
+                                    <label>Username</label>
                                     <input name="username" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
