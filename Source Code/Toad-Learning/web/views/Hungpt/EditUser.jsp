@@ -10,7 +10,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Course - Dashboard</title>
+        <title>Course - EditUser</title>
 
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -146,9 +146,6 @@
 
                 <!-- Custom scripts for all pages-->
                 <script src="js/sb-admin-2.min.js"></script>
-
-
-
                 </body>
 
                 </html>

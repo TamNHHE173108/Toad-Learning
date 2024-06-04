@@ -10,7 +10,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Course - ListUser</title>
+        <title>Course - Dashboard</title>
 
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -31,7 +31,7 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">List User</h1> 
+                <h1 class="h3 mb-2 text-gray-800">List Course</h1> 
 
                 <!-- DataTales -->
                 <div class="card shadow mb-4">
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addNewUser"  class="btn btn-success" data-toggle="modal"><i class="material-icons"></i> <span>Add New User</span></a>					
+                            <a href="#addNewCourse"  class="btn btn-success" data-toggle="modal"><i class="material-icons"></i> <span>Add New Course</span></a>					
                         </div>
                     </div>
                     <div class="card-body">
@@ -51,35 +51,31 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>                
-                                        <th>FullName</th>
-                                        <th>Gender</th>
-                                        <th>Role</th>
-                                        <th>Email</th>
-                                        <th>Mobile</th>
-                                        <th>Address</th>
+                                        <th>Thumbnail</th>
+                                        <th>Title</th>
+                                        <th>TopicID</th>
+                                        <th>Description</th>
                                         <th>Status</th>
                                         <th>Edit</th>
                                         <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${listU}" var ="o">
-                                        <tr> 
-                                            <td>${o.name}</td>
-                                            <td>${o.gender}</td>
-                                            <td>${o.role}</td>
-                                            <td>${o.email}</td>
-                                            <td>${o.mobile}</td>
-                                            <td>${o.address}</td>
-                                            <td>${o.status}</td>
-                                            <td>
-                                                <a href="load?uid=${o.user_id}""><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
-                                            </td>
-                                            <td>
-                                                <a href="delete?uid=${o.user_id}"><i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-                                            </td>                                          
-                                        </tr>
-                                    </c:forEach>
+                                <c:forEach items="${listCourse}" var ="o">
+                                    <tr> 
+                                        <td><img src="${o.thumbnail}" alt="Description of the image" width="100px"></td>
+                                        <td>${o.title}</td>
+                                        <td>${o.topicID}</td>
+                                        <td>${o.description}</td>
+                                        <td>${o.status}</td>
+                                        <td>
+                                            <a href=""><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+                                        </td>
+                                        <td>
+                                            <a href=""><i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                                        </td>                                          
+                                    </tr>
+                                </c:forEach>
                                 </tbody>
                             </table>
 
@@ -92,7 +88,7 @@
                     <div class="modal-content">
                         <form action="add" method="post">
                             <div class="modal-header">						
-                                <h4 class="modal-title">Add User</h4>
+                                <h4 class="modal-title">Add Course</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             </div>
                             <div class="modal-body">	
@@ -156,7 +152,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Content Row -->
             <!-- End of Main Content -->
 

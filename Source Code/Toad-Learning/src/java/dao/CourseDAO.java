@@ -39,7 +39,7 @@ public class CourseDAO {
         }
     }
 
-    public List<Course> listCourses() throws SQLException {
+    public List<Course> listCourses() {
         List<Course> list = new ArrayList<>();
         String sql = "SELECT * FROM Courses";
         try {
@@ -57,11 +57,11 @@ public class CourseDAO {
                 list.add(course);
             }
         } catch (SQLException e) {
-            throw e;
-        } finally {
-            if (rs != null) rs.close();
-            if (ps != null) ps.close();
-            if (conn != null) conn.close();
+//            throw e;
+//        } finally {
+//            if (rs != null) rs.close();
+//            if (ps != null) ps.close();
+//            if (conn != null) conn.close();
         }
         return list;
     }
