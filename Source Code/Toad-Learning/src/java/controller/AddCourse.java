@@ -25,17 +25,15 @@ public class AddCourse extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
 
-        String courseName = request.getParameter("courseName");
+        String courseName = request.getParameter("title");
         String description = request.getParameter("description");
-        String category = request.getParameter("category");
-        String owner = request.getParameter("owner");
+        String category = request.getParameter("topicID");
         String status = request.getParameter("status");
 
         Course course = new Course();
-        course.setCourseName(courseName);
+        course.setTitle(courseName);
         course.setDescription(description);
-        course.setCategory(category);
-        course.setOwner(owner);
+        course.setTopicID(category);
         course.setStatus(status);
 
         CourseDAO courseDAO = new CourseDAO();

@@ -6,31 +6,26 @@ package entity;
 
 public class Course {
     private String courseID;
-    private String courseName;
+    private String title;
+    private String topicID;
     private String description;
-    private String categoryID;
     private String thumbnail;
     private boolean featured;
-    private String owner;
     private String status;
-    private String category;
 
-    // Constructors
     public Course() {
     }
 
-    public Course(String courseID, String courseName, String description, String categoryID, String thumbnail, boolean featured, String owner, String status) {
+    public Course(String courseID, String title, String topicID, String description, String thumbnail, boolean featured, String status) {
         this.courseID = courseID;
-        this.courseName = courseName;
+        this.title = title;
+        this.topicID = topicID;
         this.description = description;
-        this.categoryID = categoryID;
         this.thumbnail = thumbnail;
         this.featured = featured;
-        this.owner = owner;
         this.status = status;
     }
 
-    // Getters and Setters
     public String getCourseID() {
         return courseID;
     }
@@ -39,12 +34,20 @@ public class Course {
         this.courseID = courseID;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTopicID() {
+        return topicID;
+    }
+
+    public void setTopicID(String topicID) {
+        this.topicID = topicID;
     }
 
     public String getDescription() {
@@ -53,14 +56,6 @@ public class Course {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getCategoryID() {
-        return categoryID;
-    }
-
-    public void setCategoryID(String categoryID) {
-        this.categoryID = categoryID;
     }
 
     public String getThumbnail() {
@@ -79,14 +74,6 @@ public class Course {
         this.featured = featured;
     }
 
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -95,12 +82,5 @@ public class Course {
         this.status = status;
     }
 
-    public String getCategory() {
-        String category = null;
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
+    
 }

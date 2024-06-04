@@ -98,73 +98,73 @@
     <body>
 
 
-               <div class="container-fluid">
-        <h1>Add Courses</h1>
-        <div class="success" id="success">Add new courses successful</div>
-        <form id="newCourseForm" action="/Addcourses" method="post" enctype="multipart/form-data">
-            <div class="error" id="error"></div>
+        <div class="container-fluid">
+            <h1>Add Courses</h1>
+            <div class="success" id="success">Add new courses successful</div>
+            <form id="newCourseForm" action="/Addcourses" method="post" enctype="multipart/form-data">
+                <div class="error" id="error"></div>
 
-            <label for="courseName">Course Name:</label>
-            <input type="text" id="courseName" name="courseName">
+                <label for="courseName">Course Name:</label>
+                <input type="text" id="courseName" name="courseName">
 
-            <label for="thumbnail">Thumbnail Image:</label>
-            <input type="file" id="thumbnail" name="thumbnail">
+                <label for="thumbnail">Thumbnail Image:</label>
+                <input type="file" id="thumbnail" name="thumbnail">
 
-            <label for="category">Category:</label>
-            <select id="category" name="category">
-                <option value="">Select Category</option>
-                <option value="SW">Software</option>
-                <option value="AI">Artificial Intelligence</option>
-                <option value="CS">Computer Science</option>
-                <option value="IB">International Business</option>
-            </select>
+                <label for="category">Category:</label>
+                <select id="category" name="category">
+                    <option value="">Select Category</option>
+                    <option value="SW">Software</option>
+                    <option value="AI">Artificial Intelligence</option>
+                    <option value="CS">Computer Science</option>
+                    <option value="IB">International Business</option>
+                </select>
 
-            <label for="featured">Featured:</label>
-            <input type="checkbox" id="featured" name="featured">
+                <label for="featured">Featured:</label>
+                <input type="checkbox" id="featured" name="featured">
 
-            <label for="owner">Owner:</label>
-            <input type="text" id="owner" name="owner">
+                <label for="owner">Owner:</label>
+                <input type="text" id="owner" name="owner">
 
-            <label for="status">Status:</label>
-            <select id="status" name="status">
-                <option value="Active">Active</option>
-                <option value="Inactive">Inactive</option>
-            </select>
+                <label for="status">Status:</label>
+                <select id="status" name="status">
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
 
-            <label for="description">Description:</label>
-            <textarea id="description" name="description"></textarea>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description"></textarea>
 
-            <div class="buttons">
-                <a href="/Toad-Learning/Dashboard" class="back-button">Return to Dash Board</a>
-                <input type="submit" value="Add Course">
-            </div>
-        </form>
-    </div>
+                <div class="buttons">
+                    <a href="/Toad-Learning/Dashboard" class="back-button">Return to Dash Board</a>
+                    <input type="submit" value="Add Course">
+                </div>
+            </form>
+        </div>
 
-    <script>
-        document.getElementById('newCourseForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-            let errorElement = document.getElementById('error');
-            let successElement = document.getElementById('success');
-            let courseName = document.getElementById('courseName').value.trim();
-            let category = document.getElementById('category').value;
-            let owner = document.getElementById('owner').value.trim();
-            let status = document.getElementById('status').value;
-            let description = document.getElementById('description').value.trim();
+        <script>
+            document.getElementById('newCourseForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+                let errorElement = document.getElementById('error');
+                let successElement = document.getElementById('success');
+                let courseName = document.getElementById('courseName').value.trim();
+                let category = document.getElementById('category').value;
+                let owner = document.getElementById('owner').value.trim();
+                let status = document.getElementById('status').value;
+                let description = document.getElementById('description').value.trim();
 
-            if (courseName === "" || category === "" || owner === "" || status === "" || description === "") {
-                errorElement.textContent = "All fields except thumbnail and featured flag are required.";
-                errorElement.style.display = "block";
-                successElement.style.display = "none";
-            } else {
-                errorElement.style.display = "none";
-                setTimeout(function () {
-                    document.getElementById('newCourseForm').reset();
-                    successElement.style.display = "block";
-                }, 500);
-            }
-        });
-    </script>
+                if (courseName === "" || category === "" || owner === "" || status === "" || description === "") {
+                    errorElement.textContent = "All fields except thumbnail and featured flag are required.";
+                    errorElement.style.display = "block";
+                    successElement.style.display = "none";
+                } else {
+                    errorElement.style.display = "none";
+                    setTimeout(function () {
+                        document.getElementById('newCourseForm').reset();
+                        successElement.style.display = "block";
+                    }, 500);
+                }
+            });
+        </script>
 
     </body>
 </html>

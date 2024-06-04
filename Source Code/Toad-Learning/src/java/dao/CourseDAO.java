@@ -20,18 +20,16 @@ public class CourseDAO {
     ResultSet rs = null;
 
     public void addCourse(Course course) throws SQLException {
-        String sql = "INSERT INTO Course (CourseID, CourseName, Description, CategoryID, Thumbnail, Featured, Owner, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Courses (CourseID, Title, TopicID, Description, Thumbnail, Status) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, course.getCourseID());
-            ps.setString(2, course.getCourseName());
-            ps.setString(3, course.getDescription());
-            ps.setString(4, course.getCategoryID());
+            ps.setString(2, course.getTitle());
+            ps.setString(3, course.getTopicID());
+            ps.setString(4, course.getDescription());
             ps.setString(5, course.getThumbnail());
-            ps.setBoolean(6, course.isFeatured());
-            ps.setString(7, course.getOwner());
-            ps.setString(8, course.getStatus());
+            ps.setString(6, course.getStatus());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -43,7 +41,7 @@ public class CourseDAO {
 
     public List<Course> listCourses() throws SQLException {
         List<Course> list = new ArrayList<>();
-        String sql = "SELECT * FROM Course";
+        String sql = "SELECT * FROM Courses";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
@@ -51,12 +49,10 @@ public class CourseDAO {
             while (rs.next()) {
                 Course course = new Course();
                 course.setCourseID(rs.getString("CourseID"));
-                course.setCourseName(rs.getString("CourseName"));
+                course.setTitle(rs.getString("Title"));
+                course.setTopicID(rs.getString("TopicID"));
                 course.setDescription(rs.getString("Description"));
-                course.setCategoryID(rs.getString("CategoryID"));
                 course.setThumbnail(rs.getString("Thumbnail"));
-                course.setFeatured(rs.getBoolean("Featured"));
-                course.setOwner(rs.getString("Owner"));
                 course.setStatus(rs.getString("Status"));
                 list.add(course);
             }
@@ -71,7 +67,7 @@ public class CourseDAO {
     }
 
     public Course getCourseById(String courseID) throws SQLException {
-        String sql = "SELECT * FROM Course WHERE CourseID = ?";
+        String sql = "SELECT * FROM Courses WHERE CourseID = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
@@ -80,12 +76,10 @@ public class CourseDAO {
             if (rs.next()) {
                 Course course = new Course();
                 course.setCourseID(rs.getString("CourseID"));
-                course.setCourseName(rs.getString("CourseName"));
+                course.setTitle(rs.getString("Title"));
+                course.setTopicID(rs.getString("TopicID"));
                 course.setDescription(rs.getString("Description"));
-                course.setCategoryID(rs.getString("CategoryID"));
                 course.setThumbnail(rs.getString("Thumbnail"));
-                course.setFeatured(rs.getBoolean("Featured"));
-                course.setOwner(rs.getString("Owner"));
                 course.setStatus(rs.getString("Status"));
                 return course;
             }
@@ -99,5 +93,3 @@ public class CourseDAO {
         return null;
     }
 }
-
-
