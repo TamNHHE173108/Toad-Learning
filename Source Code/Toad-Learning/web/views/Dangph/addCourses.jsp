@@ -96,88 +96,75 @@
         </style>
     </head>
     <body>
-        
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-            <h1>Add Courses</h1>
-            <div class="success" id="success">Add new courses successful</div>
-            <form id="newCourseForm" action="/Addcourses" method="post" enctype="multipart/form-data">
-                <div class="error" id="error"></div>
-                <label for="courseName">Course Name:</label>
-                <input type="text" id="courseName" name="courseName">
 
-                <label for="thumbnail">Thumbnail Image:</label>
-                <input type="file" id="thumbnail" name="thumbnail">
 
-                <label for="category">Category:</label>
-                <select id="category" name="category">
-                    <option value="">Select Category</option>
-                    <option value="SW">Software</option>
-                    <option value="AI">Artificial Intelligence</option>
-                    <option value="CS">Computer Science</option>
-                    <option value="IB">International Business</option>
-                </select>
+               <div class="container-fluid">
+        <h1>Add Courses</h1>
+        <div class="success" id="success">Add new courses successful</div>
+        <form id="newCourseForm" action="/Addcourses" method="post" enctype="multipart/form-data">
+            <div class="error" id="error"></div>
 
-                <label for="featured">Featured:</label>
-                <input type="checkbox" id="featured" name="featured">
+            <label for="courseName">Course Name:</label>
+            <input type="text" id="courseName" name="courseName">
 
-                <label for="owner">Owner:</label>
-                <input type="text" id="owner" name="owner">
+            <label for="thumbnail">Thumbnail Image:</label>
+            <input type="file" id="thumbnail" name="thumbnail">
 
-                <label for="status">Status:</label>
-                <select id="status" name="status">
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
-                </select>
+            <label for="category">Category:</label>
+            <select id="category" name="category">
+                <option value="">Select Category</option>
+                <option value="SW">Software</option>
+                <option value="AI">Artificial Intelligence</option>
+                <option value="CS">Computer Science</option>
+                <option value="IB">International Business</option>
+            </select>
 
-                <label for="description">Description:</label>
-                <textarea id="description" name="description"></textarea>
+            <label for="featured">Featured:</label>
+            <input type="checkbox" id="featured" name="featured">
 
-                <div class="buttons">
-                    <a href="/Toad-Learning/Dashboard" class="back-button">Return to Dash Board</a>
-                    <input type="submit" value="Add Course">
-                </div>
-            </form>
-        </div>
-        <!-- End of Main Content -->
+            <label for="owner">Owner:</label>
+            <input type="text" id="owner" name="owner">
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+            </select>
 
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description"></textarea>
 
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
+            <div class="buttons">
+                <a href="/Toad-Learning/Dashboard" class="back-button">Return to Dash Board</a>
+                <input type="submit" value="Add Course">
+            </div>
+        </form>
+    </div>
 
-        <script>
-            document.getElementById('newCourseForm').addEventListener('submit', function (event) {
-                event.preventDefault(); // Prevent the default form submission
+    <script>
+        document.getElementById('newCourseForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            let errorElement = document.getElementById('error');
+            let successElement = document.getElementById('success');
+            let courseName = document.getElementById('courseName').value.trim();
+            let category = document.getElementById('category').value;
+            let owner = document.getElementById('owner').value.trim();
+            let status = document.getElementById('status').value;
+            let description = document.getElementById('description').value.trim();
 
-                let errorElement = document.getElementById('error');
-                let successElement = document.getElementById('success');
-                let courseName = document.getElementById('courseName').value.trim();
-                let category = document.getElementById('category').value;
-                let owner = document.getElementById('owner').value.trim();
-                let status = document.getElementById('status').value;
-                let description = document.getElementById('description').value.trim();
-
-                if (courseName === "" || category === "" || owner === "" || status === "" || description === "") {
-                    errorElement.textContent = "All fields except thumbnail and featured flag are required.";
-                    errorElement.style.display = "block";
-                    successElement.style.display = "none";
-                } else {
-                    errorElement.style.display = "none";
-
-                    // Simulate a successful form submission (replace with actual AJAX call if needed)
-                    setTimeout(function () {
-                        document.getElementById('newCourseForm').reset();
-                        successElement.style.display = "block";
-                    }, 500);
-                }
-            });
-        </script>
+            if (courseName === "" || category === "" || owner === "" || status === "" || description === "") {
+                errorElement.textContent = "All fields except thumbnail and featured flag are required.";
+                errorElement.style.display = "block";
+                successElement.style.display = "none";
+            } else {
+                errorElement.style.display = "none";
+                setTimeout(function () {
+                    document.getElementById('newCourseForm').reset();
+                    successElement.style.display = "block";
+                }, 500);
+            }
+        });
+    </script>
 
     </body>
 </html>
