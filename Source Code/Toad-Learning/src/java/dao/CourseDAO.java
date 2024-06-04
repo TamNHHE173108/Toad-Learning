@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourseDAO {
+
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -34,14 +35,20 @@ public class CourseDAO {
         } catch (SQLException e) {
             throw e;
         } finally {
-            if (ps != null) ps.close();
-            if (conn != null) conn.close();
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
     }
 
     public List<Course> listCourses() {
         List<Course> list = new ArrayList<>();
-        String sql = "SELECT * FROM Courses";
+        String sql = "SELECT CourseID, Title, TopicName, Courses.Description, Thumbnail, Status\n"
+                + "FROM Courses\n"
+                + "INNER JOIN Topics ON Courses.TopicID=Topics.TopicID";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
@@ -50,7 +57,7 @@ public class CourseDAO {
                 Course course = new Course();
                 course.setCourseID(rs.getString("CourseID"));
                 course.setTitle(rs.getString("Title"));
-                course.setTopicID(rs.getString("TopicID"));
+                course.setTopicName(rs.getString("TopicName"));
                 course.setDescription(rs.getString("Description"));
                 course.setThumbnail(rs.getString("Thumbnail"));
                 course.setStatus(rs.getString("Status"));
@@ -86,9 +93,15 @@ public class CourseDAO {
         } catch (SQLException e) {
             throw e;
         } finally {
-            if (rs != null) rs.close();
-            if (ps != null) ps.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return null;
     }

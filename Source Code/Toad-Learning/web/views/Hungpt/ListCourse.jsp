@@ -39,7 +39,7 @@
                         <div class="box">
                             <div class="container-2">
                                 <span class="icon"><i class="fa fa-search"></i></span>
-                                <input type="search" id="search" placeholder="Search..." />
+                                <input type="search" id="search" style = "margin-bottom: 5px" placeholder="Search..." />
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -50,10 +50,11 @@
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
-                                    <tr>                
+                                    <tr>
+                                        <th>CourseID</th>
                                         <th>Thumbnail</th>
                                         <th>Title</th>
-                                        <th>TopicID</th>
+                                        <th>TopicName</th>
                                         <th>Description</th>
                                         <th>Status</th>
                                         <th>Edit</th>
@@ -63,9 +64,10 @@
                                 <tbody>
                                 <c:forEach items="${listCourse}" var ="o">
                                     <tr> 
+                                        <td>${o.courseID}</td>
                                         <td><img src="${o.thumbnail}" alt="Description of the image" width="100px"></td>
                                         <td>${o.title}</td>
-                                        <td>${o.topicID}</td>
+                                        <td>${o.topicName}</td>
                                         <td>${o.description}</td>
                                         <td>${o.status}</td>
                                         <td>
