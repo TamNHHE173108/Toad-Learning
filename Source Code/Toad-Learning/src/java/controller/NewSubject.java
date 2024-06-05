@@ -53,7 +53,7 @@ public class NewSubject extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("/views/Dangph/.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/Dangph/addCourse.jsp").forward(request, response);
     } 
 
     /** 
