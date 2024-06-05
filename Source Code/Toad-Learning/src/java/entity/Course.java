@@ -8,6 +8,7 @@ public class Course {
     private String courseID;
     private String title;
     private String topicID;
+    private String topicName;
     private String description;
     private String thumbnail;
     private boolean featured;
@@ -16,10 +17,11 @@ public class Course {
     public Course() {
     }
 
-    public Course(String courseID, String title, String topicID, String description, String thumbnail, boolean featured, String status) {
+    public Course(String courseID, String title, String topicID,String topicName, String description, String thumbnail, boolean featured, String status) {
         this.courseID = courseID;
         this.title = title;
         this.topicID = topicID;
+        this.topicName = topicName;
         this.description = description;
         this.thumbnail = thumbnail;
         this.featured = featured;
@@ -80,6 +82,14 @@ public class Course {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getTopicName() {
+        return topicName;
+    }
+
+    public void setTopicName(String topicName) {
+        this.topicName = topicName;
     }
 
     
