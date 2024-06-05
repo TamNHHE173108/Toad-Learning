@@ -7,7 +7,7 @@ package entity;
 public class Course {
     private String courseID;
     private String title;
-    private String topicID;
+    private Topic topicID;
     private String description;
     private String createDate;
     private String updateDate;
@@ -19,7 +19,7 @@ public class Course {
     public Course() {
     }
 
-    public Course(String courseID, String title, String topicID, String description, String createDate, String updateDate, String thumbnail,String price,String salePrice, String status) {
+    public Course(String courseID, String title, Topic topicID, String description, String createDate, String updateDate, String thumbnail,String price,String salePrice, String status) {
         this.courseID = courseID;
         this.title = title;
         this.topicID = topicID;
@@ -32,6 +32,7 @@ public class Course {
         this.status = status;
     }
 
+    
     public String getCourseID() {
         return courseID;
     }
@@ -48,11 +49,11 @@ public class Course {
         this.title = title;
     }
 
-    public String getTopicID() {
+    public Topic getTopicID() {
         return topicID;
     }
 
-    public void setTopicID(String topicID) {
+    public void setTopicID(Topic topicID) {
         this.topicID = topicID;
     }
 

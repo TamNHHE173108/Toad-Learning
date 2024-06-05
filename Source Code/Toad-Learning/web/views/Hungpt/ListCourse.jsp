@@ -66,18 +66,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${listCourse}" var ="o">
+                                    <c:forEach items="${listCourse}" var ="c">
                                         <tr> 
-                                            <td>${o.courseID}</td>
-                                            <td><img src="${o.thumbnail}" alt="Description of the image" width="100px"></td>
-                                            <td>${o.title}</td>
-                                            <td>${o.topicName}</td>
-                                            <td>${o.description}</td>
-                                            <td>${o.createDate}</td>
-                                            <td>${o.updateDate}</td>
-                                            <td>${o.price}</td>
-                                            <td>${o.salePrice}</td>
-                                            <td>${o.status}</td>
+                                            <td>${c.courseID}</td>
+                                            <td><img src="${c.thumbnail}" alt="Description of the image" width="100px"></td>
+                                            <td>${c.title}</td>
+                                            <td>${c.topicID.topicName}</td>
+                                            <td>${c.description}</td>
+                                            <td>${c.createDate}</td>
+                                            <td>${c.updateDate}</td>
+                                            <td>${c.price}</td>
+                                            <td>${c.salePrice}</td>
+                                            <td>${c.status}</td>
                                             <td>
                                                 <a href=""><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
                                             </td>

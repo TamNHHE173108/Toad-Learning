@@ -33,7 +33,7 @@ public class AddCourse extends HttpServlet {
         Course course = new Course();
         course.setTitle(courseName);
         course.setDescription(description);
-        course.setTopicID(category);
+//        course.setTopicID(category);
         course.setStatus(status);
 
         CourseDAO courseDAO = new CourseDAO();
