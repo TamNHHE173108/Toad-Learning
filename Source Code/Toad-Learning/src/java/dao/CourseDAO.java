@@ -46,7 +46,7 @@ public class CourseDAO {
 
     public List<Course> listCourses() {
         List<Course> list = new ArrayList<>();
-        String sql = "SELECT CourseID, Title, TopicName, Courses.Description, Thumbnail, Status\n"
+        String sql = "SELECT CourseID, Title, TopicName, Courses.Description, CreatedDate,UpdatedDate, Thumbnail, Status, Price, SalePrice\n"
                 + "FROM Courses\n"
                 + "INNER JOIN Topics ON Courses.TopicID=Topics.TopicID";
         try {
@@ -57,10 +57,14 @@ public class CourseDAO {
                 Course course = new Course();
                 course.setCourseID(rs.getString("CourseID"));
                 course.setTitle(rs.getString("Title"));
-                course.setTopicName(rs.getString("TopicName"));
+                course.setTopicID(rs.getString("TopicID"));
                 course.setDescription(rs.getString("Description"));
+                course.setCreateDate(rs.getString("CreatedDate"));
+                course.setUpdateDate(rs.getString("UpdatedDate"));
                 course.setThumbnail(rs.getString("Thumbnail"));
                 course.setStatus(rs.getString("Status"));
+                course.setPrice(rs.getString("Price"));
+                course.setSalePrice(rs.getString("SalePrice"));
                 list.add(course);
             }
         } catch (SQLException e) {

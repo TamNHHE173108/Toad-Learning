@@ -10,7 +10,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Course - Dashboard</title>
+        <title>Course - List Course</title>
 
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <a href="Addcourses"  class="btn btn-success" data-toggle="modal"><i class="material-icons"></i> <span>Add New Course</span></a>					
+                            <a href="#addNewCourse"  class="btn btn-success" data-toggle="modal"><i class="material-icons"></i> <span>Add New Course</span></a>					
                         </div>
                     </div>
                     <div class="card-body">
@@ -56,28 +56,36 @@
                                         <th>Title</th>
                                         <th>TopicName</th>
                                         <th>Description</th>
+                                        <th>CreateDate</th>
+                                        <th>UpdateDate</th>
+                                        <th>Price</th>
+                                        <th>SalePrice</th>
                                         <th>Status</th>
                                         <th>Edit</th>
                                         <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${listCourse}" var ="o">
-                                    <tr> 
-                                        <td>${o.courseID}</td>
-                                        <td><img src="${o.thumbnail}" alt="Description of the image" width="100px"></td>
-                                        <td>${o.title}</td>
-                                        <td>${o.topicName}</td>
-                                        <td>${o.description}</td>
-                                        <td>${o.status}</td>
-                                        <td>
-                                            <a href=""><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
-                                        </td>
-                                        <td>
-                                            <a href=""><i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-                                        </td>                                          
-                                    </tr>
-                                </c:forEach>
+                                    <c:forEach items="${listCourse}" var ="o">
+                                        <tr> 
+                                            <td>${o.courseID}</td>
+                                            <td><img src="${o.thumbnail}" alt="Description of the image" width="100px"></td>
+                                            <td>${o.title}</td>
+                                            <td>${o.topicName}</td>
+                                            <td>${o.description}</td>
+                                            <td>${o.createDate}</td>
+                                            <td>${o.updateDate}</td>
+                                            <td>${o.price}</td>
+                                            <td>${o.salePrice}</td>
+                                            <td>${o.status}</td>
+                                            <td>
+                                                <a href=""><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+                                            </td>
+                                            <td>
+                                                <a href=""><i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                                            </td>                                          
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
 
@@ -85,10 +93,10 @@
                     </div>
                 </div>
             </div>
-            <div id="addNewUser" class="modal fade">
+            <div id="addNewCourse" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="add" method="post">
+                        <form action="/Addcourses" method="post">
                             <div class="modal-header">						
                                 <h4 class="modal-title">Add Course</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
