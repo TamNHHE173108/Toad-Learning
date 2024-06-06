@@ -75,8 +75,8 @@
                                             <td>${c.description}</td>
                                             <td>${c.createDate}</td>
                                             <td>${c.updateDate}</td>
-                                            <td>${c.price}</td>
-                                            <td>${c.salePrice}</td>
+                                            <td>${c.price}$</td>
+                                            <td>${c.salePrice}$</td>
                                             <td>${c.status}</td>
                                             <td>
                                                 <a href=""><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>

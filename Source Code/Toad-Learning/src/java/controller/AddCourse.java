@@ -24,32 +24,26 @@ public class AddCourse extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-
+        String courseID = request.getParameter("courseID");
         String courseName = request.getParameter("title");
         String description = request.getParameter("description");
         String category = request.getParameter("topicID");
+        String createDate = request.getParameter("createDate");
+        String updateDate = request.getParameter("updateDate");
+        String thumbnail = request.getParameter("thumbnail");
+        String price = request.getParameter("price");
+        String salePrice = request.getParameter("status");
         String status = request.getParameter("status");
 
-        Course course = new Course();
-        course.setTitle(courseName);
-        course.setDescription(description);
-//        course.setTopicID(category);
-        course.setStatus(status);
-
         CourseDAO courseDAO = new CourseDAO();
-        try {
-            courseDAO.addCourse(course);
-            response.sendRedirect("success.jsp");
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.sendRedirect("error.jsp");
-        }
+        courseDAO.addCourse(courseID,courseName,category,description,createDate,updateDate,thumbnail,price,salePrice,status);
+        response.sendRedirect("listcourse");
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/views/Dangph/addCourses.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     @Override

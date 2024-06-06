@@ -21,33 +21,37 @@ public class CourseDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    public void addCourse(Course course) throws SQLException {
+    public void addCourse(String courseID, String courseName, String category, String description, String thumbnail, String createDate,String updateDate,String price,String salePrice,String status ) {
         String sql = "INSERT INTO Courses (CourseID, Title, TopicID, Description, Thumbnail, CreatedDate,UpdatedDate,Price,SalePrice, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, course.getCourseID());
-            ps.setString(2, course.getTitle());
-            ps.setObject(3, course.getTopicID());
-            ps.setString(4, course.getDescription());
-            ps.setString(5, course.getThumbnail());
-            ps.setString(6, course.getStatus());
+            ps.setString(1, courseID);
+            ps.setString(2, courseName);
+            ps.setString(3, category);
+            ps.setString(4, description);
+            ps.setString(5, thumbnail);
+            ps.setString(6, createDate);
+            ps.setString(7, updateDate);
+            ps.setString(8, price);
+            ps.setString(9, salePrice);
+            ps.setString(10, status);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw e;
-        } finally {
-            if (ps != null) {
-                ps.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
+//            throw e;
+//        } finally {
+//            if (ps != null) {
+//                ps.close();
+//            }
+//            if (conn != null) {
+//                conn.close();
+//            }
         }
     }
 
     public List<Course> listCourses() {
         List<Course> list = new ArrayList<>();
-        String sql = "SELECT CourseID, Title, TopicName, Courses.Description, CreatedDate, UpdatedDate, Thumbnail, Status, Price, SalePrice\n"
+        String sql = "SELECT CourseID, Title, Topics.TopicName, Courses.Description, CreatedDate, UpdatedDate, Thumbnail, Price, SalePrice, Status\n"
                 + "FROM Courses\n"
                 + "INNER JOIN Topics ON Courses.TopicID=Topics.TopicID";
         try {

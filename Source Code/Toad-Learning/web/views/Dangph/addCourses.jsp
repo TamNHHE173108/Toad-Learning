@@ -101,11 +101,14 @@
         <h1>Add Courses</h1>
         <div class="success" id="success">Add new course successful</div>
         <form id="newCourseForm" action="/Addcourses" method="post" enctype="multipart/form-data">
+            <label for="title">CourseID</label>
+            <input type="text" id="courseID" name="courseID">
+            
             <label for="title">Title:</label>
-            <input type="text" id="title" name="title">
+            <input type="text" id="courseName" name="courseName">
 
             <label for="topicID">Topic ID:</label>
-            <input type="text" id="topicID" name="topicID">
+            <input type="text" id="category" name="category">
 
             <label for="description">Description:</label>
             <textarea id="description" name="description"></textarea>
