@@ -39,8 +39,8 @@ public class MyCourse extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         ListCourseDAO dao = new ListCourseDAO();
         List<Course> listC = dao.listCoursesLecture();
-        request.setAttribute("listCourse", listC);
-        request.getRequestDispatcher("/views/HomePageForLectures/Havt/MyCourse.jsp").forward(request, response);
+        request.setAttribute("MyCourse", listC);
+        request.getRequestDispatcher("/views/Havt/HomePageForLectures/MyCourse.jsp").forward(request, response);
     }  
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -54,7 +54,7 @@ public class MyCourse extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-       request.getRequestDispatcher("/views/Havt/HomePageForLectures/MyCourse.jsp").forward(request, response);
+       processRequest(request, response);
     } 
 
     /** 
@@ -67,7 +67,7 @@ public class MyCourse extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        
+        processRequest(request, response);
     }
 
     /** 

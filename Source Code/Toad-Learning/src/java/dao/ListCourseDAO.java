@@ -26,10 +26,11 @@ public class ListCourseDAO {
 
     public List<Course> listCoursesLecture() {
         List<Course> list = new ArrayList<>();
-        String sql = "select * \n"
-                + "from Courses c\n"
-                + "left join Users u on c.UserID = u.UserID\n"
-                + "where Role = ? and u.UserID = ?";
+        String sql = "SELECT CourseID, Title, t.TopicName, c.Description, CreatedDate, UpdatedDate, Thumbnail, Price, SalePrice, c.Status\n"
+                + "                FROM Courses c\n"
+                + "                left JOIN Topics t ON c.TopicID=t.TopicID\n"
+                + "                left join Users u on c.UserID = u.UserID\n"
+                + "                where c.UserID = 'U5' ";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);

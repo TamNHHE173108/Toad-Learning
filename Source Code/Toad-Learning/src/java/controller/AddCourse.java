@@ -36,12 +36,13 @@ public class AddCourse extends HttpServlet {
         String status = request.getParameter("status");
 
         CourseDAO courseDAO = new CourseDAO();
+        
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("/views/Dangph/addCourses.jsp").forward(request, response);
     }
 
     @Override
