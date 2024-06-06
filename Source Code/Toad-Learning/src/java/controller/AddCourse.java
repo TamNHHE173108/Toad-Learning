@@ -44,6 +44,7 @@ public class AddCourse extends HttpServlet {
             e.printStackTrace();
             response.sendRedirect("error.jsp");
         }
+        response.sendRedirect("mycourse");
     }
 
     @Override
