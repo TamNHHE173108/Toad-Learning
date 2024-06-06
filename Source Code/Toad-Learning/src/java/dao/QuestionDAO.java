@@ -9,6 +9,7 @@ import java.util.List;
 import entity.Question;
 
 public class QuestionDAO {
+
     private Connection connection;
 
     public QuestionDAO(Connection connection) {
@@ -21,10 +22,6 @@ public class QuestionDAO {
         ResultSet rs = null;
 
         try {
-            if (connection == null) {
-                throw new SQLException("Connection is null.");
-            }
-            
             // Tạo truy vấn SQL dựa trên các thông số lọc
             String query = "SELECT * FROM Questions WHERE 1=1";
             if (subject != null && !subject.isEmpty()) {
@@ -73,5 +70,32 @@ public class QuestionDAO {
         }
 
         return questions;
+    }
+
+    public void addQuestion(Question question) throws SQLException {
+        String sql = "INSERT INTO Questions (QuestionID, QuizID, Content, Media, AnswerOptions, CorrectAnswer, Explanation, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement ps = null;
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, question.getQuestionID());
+            ps.setString(2, question.getQuizID());
+            ps.setString(3, question.getContent());
+            ps.setString(4, question.getMedia());
+            ps.setString(5, question.getAnswerOptions());
+            ps.setString(6, question.getCorrectAnswer());
+            ps.setString(7, question.getExplanation());
+            ps.setString(8, question.getStatus());
+
+            // Thực thi truy vấn
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            // Đóng PreparedStatement
+            if (ps != null) {
+                ps.close();
+            }
+        }
     }
 }
