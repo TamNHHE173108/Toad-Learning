@@ -36,8 +36,6 @@ public class AddCourse extends HttpServlet {
         String status = request.getParameter("status");
 
         CourseDAO courseDAO = new CourseDAO();
-        courseDAO.addCourse(courseID,courseName,category,description,createDate,updateDate,thumbnail,price,salePrice,status);
-        response.sendRedirect("listcourse");
     }
 
     @Override

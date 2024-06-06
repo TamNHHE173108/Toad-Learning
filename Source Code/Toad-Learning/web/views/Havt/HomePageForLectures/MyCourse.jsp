@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +10,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Course - Dashboard</title>
+        <title>Course - List Course</title>
 
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -30,31 +31,63 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">List Students</h1>                      
+                <h1 class="h3 mb-2 text-gray-800">List Course</h1> 
+
                 <!-- DataTales -->
                 <div class="card shadow mb-4">
-                    <div class="card-header py-3">  
+                    <div class="card-header py-3"> 
+                        <div class="box">
+                            <div class="container-2">
+                                <span class="icon"><i class="fa fa-search"></i></span>
+                                <input type="search" id="search" style = "margin-bottom: 5px" placeholder="Search..." />
+                            </div>
+                        </div>
+                        
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>Name Course</th>
-                                        <th>Category</th>
-                                        <th>Detail</th>
-                                        <th>Author</th>
+                                        <th>CourseID</th>
+                                        <th>Thumbnail</th>
+                                        <th>Title</th>
+                                        <th>TopicName</th>
+                                        <th>Description</th>
+                                        <th>CreateDate</th>
+                                        <th>UpdateDate</th>
                                         <th>Price</th>
-                                        <th>Image</th>
+                                        <th>SalePrice</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    <c:forEach items="${listCourse}" var ="c">
+                                        <tr> 
+                                            <td>${c.courseID}</td>
+                                            <td><img src="${c.thumbnail}" alt="Description of the image" width="100px"></td>
+                                            <td>${c.title}</td>
+                                            <td>${c.topicID.topicName}</td>
+                                            <td>${c.description}</td>
+                                            <td>${c.createDate}</td>
+                                            <td>${c.updateDate}</td>
+                                            <td>${c.price}</td>
+                                            <td>${c.salePrice}</td>
+                                            <td>${c.status}</td>                                         
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
             </div>
+            
+
             <!-- Content Row -->
             <!-- End of Main Content -->
+
         </div>
         <!-- End of Content Wrapper -->
     </div>
@@ -89,18 +122,11 @@
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 
