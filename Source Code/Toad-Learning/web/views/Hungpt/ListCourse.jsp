@@ -166,7 +166,7 @@
             <!-- Content Row -->
             <!-- End of Main Content -->
 
-
+            <%@include file = "adminfooter.jsp" %>
         </div>
         <!-- End of Content Wrapper -->
     </div>
