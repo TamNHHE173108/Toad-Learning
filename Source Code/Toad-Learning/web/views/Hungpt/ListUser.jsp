@@ -76,8 +76,10 @@
                                                 <a href="load?uid=${o.user_id}""><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
                                             </td>
                                             <td>
-                                                <a href="delete?uid=${o.user_id}"><i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-                                            </td>                                          
+                                                <a href="delete?uid=${o.user_id}" onclick="return confirm('Are you sure you want to delete this item?');">
+                                                    <i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i>
+                                                </a>
+                                            </td>                                         
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -156,7 +158,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Content Row -->
             <!-- End of Main Content -->
 

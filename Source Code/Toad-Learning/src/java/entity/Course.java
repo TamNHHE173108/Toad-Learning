@@ -19,16 +19,16 @@ public class Course {
     public Course() {
     }
 
-    public Course(String courseID, String title, Topic topicID, String description, String createDate, String updateDate, String thumbnail,String price,String salePrice, String status) {
+    public Course(String courseID, String title, Topic topicID, String description, String thumbnail,String price,String salePrice, String createDate, String updateDate, String status) {
         this.courseID = courseID;
         this.title = title;
         this.topicID = topicID;
         this.description = description;
-        this.createDate = createDate;
-        this.updateDate = updateDate;
         this.thumbnail = thumbnail;
         this.price = price;
         this.salePrice = salePrice;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
         this.status = status;
     }
 
@@ -112,6 +112,11 @@ public class Course {
 
     public void setSalePrice(String salePrice) {
         this.salePrice = salePrice;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" + "courseID=" + courseID + ", title=" + title + ", topicID=" + topicID + ", description=" + description + ", createDate=" + createDate + ", updateDate=" + updateDate + ", thumbnail=" + thumbnail + ", price=" + price + ", salePrice=" + salePrice + ", status=" + status + '}';
     }
     
     
