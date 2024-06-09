@@ -14,6 +14,7 @@ import java.util.logging.Logger;
  *
  * @author FPT University - PRJ30X
  */
+<<<<<<< HEAD
 public class DBContext {
     protected Connection connection;
     public DBContext()
@@ -47,3 +48,26 @@ public class DBContext {
         }
     }
 }
+=======
+
+    public class DBContext {
+        protected Connection connection;
+        public DBContext()
+        {
+            //@Students: You are allowed to edit user, pass, url variables to fit 
+            //your system configuration
+            //You can also add more methods for Database Interaction tasks. 
+            //But we recommend you to do it in another class
+            // For example : StudentDBContext extends DBContext , 
+            //where StudentDBContext is located in dal package, 
+            try {
+                String user = "sa";
+                String pass = "123";
+                String url = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=Toad_learning";
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                connection = DriverManager.getConnection(url, user, pass);
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+=======
+>>>>>>> 7c2dd6c4ec739f72d0a034d0d210a1181b8419a1
