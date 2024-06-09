@@ -25,7 +25,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="Dashboard">
+                <a class="nav-link" href="dashboardlectures">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -68,7 +68,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Courses</h6>
                         <a class="collapse-item" href="mycourse">My Courses</a>
-                        <a class="collapse-item" href="newsubject">Add Courses</a>
+                        <a class="collapse-item" href="Addcourses">Add Courses</a>
                         <a class="collapse-item" href="#">Edit Courses</a>
                         <a class="collapse-item" href="#">About Courses </a>
                     </div>

@@ -27,7 +27,7 @@
     <body id="page-top">
         <!-- Page Wrapper -->
         <div id="wrapper">
-            <%@include file ="SideBar.jsp" %>
+            <%@include file ="adminNavbarSidebar.jsp" %>
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
@@ -41,10 +41,7 @@
                                 <span class="icon"><i class="fa fa-search"></i></span>
                                 <input type="search" id="search" style = "margin-bottom: 5px" placeholder="Search..." />
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <a href="#addNewCourse"  class="btn btn-success" data-toggle="modal"><i class="material-icons"></i> <span>Add New Course</span></a>					
-                        </div>
+                        </div>  
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -61,10 +58,12 @@
                                         <th>Price</th>
                                         <th>SalePrice</th>
                                         <th>Status</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${MyCourse}" var ="c">
+                                    <c:forEach items="${listCourse}" var ="c">
                                         <tr> 
                                             <td>${c.courseID}</td>
                                             <td><img src="${c.thumbnail}" alt="Description of the image" width="100px"></td>
@@ -76,7 +75,13 @@
                                             <td>${c.price}$</td>
                                             <td>${c.salePrice}$</td>
                                             <td>${c.status}</td>
-                                            
+                                            <td>
+                                                <a href="loadcourse?courseID=${c.courseID}"><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+                                            </td>
+                                            <td>
+                                                <a href=""><i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                                            </td>                                          
+                                        </tr>
                                     </c:forEach>
                                 </tbody>
                             </table>
@@ -85,79 +90,9 @@
                     </div>
                 </div>
             </div>
-            <div id="addNewCourse" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <form action="/Addcourses" method="post">
-                            <div class="modal-header">						
-                                <h4 class="modal-title">Add Course</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            </div>
-                            <div class="modal-body">	
-                                <div class="form-group">
-                                    <label>UserID</label>
-                                    <input name="user_id" type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Username</label>
-                                    <input name="username" type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <input name="password" type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>FullName</label>
-                                    <input name="name" type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Gender</label>
-                                    <select name="gender" class="form-select" aria-label="Default select example">                              
-                                        <option value="Male">Male</option>
-                                        <option value="Fermale">Fermale</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Role</label>
-                                    <select name="role" class="form-select" aria-label="Default select example">                              
-                                        <option value="Teacher">Teacher</option>
-                                        <option value="Student">Student</option>
-                                        <option value="Admin">Admin</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <textarea name="email" class="form-control" required></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Mobile</label>
-                                    <textarea name="mobile" class="form-control" required></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Address</label>
-                                    <textarea name="address" class="form-control" required></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Status</label>
-                                    <select name="status" class="form-select" aria-label="Default select example">                              
-                                        <option value="Active">Active</option>
-                                        <option value="Inactive">Inactive</option>
-                                    </select>
-                                </div>
 
-                            </div>
-                            <div class="modal-footer">
-                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                <input type="submit" class="btn btn-success" value="Add">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Content Row -->
-            <!-- End of Main Content -->
-
+            <%@include file = "adminfooter.jsp" %>
         </div>
         <!-- End of Content Wrapper -->
     </div>

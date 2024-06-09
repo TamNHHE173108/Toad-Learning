@@ -6,31 +6,33 @@ package entity;
 
 public class Course {
     private String courseID;
-    private String courseName;
+    private String title;
+    private Topic topicID;
     private String description;
-    private String categoryID;
+    private String createDate;
+    private String updateDate;
     private String thumbnail;
-    private boolean featured;
-    private String owner;
+    private String price;
+    private String salePrice;
     private String status;
-    private String category;
 
-    // Constructors
     public Course() {
     }
 
-    public Course(String courseID, String courseName, String description, String categoryID, String thumbnail, boolean featured, String owner, String status) {
+    public Course(String courseID, String title, Topic topicID, String description, String thumbnail,String price,String salePrice, String createDate, String updateDate, String status) {
         this.courseID = courseID;
-        this.courseName = courseName;
+        this.title = title;
+        this.topicID = topicID;
         this.description = description;
-        this.categoryID = categoryID;
         this.thumbnail = thumbnail;
-        this.featured = featured;
-        this.owner = owner;
+        this.price = price;
+        this.salePrice = salePrice;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
         this.status = status;
     }
 
-    // Getters and Setters
+    
     public String getCourseID() {
         return courseID;
     }
@@ -39,12 +41,20 @@ public class Course {
         this.courseID = courseID;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Topic getTopicID() {
+        return topicID;
+    }
+
+    public void setTopicID(Topic topicID) {
+        this.topicID = topicID;
     }
 
     public String getDescription() {
@@ -55,14 +65,6 @@ public class Course {
         this.description = description;
     }
 
-    public String getCategoryID() {
-        return categoryID;
-    }
-
-    public void setCategoryID(String categoryID) {
-        this.categoryID = categoryID;
-    }
-
     public String getThumbnail() {
         return thumbnail;
     }
@@ -71,21 +73,6 @@ public class Course {
         this.thumbnail = thumbnail;
     }
 
-    public boolean isFeatured() {
-        return featured;
-    }
-
-    public void setFeatured(boolean featured) {
-        this.featured = featured;
-    }
-
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
 
     public String getStatus() {
         return status;
@@ -95,12 +82,43 @@ public class Course {
         this.status = status;
     }
 
-    public String getCategory() {
-        String category = null;
-        return category;
+    public String getCreateDate() {
+        return createDate;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
+
+    public String getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(String salePrice) {
+        this.salePrice = salePrice;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" + "courseID=" + courseID + ", title=" + title + ", topicID=" + topicID + ", description=" + description + ", createDate=" + createDate + ", updateDate=" + updateDate + ", thumbnail=" + thumbnail + ", price=" + price + ", salePrice=" + salePrice + ", status=" + status + '}';
+    }
+    
+    
+    
 }

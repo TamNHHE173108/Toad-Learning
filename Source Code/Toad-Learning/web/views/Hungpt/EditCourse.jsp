@@ -31,27 +31,27 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Edit User</h1> 
+                <h1 class="h3 mb-2 text-gray-800">Edit Course</h1> 
 
                 <!-- DataTales -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">        
-                        <div id="editNewUser">
+                        <div id="editNewCourse">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <form action="edit" method="post">
+                                    <form action="editcourse" method="post">
                                         <div class="modal-header">						
-                                            <h4 class="modal-title">Edit User</h4>
-                                            <button onclick="window.location.href = 'listuser'" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Edit Course</h4>
+                                            <button onclick="window.location.href = 'listcourse'" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label>User_ID</label>
-                                                <input value="${detail.user_id}" name="user_id" type="text" class="form-control" readonly required>
+                                                <label>Course_ID</label>
+                                                <input value="${detailcourse}" name="" type="text" class="form-control">
                                             </div>
                                             <div class="form-group">
                                                 <label>Username</label>
-                                                <input value="${detail.username}" name="username" type="text" class="form-control" >
+                                                <input value="${detailcourse}" name="title" type="text" class="form-control" >
                                             </div>
                                             <div class="form-group">
                                                 <label>Password</label>
@@ -97,7 +97,7 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">        
-                                            <input onclick="window.location.href = 'listuser'" type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                            <input onclick="window.location.href = 'listcourse'" type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                                             <input type="submit" class="btn btn-success" value="Edit">
                                         </div>
                                     </form>

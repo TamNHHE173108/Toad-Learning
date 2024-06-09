@@ -22,8 +22,8 @@ public class GetUserByID {
     ResultSet rs = null;
 
     public User getUserByID(String user_id) {
-        String query = "select * from Users\n"
-                + "where UserID = ?";
+        String query = "SELECT * FROM Users\n"
+                + "WHERE UserID = ?";
         try {
             connection = new DBContext().getConnection();//mo ket noi voi sql
             ps = connection.prepareStatement(query);
@@ -45,10 +45,6 @@ public class GetUserByID {
         }
         return null;
     }
-
-    public static void main(String[] args) {
-        GetUserByID dao = new GetUserByID();
-        User u = dao.getUserByID("U1");
-        System.out.println(u);
-    }
 }
+
+  

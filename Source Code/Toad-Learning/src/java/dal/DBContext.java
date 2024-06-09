@@ -14,6 +14,7 @@ import java.util.logging.Logger;
  *
  * @author FPT University - PRJ30X
  */
+
     public class DBContext {
         protected Connection connection;
         public DBContext()
@@ -33,8 +34,4 @@ import java.util.logging.Logger;
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        public Connection getConnection() {
-            return connection;
-        }
-    }
+=======

@@ -5,18 +5,20 @@
 
 package controller;
 
+import dao.CourseDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Admin
+ * @author laptop lenovo
  */
-public class NewSubject extends HttpServlet {
+@WebServlet(name="EditCourse", urlPatterns={"/editcourse"})
+public class EditCourse extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -28,18 +30,19 @@ public class NewSubject extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet NewSubject</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet NewSubject at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        String courseID = request.getParameter("courseID");
+        String courseName = request.getParameter("courseName");
+        String category =request.getParameter("category");
+        String description = request.getParameter("description");
+        String thumbnail = request.getParameter("thumbnail");
+        String createDate = request.getParameter("createDate");
+        String updateDate = request.getParameter("updateDate");
+        String price = request.getParameter("price");
+        String salePrice = request.getParameter("salePrice");
+        String status = request.getParameter("status");
+        CourseDAO dao = new CourseDAO();
+        dao.editCourse(courseID,courseName, category, description, thumbnail, createDate,updateDate, price,salePrice,status );
+        response.sendRedirect("listcourse");
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -53,7 +56,7 @@ public class NewSubject extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("/views/Dangph/addCourse.jsp").forward(request, response);
+        processRequest(request, response);
     } 
 
     /** 

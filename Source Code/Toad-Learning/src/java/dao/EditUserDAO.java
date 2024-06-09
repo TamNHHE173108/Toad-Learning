@@ -21,8 +21,8 @@ public class EditUserDAO {
 
     public void editUser(String username, String password,String name, String gender,
             String email, String mobile,String role, String address, String status, String uid) {
-        String query = "update Users\n"
-                + "set [Username] = ?,\n"
+        String query = "UPDATE Users\n"
+                + "SET [Username] = ?,\n"
                 + "[Password] = ?,\n "
                 + "[FullName] = ?,\n"
                 + "[Gender] = ?,\n"
@@ -31,7 +31,7 @@ public class EditUserDAO {
                 + "[Role] = ?,\n"
                 + "[Address] = ?,\n"
                 + "[Status] = ?\n"
-                + "where UserID = ?";
+                + "WHERE UserID = ?";
         try {
             connection = new DBContext().getConnection();//mo ket noi voi sql
             ps = connection.prepareStatement(query);

@@ -10,7 +10,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Course - Dashboard</title>
+        <title>Course - ListUser</title>
 
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -39,7 +39,7 @@
                         <div class="box">
                             <div class="container-2">
                                 <span class="icon"><i class="fa fa-search"></i></span>
-                                <input type="search" id="search" placeholder="Search..." />
+                                <input type="search" id="search" style = "margin-bottom: 5px" placeholder="Search..." />
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -76,8 +76,10 @@
                                                 <a href="load?uid=${o.user_id}""><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
                                             </td>
                                             <td>
-                                                <a href="delete?uid=${o.user_id}"><i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-                                            </td>                                          
+                                                <a href="delete?uid=${o.user_id}" onclick="return confirm('Are you sure you want to delete this item?');">
+                                                    <i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i>
+                                                </a>
+                                            </td>                                         
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -101,7 +103,7 @@
                                     <input name="user_id" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>UserName</label>
+                                    <label>Username</label>
                                     <input name="username" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
@@ -156,7 +158,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Content Row -->
             <!-- End of Main Content -->
 

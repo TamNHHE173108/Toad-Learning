@@ -9,9 +9,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Add Courses</title>
-        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-        <link href="css/sb-admin-2.min.css" rel="stylesheet">
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -32,21 +29,24 @@
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                 max-width: 600px;
                 margin: 0 auto;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-gap: 10px;
             }
 
             label {
-                display: block;
-                margin-bottom: 8px;
+                align-self: center;
                 color: #555;
             }
 
             input[type="text"],
             input[type="file"],
             textarea,
-            select {
+            select,
+            input[type="number"],
+            input[type="datetime-local"] {
                 width: 100%;
                 padding: 10px;
-                margin-bottom: 20px;
                 border: 1px solid #ddd;
                 border-radius: 4px;
                 box-sizing: border-box;
@@ -59,6 +59,7 @@
             .buttons {
                 display: flex;
                 justify-content: space-between;
+                margin-top: 20px;
             }
 
             input[type="submit"],
@@ -84,9 +85,10 @@
                 margin-bottom: 20px;
                 display: none;
                 font-size: 16px;
-                text-align: center; /* Hi?n th? cùng m?t dòng */
+                text-align: center;
             }
 
+<<<<<<< HEAD
             .success {
                 color: green;
                 margin-bottom: 20px;
@@ -96,90 +98,70 @@
         </style>
     </head>
     <body>
-        
-        <!-- Begin Page Content -->
         <div class="container-fluid">
             <h1>Add Courses</h1>
-            <div class="success" id="success">Add new courses successful</div>
+            <div class="success" id="success">Add new course successful</div>
             <form id="newCourseForm" action="/Addcourses" method="post" enctype="multipart/form-data">
-                <div class="error" id="error"></div>
-                <label for="courseName">Course Name:</label>
-                <input type="text" id="courseName" name="courseName">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title">
 
-                <label for="thumbnail">Thumbnail Image:</label>
-                <input type="file" id="thumbnail" name="thumbnail">
-
-                <label for="category">Category:</label>
-                <select id="category" name="category">
-                    <option value="">Select Category</option>
-                    <option value="SW">Software</option>
-                    <option value="AI">Artificial Intelligence</option>
-                    <option value="CS">Computer Science</option>
-                    <option value="IB">International Business</option>
+                <label for="topicID">Topic ID:</label>
+                <select id="topicID" name="topicID">
+                    <option value="AI">AI - Artificial Intelligence</option>
+                    <option value="IB">IB - International Business</option>
+                    <option value="SE">SE - Software Engineering</option>
+                    <option value="CS">CS - Computer Science</option>
                 </select>
+=======
+        .success {
+            color: green;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <h1>Add Courses</h1>
+        <div class="success" id="success">Add new course successful</div>
+        <form id="newCourseForm" action="/Addcourses" method="post" enctype="multipart/form-data">
+            <label for="title">CourseID</label>
+            <input type="text" id="courseID" name="courseID">
+            
+            <label for="title">Title:</label>
+            <input type="text" id="courseName" name="courseName">
 
-                <label for="featured">Featured:</label>
-                <input type="checkbox" id="featured" name="featured">
-
-                <label for="owner">Owner:</label>
-                <input type="text" id="owner" name="owner">
-
-                <label for="status">Status:</label>
-                <select id="status" name="status">
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
-                </select>
+            <label for="topicID">Topic ID:</label>
+            <input type="text" id="category" name="category">
+>>>>>>> f14fc94b9e965d2b4e57eb5048c95e1ebc3a8c2c
 
                 <label for="description">Description:</label>
                 <textarea id="description" name="description"></textarea>
 
+                <label for="thumbnail">Thumbnail:</label>
+                <input type="file" id="thumbnail" name="thumbnail" accept="image/*">
+
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price">
+
+                <label for="salePrice">Sale Price:</label>
+                <input type="number" id="salePrice" name="salePrice">
+
+                <label for="createdDate">Created Date:</label>
+                <input type="datetime-local" id="createdDate" name="createdDate">
+
+                <label for="updatedDate">Updated Date:</label>
+                <input type="datetime-local" id="updatedDate" name="updatedDate">
+
+                <label for="status">Status:</label>
+                <input type="text" id="status" name="status">
+
                 <div class="buttons">
-                    <a href="/Toad-Learning/Dashboard" class="back-button">Return to Dash Board</a>
                     <input type="submit" value="Add Course">
+                    <a href="/Toad-Learning/Dashboard" class="back-button">Return to Dash Board</a>
                 </div>
             </form>
         </div>
-        <!-- End of Main Content -->
-
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
-
-        <script>
-            document.getElementById('newCourseForm').addEventListener('submit', function (event) {
-                event.preventDefault(); // Prevent the default form submission
-
-                let errorElement = document.getElementById('error');
-                let successElement = document.getElementById('success');
-                let courseName = document.getElementById('courseName').value.trim();
-                let category = document.getElementById('category').value;
-                let owner = document.getElementById('owner').value.trim();
-                let status = document.getElementById('status').value;
-                let description = document.getElementById('description').value.trim();
-
-                if (courseName === "" || category === "" || owner === "" || status === "" || description === "") {
-                    errorElement.textContent = "All fields except thumbnail and featured flag are required.";
-                    errorElement.style.display = "block";
-                    successElement.style.display = "none";
-                } else {
-                    errorElement.style.display = "none";
-
-                    // Simulate a successful form submission (replace with actual AJAX call if needed)
-                    setTimeout(function () {
-                        document.getElementById('newCourseForm').reset();
-                        successElement.style.display = "block";
-                    }, 500);
-                }
-            });
-        </script>
-
     </body>
 </html>
-
-
