@@ -10,7 +10,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Course - EditUser</title>
+        <title>Course - EditCourse</title>
 
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -47,54 +47,41 @@
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <label>Course_ID</label>
-                                                <input value="${detailcourse}" name="" type="text" class="form-control">
+                                                <input value="${detailcourse.courseID}" name="courseID" type="text" class="form-control">
                                             </div>
                                             <div class="form-group">
-                                                <label>Username</label>
-                                                <input value="${detailcourse}" name="title" type="text" class="form-control" >
+                                                <label for="thumbnail" >Thumbnail</label>
+                                                <img src="${detailcourse.thumbnail}" id="thumbnail-preview"class="img-thumbnail" style="max-width: 100px;">
                                             </div>
                                             <div class="form-group">
-                                                <label>Password</label>
-                                                <input value="${detail.password}" name="password" type="text" class="form-control" >
+                                                <label>Title</label>
+                                                <input value="${detailcourse.title}" name="title" type="text" class="form-control" >
+                                            </div>
+                                            <label>Topip Name</label>
+                                            <select name="topicID" class="form-select" aria-label="Default select example">                              
+                                                <option value="IB" ${detailcourse.topicID.topicName == 'International Business' ? 'selected' : ''}>International Business</option>
+                                                <option value="SE" ${detailcourse.topicID.topicName == 'Software Engineering' ? 'selected' : ''}>Software Engineering</option>
+                                                <option value="CS" ${detailcourse.topicID.topicName == 'Computer Science' ? 'selected' : ''}>Computer Science</option>
+                                                <option value="AI" ${detailcourse.topicID.topicName == 'Artificial Intelligence' ? 'selected' : ''}>Artificial Intelligence</option>
+                                            </select>
+                                            <div class="form-group">
+                                                <label>	Description</label>
+                                                <input value="${detailcourse.description}" name="description" type="text" class="form-control">
                                             </div>
                                             <div class="form-group">
-                                                <label>Name</label>
-                                                <input value="${detail.name}" name="name" type="text" class="form-control">
+                                                <label>Price</label>
+                                                <input value="${detailcourse.price}" name="price" type="text" class="form-control">
                                             </div>
                                             <div class="form-group">
-                                                <label>Gender</label>
-                                                <select name="gender" class="form-select">                              
-                                                    <option value="Male" ${detail.gender == 'Male' ? 'selected' : ''}>Male</option>
-                                                    <option value="Fermale" ${detail.gender == 'Fermale' ? 'selected' : ''}>Fermale</option>
-                                                </select>
+                                                <label>SalePrice</label>
+                                                <input value="${detailcourse.salePrice}" name="salePrice" type="text" class="form-control">
                                             </div>
-                                            <div class="form-group">
-                                                <label>Role</label>
-                                                <select name="role" class="form-select">                              
-                                                    <option value="Teacher" ${detail.role == 'Teacher' ? 'selected' : ''}>Teacher</option>
-                                                    <option value="Student" ${detail.role == 'Student' ? 'selected' : ''}>Student</option>
-                                                    <option value="Admin" ${detail.role == 'Admin' ? 'selected' : ''}>Admin</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Email</label>
-                                                <textarea name="email" class="form-control" required>${detail.email}</textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Mobile</label>
-                                                <textarea  name="mobile" class="form-control" required>${detail.mobile}</textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Address</label>
-                                                <textarea  name="address" class="form-control" required>${detail.address}</textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Status</label>
-                                                <select name="status" class="form-select" aria-label="Default select example">                              
-                                                    <option value="Active" ${detail.status == 'Active' ? 'selected' : ''}>Active</option>
-                                                    <option value="Inactive" ${detail.status == 'Inactive' ? 'selected' : ''}>Inactive</option>
-                                                </select>
-                                            </div>
+                                            <label>Status</label>
+                                            <select name="status" class="form-select" aria-label="Default select example">                              
+                                                <option value="Active" ${detailcourse.status == 'Active' ? 'selected' : ''}>Active</option>
+                                                <option value="Inactive" ${detailcourse.status == 'Inactive' ? 'selected' : ''}>Inactive</option>
+                                            </select>
+
                                         </div>
                                         <div class="modal-footer">        
                                             <input onclick="window.location.href = 'listcourse'" type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">

@@ -84,8 +84,8 @@ public class CourseDAO {
         return list;
     }
 
-    public void editCourse(String courseID, String courseName, String category, String description,
-            String thumbnail, String createDate, String updateDate, String price, String salePrice, String status) {
+    public void editCourse(String title, String topicID, String description,
+            String thumbnail, String price, String salePrice, String status, String courseID) {
         String query = "UPDATE Courses\n"
                 + "SET [Title] = ?,\n "
                 + "[TopicID] = ?,\n"
@@ -93,23 +93,19 @@ public class CourseDAO {
                 + "[Thumbnail] = ?,\n"
                 + "[Price] = ?,\n"
                 + "[SalePrice] = ?,\n"
-                + "[CreatedDate] = ?,\n"
-                + "[UpdatedDate] = ?\n"
                 + "[Status] = ?\n"
                 + "WHERE CourseID = ?";
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql
-            ps = conn.prepareStatement(query);
-            ps.setString(1, courseID);
-            ps.setString(2, courseName);
-            ps.setString(3, category);
-            ps.setString(4, description);
-            ps.setString(5, thumbnail);
-            ps.setString(6, price);
-            ps.setString(7, salePrice);
-            ps.setString(8, createDate);
-            ps.setString(9, updateDate);
-            ps.setString(10, status);
+            ps = conn.prepareStatement(query);  
+            ps.setString(1, title);
+            ps.setString(2, topicID);
+            ps.setString(3, description);
+            ps.setString(4, thumbnail);
+            ps.setString(5, price);
+            ps.setString(6, salePrice);
+            ps.setString(7, status);
+            ps.setString(8, courseID);
             ps.executeUpdate();
         } catch (Exception e) {
         }
@@ -118,7 +114,7 @@ public class CourseDAO {
     public Course getCourseByID(String course_ID) {
         String query = "SELECT CourseID, Title, Topics.TopicName, Courses.Description, Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status\n"
                 + "FROM Courses\n"
-                + "INNER JOIN Topics ON Courses.TopicID=Topics.TopicID"
+                + "INNER JOIN Topics ON Courses.TopicID=Topics.TopicID\n"
                 + "WHERE CourseID = ?";
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql

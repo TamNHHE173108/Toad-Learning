@@ -76,7 +76,7 @@
                                             <td>${c.salePrice}$</td>
                                             <td>${c.status}</td>
                                             <td>
-                                                <a href="loadcourse?courseID=${c.courseID}"><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+                                                <a href="loadcourse?course_ID=${c.courseID}"><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
                                             </td>
                                             <td>
                                                 <a href=""><i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
