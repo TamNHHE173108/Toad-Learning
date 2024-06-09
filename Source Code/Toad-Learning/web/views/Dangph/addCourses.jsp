@@ -105,7 +105,12 @@
                 <input type="text" id="title" name="title">
 
                 <label for="topicID">Topic ID:</label>
-                <input type="text" id="topicID" name="topicID">
+                <select id="topicID" name="topicID">
+                    <option value="AI">AI - Artificial Intelligence</option>
+                    <option value="IB">IB - International Business</option>
+                    <option value="SE">SE - Software Engineering</option>
+                    <option value="CS">CS - Computer Science</option>
+                </select>
 
                 <label for="description">Description:</label>
                 <textarea id="description" name="description"></textarea>
@@ -130,13 +135,7 @@
 
                 <div class="buttons">
                     <input type="submit" value="Add Course">
-                    <button onclick="goBack()" class="back-button">Return to Previous Screen</button>
-
-                    <script>
-                        function goBack() {
-                            window.history.back();
-                        }
-                    </script>
+                    <a href="/Toad-Learning/Dashboard" class="back-button">Return to Dash Board</a>
                 </div>
             </form>
         </div>
