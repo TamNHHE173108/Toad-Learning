@@ -51,10 +51,7 @@ public class ListCourse extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        CourseDAO courseDAO = new CourseDAO();
-        List<Course> courseList = courseDAO.listCourses();
-        request.setAttribute("listCourse", courseList);
-        request.getRequestDispatcher("/view/Tamnh/index.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
