@@ -88,7 +88,7 @@
                 text-align: center;
             }
 
-<<<<<<< HEAD
+
             .success {
                 color: green;
                 margin-bottom: 20px;
@@ -112,56 +112,57 @@
                     <option value="SE">SE - Software Engineering</option>
                     <option value="CS">CS - Computer Science</option>
                 </select>
-=======
-        .success {
-            color: green;
-            margin-bottom: 20px;
-            display: none;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <div class="container-fluid">
-        <h1>Add Courses</h1>
-        <div class="success" id="success">Add new course successful</div>
-        <form id="newCourseForm" action="/Addcourses" method="post" enctype="multipart/form-data">
-            <label for="title">CourseID</label>
-            <input type="text" id="courseID" name="courseID">
-            
-            <label for="title">Title:</label>
-            <input type="text" id="courseName" name="courseName">
+                =======
+                .success {
+                color: green;
+                margin-bottom: 20px;
+                display: none;
+                text-align: center;
+                }
+                </style>
+                </head>
+                <body>
+                    <div class="container-fluid">
+                        <h1>Add Courses</h1>
+                        <div class="success" id="success">Add new course successful</div>
+                        <form id="newCourseForm" action="/Addcourses" method="post" enctype="multipart/form-data">
+                            <label for="title">CourseID</label>
+                            <input type="text" id="courseID" name="courseID">
 
-            <label for="topicID">Topic ID:</label>
-            <input type="text" id="category" name="category">
->>>>>>> f14fc94b9e965d2b4e57eb5048c95e1ebc3a8c2c
+                            <label for="title">Title:</label>
+                            <input type="text" id="courseName" name="courseName">
 
-                <label for="description">Description:</label>
-                <textarea id="description" name="description"></textarea>
+                            <label for="topicID">Topic ID:</label>
+                            <input type="text" id="category" name="category">
 
-                <label for="thumbnail">Thumbnail:</label>
-                <input type="file" id="thumbnail" name="thumbnail" accept="image/*">
+                            <label for="description">Description:</label>
+                            <textarea id="description" name="description"></textarea>
 
-                <label for="price">Price:</label>
-                <input type="number" id="price" name="price">
+                            <label for="thumbnail">Thumbnail:</label>
+                            <input type="file" id="thumbnail" name="thumbnail" accept="image/*">
 
-                <label for="salePrice">Sale Price:</label>
-                <input type="number" id="salePrice" name="salePrice">
+                            <label for="price">Price:</label>
+                            <input type="number" id="price" name="price">
 
-                <label for="createdDate">Created Date:</label>
-                <input type="datetime-local" id="createdDate" name="createdDate">
+                            <label for="salePrice">Sale Price:</label>
+                            <input type="number" id="salePrice" name="salePrice">
 
-                <label for="updatedDate">Updated Date:</label>
-                <input type="datetime-local" id="updatedDate" name="updatedDate">
+                            <label for="createdDate">Created Date:</label>
+                            <input type="datetime-local" id="createdDate" name="createdDate">
 
-                <label for="status">Status:</label>
-                <input type="text" id="status" name="status">
+                            <label for="updatedDate">Updated Date:</label>
+                            <input type="datetime-local" id="updatedDate" name="updatedDate">
 
-                <div class="buttons">
-                    <input type="submit" value="Add Course">
-                    <a href="/Toad-Learning/Dashboard" class="back-button">Return to Dash Board</a>
-                </div>
-            </form>
-        </div>
-    </body>
-</html>
+                            <select id="status" name="status">
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+
+                            <div class="buttons">
+                                <input type="submit" value="Add Course">
+                                <a href="/Toad-Learning/Dashboard" class="back-button">Return to Dash Board</a>
+                            </div>
+                        </form>
+                    </div>
+                </body>
+                </html>
