@@ -88,6 +88,7 @@
                 text-align: center;
             }
 
+<<<<<<< HEAD
             .success {
                 color: green;
                 margin-bottom: 20px;
@@ -111,6 +112,29 @@
                     <option value="SE">SE - Software Engineering</option>
                     <option value="CS">CS - Computer Science</option>
                 </select>
+=======
+        .success {
+            color: green;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <h1>Add Courses</h1>
+        <div class="success" id="success">Add new course successful</div>
+        <form id="newCourseForm" action="/Addcourses" method="post" enctype="multipart/form-data">
+            <label for="title">CourseID</label>
+            <input type="text" id="courseID" name="courseID">
+            
+            <label for="title">Title:</label>
+            <input type="text" id="courseName" name="courseName">
+
+            <label for="topicID">Topic ID:</label>
+            <input type="text" id="category" name="category">
+>>>>>>> f14fc94b9e965d2b4e57eb5048c95e1ebc3a8c2c
 
                 <label for="description">Description:</label>
                 <textarea id="description" name="description"></textarea>

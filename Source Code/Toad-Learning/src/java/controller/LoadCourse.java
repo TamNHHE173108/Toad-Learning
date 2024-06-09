@@ -8,19 +8,19 @@ package controller;
 import dao.CourseDAO;
 import entity.Course;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  *
  * @author laptop lenovo
  */
-@WebServlet(name="ListCourse", urlPatterns={"/listcourse"})
-public class ListCourse extends HttpServlet {
+@WebServlet(name="LoadCourse", urlPatterns={"/loadcourse"})
+public class LoadCourse extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -32,10 +32,11 @@ public class ListCourse extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String courseID = request.getParameter("course_ID");
         CourseDAO dao = new CourseDAO();
-        List<Course> listC = dao.listCourses();
-        request.setAttribute("listCourse", listC);
-        request.getRequestDispatcher("/views/Hungpt/ListCourse.jsp").forward(request, response);
+        Course course = dao.getCourseByID(courseID);   
+        request.setAttribute("detailcourse", course);
+        request.getRequestDispatcher("/views/Hungpt/EditCourse.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

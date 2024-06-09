@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +10,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Course - Dashboard</title>
+        <title>Course - List Course</title>
 
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -30,31 +31,133 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">List Students</h1>                      
+                <h1 class="h3 mb-2 text-gray-800">List Course</h1> 
+
                 <!-- DataTales -->
                 <div class="card shadow mb-4">
-                    <div class="card-header py-3">  
+                    <div class="card-header py-3"> 
+                        <div class="box">
+                            <div class="container-2">
+                                <span class="icon"><i class="fa fa-search"></i></span>
+                                <input type="search" id="search" style = "margin-bottom: 5px" placeholder="Search..." />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <a href="#addNewCourse"  class="btn btn-success" data-toggle="modal"><i class="material-icons"></i> <span>Add New Course</span></a>					
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>Name Course</th>
-                                        <th>Category</th>
-                                        <th>Detail</th>
-                                        <th>Author</th>
+                                        <th>CourseID</th>
+                                        <th>Thumbnail</th>
+                                        <th>Title</th>
+                                        <th>TopicName</th>
+                                        <th>Description</th>
+                                        <th>CreateDate</th>
+                                        <th>UpdateDate</th>
                                         <th>Price</th>
-                                        <th>Image</th>
+                                        <th>SalePrice</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    <c:forEach items="${MyCourse}" var ="c">
+                                        <tr> 
+                                            <td>${c.courseID}</td>
+                                            <td><img src="${c.thumbnail}" alt="Description of the image" width="100px"></td>
+                                            <td>${c.title}</td>
+                                            <td>${c.topicID.topicName}</td>
+                                            <td>${c.description}</td>
+                                            <td>${c.createDate}</td>
+                                            <td>${c.updateDate}</td>
+                                            <td>${c.price}$</td>
+                                            <td>${c.salePrice}$</td>
+                                            <td>${c.status}</td>
+                                            
+                                    </c:forEach>
+                                </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
             </div>
+            <div id="addNewCourse" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="/Addcourses" method="post">
+                            <div class="modal-header">						
+                                <h4 class="modal-title">Add Course</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">	
+                                <div class="form-group">
+                                    <label>UserID</label>
+                                    <input name="user_id" type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <input name="username" type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input name="password" type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>FullName</label>
+                                    <input name="name" type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Gender</label>
+                                    <select name="gender" class="form-select" aria-label="Default select example">                              
+                                        <option value="Male">Male</option>
+                                        <option value="Fermale">Fermale</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Role</label>
+                                    <select name="role" class="form-select" aria-label="Default select example">                              
+                                        <option value="Teacher">Teacher</option>
+                                        <option value="Student">Student</option>
+                                        <option value="Admin">Admin</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <textarea name="email" class="form-control" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Mobile</label>
+                                    <textarea name="mobile" class="form-control" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <textarea name="address" class="form-control" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select name="status" class="form-select" aria-label="Default select example">                              
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                <input type="submit" class="btn btn-success" value="Add">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             <!-- Content Row -->
             <!-- End of Main Content -->
+
         </div>
         <!-- End of Content Wrapper -->
     </div>
@@ -89,18 +192,11 @@
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 

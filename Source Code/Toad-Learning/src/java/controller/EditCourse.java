@@ -6,21 +6,19 @@
 package controller;
 
 import dao.CourseDAO;
-import entity.Course;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  *
  * @author laptop lenovo
  */
-@WebServlet(name="ListCourse", urlPatterns={"/listcourse"})
-public class ListCourse extends HttpServlet {
+@WebServlet(name="EditCourse", urlPatterns={"/editcourse"})
+public class EditCourse extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -32,10 +30,19 @@ public class ListCourse extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String courseID = request.getParameter("courseID");
+        String courseName = request.getParameter("courseName");
+        String category =request.getParameter("category");
+        String description = request.getParameter("description");
+        String thumbnail = request.getParameter("thumbnail");
+        String createDate = request.getParameter("createDate");
+        String updateDate = request.getParameter("updateDate");
+        String price = request.getParameter("price");
+        String salePrice = request.getParameter("salePrice");
+        String status = request.getParameter("status");
         CourseDAO dao = new CourseDAO();
-        List<Course> listC = dao.listCourses();
-        request.setAttribute("listCourse", listC);
-        request.getRequestDispatcher("/views/Hungpt/ListCourse.jsp").forward(request, response);
+        dao.editCourse(courseID,courseName, category, description, thumbnail, createDate,updateDate, price,salePrice,status );
+        response.sendRedirect("listcourse");
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
