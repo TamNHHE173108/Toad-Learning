@@ -23,7 +23,7 @@
 </head>
 
 <body class="bg-gradient-primary">
-
+<input type="hidden" id="mess" value=" <%= request.getAttribute("mess") %> ">
     <div class="container">
 
         <!-- Outer Row -->
@@ -41,6 +41,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
+                                     <p style="color: red">${mess}</p>
                                     <form class="user" action="Login" method="post">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
