@@ -30,7 +30,7 @@ public class ListCourseDAO {
                 + "                FROM Courses c\n"
                 + "                left JOIN Topics t ON c.TopicID=t.TopicID\n"
                 + "                left join Users u on c.UserID = u.UserID\n"
-                + "                where c.UserID = 'U5' ";
+                + "                where c.UserID = ? ";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
