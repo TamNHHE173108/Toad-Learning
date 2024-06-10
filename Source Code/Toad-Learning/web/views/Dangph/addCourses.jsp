@@ -89,21 +89,21 @@
             background-color: #45a049;
         }
 
-        .error {
-            color: red;
+        .error, .success {
             margin-bottom: 20px;
-            display: none;
             font-size: 16px;
             text-align: center;
             grid-column: span 2;
         }
 
+        .error {
+            color: red;
+            display: none;
+        }
+
         .success {
             color: green;
-            margin-bottom: 20px;
             display: none;
-            text-align: center;
-            grid-column: span 2;
         }
 
         @media (max-width: 800px) {
@@ -129,7 +129,7 @@
             <h1>Add Courses</h1>
             <div class="success" id="success">Add new course successful</div>
             <div class="error" id="error">Please fill out all required fields.</div>
-            <form id="newCourseForm" action="/Addcourses" method="post" enctype="multipart/form-data">
+            <form id="newCourseForm" action="/Addcourses" method="post" enctype="multipart/form-data" onsubmit="handleSubmit(event)">
                 <label for="courseID">Course ID:</label>
                 <input type="text" id="courseID" name="courseID" required>
 
@@ -177,7 +177,8 @@
     </div>
 
     <script>
-        document.getElementById('newCourseForm').addEventListener('submit', function(event) {
+        function handleSubmit(event) {
+            event.preventDefault();
             var isValid = true;
             var requiredFields = document.querySelectorAll('#newCourseForm [required]');
             requiredFields.forEach(function(field) {
@@ -186,11 +187,17 @@
                 }
             });
 
-            if (!isValid) {
-                event.preventDefault();
+            if (isValid) {
+                document.getElementById('error').style.display = 'none';
+                document.getElementById('success').style.display = 'block';
+                // Reset form fields
+                document.getElementById('newCourseForm').reset();
+            } else {
+                document.getElementById('success').style.display = 'none';
                 document.getElementById('error').style.display = 'block';
             }
-        });
+        }
     </script>
 </body>
 </html>
+
