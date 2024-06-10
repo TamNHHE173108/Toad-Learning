@@ -87,12 +87,8 @@ public class RegisterServlet extends HttpServlet {
 
         if (checkUserExist(username, listU)) {
             request.setAttribute("mess", "Username already exists");
-            request.getRequestDispatcher("register.jsp").forward(request, response);
-        } else if (!pass.equals(cfpass)) {
-            // kiem tra mat khau va nhap lai mat khau co khop nhau hay khong
-            request.setAttribute("mess", "Password not match!");
-            request.getRequestDispatcher("register.jsp").forward(request, response);
-        } else {
+            request.getRequestDispatcher("views/Hoanglh/newAccount.jsp").forward(request, response);
+        }else {
             // neu khong co van de gì -> dang ky tai khoan thành công
             ud.Register(username, pass);
             request.getRequestDispatcher("content").forward(request, response);
