@@ -31,17 +31,15 @@ public class EditCourse extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String courseID = request.getParameter("courseID");
-        String courseName = request.getParameter("courseName");
-        String category =request.getParameter("category");
+        String title = request.getParameter("title");
+        String topicID =request.getParameter("topicID");
         String description = request.getParameter("description");
         String thumbnail = request.getParameter("thumbnail");
-        String createDate = request.getParameter("createDate");
-        String updateDate = request.getParameter("updateDate");
         String price = request.getParameter("price");
         String salePrice = request.getParameter("salePrice");
         String status = request.getParameter("status");
         CourseDAO dao = new CourseDAO();
-        dao.editCourse(courseID,courseName, category, description, thumbnail, createDate,updateDate, price,salePrice,status );
+        dao.editCourse(title, topicID, description, thumbnail, price, salePrice,status,courseID );
         response.sendRedirect("listcourse");
     } 
 
