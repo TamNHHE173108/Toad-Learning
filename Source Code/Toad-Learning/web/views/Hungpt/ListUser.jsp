@@ -99,16 +99,12 @@
                             </div>
                             <div class="modal-body">	
                                 <div class="form-group">
-                                    <label>UserID</label>
-                                    <input name="user_id" type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
                                     <label>Username</label>
                                     <input name="username" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input name="password" type="text" class="form-control" required>
+                                    <input name="password" type="password" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>FullName</label>
@@ -131,11 +127,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <textarea name="email" class="form-control" required></textarea>
+                                    <input name="email" class="form-control" type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"required>
                                 </div>
                                 <div class="form-group">
                                     <label>Mobile</label>
-                                    <textarea name="mobile" class="form-control" required></textarea>
+                                    <input name="mobile" class="form-control" type="tel" pattern="[0-9]{10,11}"required>
                                 </div>
                                 <div class="form-group">
                                     <label>Address</label>

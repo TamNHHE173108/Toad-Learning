@@ -52,9 +52,7 @@
                                         <th>Thumbnail</th>
                                         <th>Title</th>
                                         <th>TopicName</th>
-                                        <th>Description</th>
-                                        <th>CreateDate</th>
-                                        <th>UpdateDate</th>
+                                        <th>Description</th>                
                                         <th>Price</th>
                                         <th>SalePrice</th>
                                         <th>Status</th>
@@ -70,8 +68,6 @@
                                             <td>${c.title}</td>
                                             <td>${c.topicID.topicName}</td>
                                             <td>${c.description}</td>
-                                            <td>${c.createDate}</td>
-                                            <td>${c.updateDate}</td>
                                             <td>${c.price}$</td>
                                             <td>${c.salePrice}$</td>
                                             <td>${c.status}</td>
