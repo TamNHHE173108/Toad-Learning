@@ -18,24 +18,23 @@ public class AddUserDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    public void insertUser(String user_id, String username, String password, String name, String gender,
+    public void insertUser( String username, String password, String name, String gender,
             String email, String mobile,String role, String status, String address) {
         String query = "INSERT [dbo].[Users] \n"
-                + "([UserID],[Username], [Password], [FullName], [Gender], [Email], [Mobile], [Role] , [Status],[Address])\n"
-                + "VALUES(?,?,?,?,?,?,?,?,?,?)";
+                + "([Username], [Password], [FullName], [Gender], [Email], [Mobile], [Role] , [Status],[Address])\n"
+                + "VALUES(?,?,?,?,?,?,?,?,?)";
         try {
             connection = new DBContext().getConnection();//mo ket noi voi sql
             ps = connection.prepareStatement(query);
-            ps.setString(1, user_id);
-            ps.setString(2, username);
-            ps.setString(3, password);
-            ps.setString(4, name);
-            ps.setString(5, gender);
-            ps.setString(6, email);
-            ps.setString(7, mobile);
-            ps.setString(8, role);
-            ps.setString(9, status);
-            ps.setString(10, address);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ps.setString(3, name);
+            ps.setString(4, gender);
+            ps.setString(5, email);
+            ps.setString(6, mobile);
+            ps.setString(7, role);
+            ps.setString(8, status);
+            ps.setString(9, address);
             
             ps.executeUpdate();
         } catch (Exception e) {

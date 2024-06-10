@@ -78,11 +78,11 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <textarea name="email" class="form-control" required>${detail.email}</textarea>
+                                                <input value="${detail.email}" name="email" type="email" class="form-control" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" >
                                             </div>
                                             <div class="form-group">
                                                 <label>Mobile</label>
-                                                <textarea  name="mobile" class="form-control" required>${detail.mobile}</textarea>
+                                               <input value="${detail.mobile}" name="mobile" class="form-control" type="tel" pattern="[0-9]{10,11}"required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Address</label>
