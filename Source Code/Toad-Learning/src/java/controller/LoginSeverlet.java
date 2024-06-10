@@ -58,10 +58,14 @@ public class LoginSeverlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
 
       
        request.getRequestDispatcher("/views/Hoanglh/Login.jsp").forward(request, response);
 
+=======
+      request.getRequestDispatcher("views/Hoanglh/Login.jsp").forward(request, response);
+>>>>>>> 144728cbd05953390a3f36121b1903befb242ae2
     }
 
     /** 
