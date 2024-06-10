@@ -58,7 +58,7 @@ public class LoginSeverlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       processRequest(request, response);
+      request.getRequestDispatcher("views/Hoanglh/Login.jsp").forward(request, response);
 
     }
 
@@ -92,7 +92,7 @@ public class LoginSeverlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("user", u);
             response.sendRedirect("Dashboard");
-        }
+        }     
     }
 
     /** 

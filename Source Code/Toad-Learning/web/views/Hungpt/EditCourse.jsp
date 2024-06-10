@@ -50,8 +50,10 @@
                                                 <input value="${detailcourse.courseID}" name="courseID" type="text" class="form-control">
                                             </div>
                                             <div class="form-group">
-                                                <label for="thumbnail" >Thumbnail</label>
+                                                <label for="thumbnail" >Thumbnail</label>                                         
                                                 <img src="${detailcourse.thumbnail}" id="thumbnail-preview"class="img-thumbnail" style="max-width: 100px;">
+                                                <input value="${detailcourse.thumbnail}" name="thumbnail" type="file" class="form-control">
+
                                             </div>
                                             <div class="form-group">
                                                 <label>Title</label>
