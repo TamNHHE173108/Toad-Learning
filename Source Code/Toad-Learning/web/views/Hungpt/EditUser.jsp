@@ -51,21 +51,21 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Username</label>
-                                                <input value="${detail.username}" name="username" type="text" class="form-control" >
+                                                <input value="${detail.username}" name="username" type="text" class="form-control" readonly required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Password</label>
-                                                <input value="${detail.password}" name="password" type="text" class="form-control" >
+                                                <input value="${detail.password}" name="password" type="password" class="form-control" readonly required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Name</label>
-                                                <input value="${detail.name}" name="name" type="text" class="form-control">
+                                                <input value="${detail.name}" name="name" type="text" class="form-control" readonly required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Gender</label>
                                                 <select name="gender" class="form-select">                              
                                                     <option value="Male" ${detail.gender == 'Male' ? 'selected' : ''}>Male</option>
-                                                    <option value="Fermale" ${detail.gender == 'Fermale' ? 'selected' : ''}>Fermale</option>
+                                                    <option value="Female" ${detail.gender == 'Female' ? 'selected' : ''}>Female</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -78,15 +78,15 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input value="${detail.email}" name="email" type="email" class="form-control" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" >
+                                                <input value="${detail.email}" name="email" type="email" class="form-control" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" readonly required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Mobile</label>
-                                                <input value="${detail.mobile}" name="mobile" class="form-control" type="tel" pattern="[0-9]{10,11}"required>
+                                                <input value="${detail.mobile}" name="mobile" class="form-control" type="tel" pattern="[0-9]{10,11}" readonly required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Address</label>
-                                                <textarea  name="address" class="form-control" required>${detail.address}</textarea>
+                                                <textarea  name="address" class="form-control" readonly required>${detail.address}</textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label>Status</label>

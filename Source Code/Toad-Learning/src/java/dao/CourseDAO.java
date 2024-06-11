@@ -97,7 +97,7 @@ public class CourseDAO {
                 + "WHERE CourseID = ?";
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql
-            ps = conn.prepareStatement(query);  
+            ps = conn.prepareStatement(query);
             ps.setString(1, title);
             ps.setString(2, topicID);
             ps.setString(3, description);
@@ -139,14 +139,42 @@ public class CourseDAO {
             }
         } catch (Exception e) {
             // Xử lý các exception tại đây
-           
+
         }
         return null;
     }
 
+    public void deleteCourse(String course_ID) {
+        String query = "DELETE FROM Media\n"
+                + "WHERE LessonID IN (SELECT LessonID FROM Lessons WHERE CourseID = ?);\n"
+                + "DELETE FROM Questions\n"
+                + "WHERE QuizID IN (SELECT QuizID FROM Quizzes WHERE CourseID = ?);\n"
+                + "DELETE FROM Quizzes\n"
+                + "WHERE CourseID = ?\n"
+                + "SELECT LessonID\n"
+                + "FROM Lessons\n"
+                + "WHERE CourseID = ?\n"
+                + "DELETE FROM Lessons\n"
+                + "WHERE CourseID = ?\n"
+                + "DELETE FROM Courses\n"
+                + "WHERE CourseID = ?";
+        try {
+            conn = new DBContext().getConnection();//mo ket noi voi sql
+            ps = conn.prepareStatement(query);
+            ps.setString(1, course_ID);
+            ps.setString(2, course_ID);
+            ps.setString(3, course_ID);
+            ps.setString(4, course_ID);
+            ps.setString(5, course_ID);
+            ps.setString(6, course_ID);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
     public static void main(String[] args) {
-       CourseDAO dao = new CourseDAO();
-       Course course = dao.getCourseByID("ASU103c");
-       System.out.println(course);
+        CourseDAO dao = new CourseDAO();
+        Course course = dao.getCourseByID("ASU103c");
+        System.out.println(course);
     }
 }

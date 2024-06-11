@@ -75,7 +75,8 @@
                                                 <a href="loadcourse?course_ID=${c.courseID}"><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
                                             </td>
                                             <td>
-                                                <a href=""><i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                                                <a href="deletecourse?course_ID=${c.courseID}" onclick="return confirm('Are you sure you want to delete ${c.courseID}?');">
+                                                    <i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
                                             </td>                                          
                                         </tr>
                                     </c:forEach>
