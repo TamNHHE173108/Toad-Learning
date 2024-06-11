@@ -96,8 +96,13 @@ public class RegisterServlet extends HttpServlet {
             request.getRequestDispatcher("views/Hoanglh/newAccount.jsp").forward(request, response);
         }else {
             // neu khong co van de gì -> dang ky tai khoan thành công
+<<<<<<< HEAD
             ud.Register(username, password, name, gender, email, mobile, role, email, address);
             response.sendRedirect("Home");
+=======
+//            ud.Register(username, pass);
+            request.getRequestDispatcher("content").forward(request, response);
+>>>>>>> 140dbc5cad77c58f233993245e32ee62d37fe42f
 
         }
     }
