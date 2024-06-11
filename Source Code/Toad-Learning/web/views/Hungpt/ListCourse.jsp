@@ -52,42 +52,6 @@
                                                 </div>
                                             </form>
                                         </div>
-                                        <div class="col-md-3">
-                                            <form action="searchtopic" method="post" class="form-inline">
-                                                <div class="form-group">
-                                                    <select name="topicname" id="topicname" class="form-control" onchange="this.form.submit()">
-                                                        <option value="All">Select Topic</option>
-                                                        <option value="International Business" ${txtTo == 'International Business' ? 'selected' : ''}>International Business</option>
-                                                        <option value="Software Engineering" ${txtTo == 'Software Engineering' ? 'selected' : ''}>Software Engineering</option>
-                                                        <option value="Computer Science" ${txtTo == 'Computer Science' ? 'selected' : ''}>Computer Science</option>
-                                                        <option value="Artificial Intelligence" ${txtTo == 'Artificial Intelligence' ? 'selected' : ''}>Artificial Intelligence</option>
-                                                    </select>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <form action="searchcoursebystatus" method="post" class="form-inline">
-                                                <div class="form-group">
-                                                    <select name="statuss" id="statuss" class="form-control" onchange="this.form.submit()">
-                                                        <option value="All">Select Status</option>
-                                                        <option value="Active" ${txtSta == 'Active' ? 'selected' : ''}>Active</option>
-                                                        <option value="Inactive" ${txtSta == 'Inactive' ? 'selected' : ''}>Inactive</option>
-                                                    </select>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <!-- New sorting form -->
-                                            <form action="sortcourse" method="post" class="form-inline">
-                                                <div class="form-group">
-                                                    <select name="sortOrder" id="sortOrder" class="form-control" onchange="this.form.submit()">
-                                                        <option value="All">Select Sort</option>
-                                                        <option value="PriceASC"${txtSort == 'PriceASC' ? 'selected' : ''}>Price (Low to High)</option>
-                                                        <option value="PriceDESC"${txtSort == 'PriceDESC' ? 'selected' : ''}>Price (High to Low)</option>
-                                                    </select>
-                                                </div>      
-                                            </form>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -98,16 +62,47 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>CourseID</th>
-                                        <th>Thumbnail</th>
-                                        <th>Title</th>
-                                        <th>TopicName</th>
-                                        <th>Description</th>                
-                                        <th>Price</th>
-                                        <th>SalePrice</th>
-                                        <th>Status</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        <th>
+                                            <div class="form-control border-0 font-weight-bold">
+                                                CourseID
+                                            </div>
+                                        </th>
+                                        <th><div class="form-control border-0 font-weight-bold">Thumbnail</div></th>
+                                        <th><div class="form-control border-0 font-weight-bold">Title</div></th>
+                                        <th>
+                                            <form action="searchtopic" method="post" class="form-inline">
+
+                                                <select name="topicname" id="topicname" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
+                                                    <option value="All">Topic Name</option>
+                                                    <option value="International Business" ${txtTo == 'International Business' ? 'selected' : ''}>International Business</option>
+                                                    <option value="Software Engineering" ${txtTo == 'Software Engineering' ? 'selected' : ''}>Software Engineering</option>
+                                                    <option value="Computer Science" ${txtTo == 'Computer Science' ? 'selected' : ''}>Computer Science</option>
+                                                    <option value="Artificial Intelligence" ${txtTo == 'Artificial Intelligence' ? 'selected' : ''}>Artificial Intelligence</option>
+                                                </select>
+
+                                            </form>
+                                        </th>                
+                                        <th><form action="sortcourse" method="post" class="form-inline">
+                                                <div class="form-group">
+                                                    <select name="sortOrder" id="sortOrder" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
+                                                        <option value="All">Price</option>
+                                                        <option value="PriceASC"${txtSort == 'PriceASC' ? 'selected' : ''}>ASC</option>
+                                                        <option value="PriceDESC"${txtSort == 'PriceDESC' ? 'selected' : ''}>DESC</option>
+                                                    </select>
+                                                </div>      
+                                            </form></th>
+                                        <th><div class="form-control border-0 font-weight-bold">SalePrice</div></th>
+                                        <th><form action="searchcoursebystatus" method="post" class="form-inline">
+                                                <div class="form-group">
+                                                    <select name="statuss" id="statuss" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
+                                                        <option value="All">Status</option>
+                                                        <option value="Active" ${txtSta == 'Active' ? 'selected' : ''}>Active</option>
+                                                        <option value="Inactive" ${txtSta == 'Inactive' ? 'selected' : ''}>Inactive</option>
+                                                    </select>
+                                                </div>
+                                            </form></th>
+                                        <th><div class="form-control border-0 font-weight-bold">Edit</div></th>
+                                        <th><div class="form-control border-0 font-weight-bold">Delete</div></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -117,7 +112,6 @@
                                             <td><img src="${c.thumbnail}" alt="Description of the image" width="100px"></td>
                                             <td>${c.title}</td>
                                             <td>${c.topicID.topicName}</td>
-                                            <td>${c.description}</td>
                                             <td>${c.price}$</td>
                                             <td>${c.salePrice}$</td>
                                             <td>${c.status}</td>
