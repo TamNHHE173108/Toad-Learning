@@ -44,7 +44,7 @@
                                         <div class="col-md-4">
                                             <form action="search" method="post" class="form-inline">
                                                 <div class="input-group">
-                                                    <input value="${txtS}" name="txt" type="text" class="form-control bg-light border-2 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                                    <input value="${txtU}" name="txt" type="text" class="form-control bg-light border-2 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                                     <div class="input-group-append">
                                                         <button class="btn btn-primary" type="submit">
                                                             <i class="fas fa-search fa-sm"></i>
@@ -81,8 +81,8 @@
                                                 <div class="form-group">
                                                     <select name="status" id="status" class="form-control" onchange="this.form.submit()">
                                                         <option value="All">Select Status</option>
-                                                        <option value="Active" ${txtSta == 'Active' ? 'selected' : ''}>Active</option>
-                                                    <option value="Inactive" ${txtSta == 'Inactive' ? 'selected' : ''}>Inactive</option>
+                                                        <option value="Active" ${txtS == 'Active' ? 'selected' : ''}>Active</option>
+                                                        <option value="Inactive" ${txtS == 'Inactive' ? 'selected' : ''}>Inactive</option>
                                                     </select>
                                                 </div>
                                             </form>

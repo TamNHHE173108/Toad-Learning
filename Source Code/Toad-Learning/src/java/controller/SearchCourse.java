@@ -5,8 +5,8 @@
 
 package controller;
 
-import dao.SearchUserDAO;
-import entity.User;
+import dao.SearchCourseDAO;
+import entity.Course;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -20,8 +20,8 @@ import java.util.List;
  *
  * @author laptop lenovo
  */
-@WebServlet(name="SearchUser", urlPatterns={"/search"})
-public class SearchUser extends HttpServlet {
+@WebServlet(name="SearchCourse", urlPatterns={"/searchcourse"})
+public class SearchCourse extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,12 +34,12 @@ public class SearchUser extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        String txtSearch = request.getParameter("txt");
-        SearchUserDAO dao = new SearchUserDAO();
-        List<User> list = dao.searchUserByName(txtSearch);
-        request.setAttribute("listU", list);
-        request.setAttribute("txtU", txtSearch);
-        request.getRequestDispatcher("/views/Hungpt/ListUser.jsp").forward(request, response);
+        String txtCourse = request.getParameter("txtC");
+        SearchCourseDAO dao = new SearchCourseDAO();
+        List<Course> listC = dao.searchCourseByName(txtCourse);
+        request.setAttribute("listCourse", listC);
+        request.setAttribute("txtC", txtCourse);
+        request.getRequestDispatcher("/views/Hungpt/ListCourse.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

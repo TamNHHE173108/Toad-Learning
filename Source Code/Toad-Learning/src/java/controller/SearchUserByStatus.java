@@ -46,7 +46,7 @@ public class SearchUserByStatus extends HttpServlet {
         list = dao.searchUserByStatus(status); // Implement a method to fetch users by gender
     }
         request.setAttribute("listU", list);
-        request.setAttribute("txtSta", status);
+        request.setAttribute("txtS", status);
         request.getRequestDispatcher("/views/Hungpt/ListUser.jsp").forward(request, response);
     } 
      

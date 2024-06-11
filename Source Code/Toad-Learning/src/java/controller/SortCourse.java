@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package controller;
 
-import dao.SearchUserDAO;
-import entity.User;
+import dao.CourseDAO;
+import dao.SearchCourseDAO;
+import entity.Course;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -20,31 +20,41 @@ import java.util.List;
  *
  * @author laptop lenovo
  */
-@WebServlet(name="SearchUser", urlPatterns={"/search"})
-public class SearchUser extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+@WebServlet(name = "SortCourse", urlPatterns = {"/sortcourse"})
+public class SortCourse extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        String txtSearch = request.getParameter("txt");
-        SearchUserDAO dao = new SearchUserDAO();
-        List<User> list = dao.searchUserByName(txtSearch);
-        request.setAttribute("listU", list);
-        request.setAttribute("txtU", txtSearch);
-        request.getRequestDispatcher("/views/Hungpt/ListUser.jsp").forward(request, response);
-    } 
+        String sortOrder = request.getParameter("sortOrder");
+        List<Course> listC;
+        CourseDAO dal = new CourseDAO();
+        SearchCourseDAO dao = new SearchCourseDAO();
+        if ("PriceASC".equals(sortOrder)) {
+            listC = dao.sortByPriceASC();
+        } else if ("PriceDESC".equals(sortOrder)) {
+            listC = dao.sortByPriceDESC();
+        } else {
+            listC = dal.listCourses();
+        }
+        request.setAttribute("listCourse", listC);
+        request.setAttribute("txtSort", sortOrder);
+        request.getRequestDispatcher("/views/Hungpt/ListCourse.jsp").forward(request, response);
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -52,12 +62,13 @@ public class SearchUser extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
-    /** 
+    /**
      * Handles the HTTP <code>POST</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -65,12 +76,13 @@ public class SearchUser extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     @Override

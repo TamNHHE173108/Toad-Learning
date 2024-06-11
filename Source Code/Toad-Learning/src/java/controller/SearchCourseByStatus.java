@@ -5,8 +5,9 @@
 
 package controller;
 
-import dao.SearchUserDAO;
-import entity.User;
+import dao.CourseDAO;
+import dao.SearchCourseDAO;
+import entity.Course;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -20,8 +21,8 @@ import java.util.List;
  *
  * @author laptop lenovo
  */
-@WebServlet(name="SearchUser", urlPatterns={"/search"})
-public class SearchUser extends HttpServlet {
+@WebServlet(name="SearchCourseByStatus", urlPatterns={"/searchcoursebystatus"})
+public class SearchCourseByStatus extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -33,13 +34,20 @@ public class SearchUser extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        String txtSearch = request.getParameter("txt");
-        SearchUserDAO dao = new SearchUserDAO();
-        List<User> list = dao.searchUserByName(txtSearch);
-        request.setAttribute("listU", list);
-        request.setAttribute("txtU", txtSearch);
-        request.getRequestDispatcher("/views/Hungpt/ListUser.jsp").forward(request, response);
+        String status = request.getParameter("statuss");
+        List<Course> listC;
+        SearchCourseDAO dao = new SearchCourseDAO();
+        CourseDAO dal = new CourseDAO();
+        if ("All".equals(status)) {
+        // If "All" is selected or gender is not provided, retrieve all users
+        listC = dal.listCourses(); // Implement a method to fetch all users
+    } else {
+        // Otherwise, filter users based on the selected gender
+        listC = dao.searchCourseByStatus(status); // Implement a method to fetch users by gender
+    }
+        request.setAttribute("listCourse", listC);
+        request.setAttribute("txtSta", status);
+        request.getRequestDispatcher("/views/Hungpt/ListCourse.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -38,8 +38,58 @@
                     <div class="card-header py-3"> 
                         <div class="box">
                             <div class="container-2">
-                                <span class="icon"><i class="fa fa-search"></i></span>
-                                <input type="search" id="search" style = "margin-bottom: 5px" placeholder="Search..." />
+                                <div class="container">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-4">
+                                            <form action="searchcourse" method="post" class="form-inline">
+                                                <div class="input-group">
+                                                    <input value="${txtC}" name="txtC" type="text" class="form-control bg-light border-2 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-primary" type="submit">
+                                                            <i class="fas fa-search fa-sm"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <form action="searchtopic" method="post" class="form-inline">
+                                                <div class="form-group">
+                                                    <select name="topicname" id="topicname" class="form-control" onchange="this.form.submit()">
+                                                        <option value="All">Select Topic</option>
+                                                        <option value="International Business" ${txtTo == 'International Business' ? 'selected' : ''}>International Business</option>
+                                                        <option value="Software Engineering" ${txtTo == 'Software Engineering' ? 'selected' : ''}>Software Engineering</option>
+                                                        <option value="Computer Science" ${txtTo == 'Computer Science' ? 'selected' : ''}>Computer Science</option>
+                                                        <option value="Artificial Intelligence" ${txtTo == 'Artificial Intelligence' ? 'selected' : ''}>Artificial Intelligence</option>
+                                                    </select>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <form action="searchcoursebystatus" method="post" class="form-inline">
+                                                <div class="form-group">
+                                                    <select name="statuss" id="statuss" class="form-control" onchange="this.form.submit()">
+                                                        <option value="All">Select Status</option>
+                                                        <option value="Active" ${txtSta == 'Active' ? 'selected' : ''}>Active</option>
+                                                        <option value="Inactive" ${txtSta == 'Inactive' ? 'selected' : ''}>Inactive</option>
+                                                    </select>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <!-- New sorting form -->
+                                            <form action="sortcourse" method="post" class="form-inline">
+                                                <div class="form-group">
+                                                    <select name="sortOrder" id="sortOrder" class="form-control" onchange="this.form.submit()">
+                                                        <option value="All">Select Sort</option>
+                                                        <option value="PriceASC"${txtSort == 'PriceASC' ? 'selected' : ''}>Price (Low to High)</option>
+                                                        <option value="PriceDESC"${txtSort == 'PriceDESC' ? 'selected' : ''}>Price (High to Low)</option>
+                                                    </select>
+                                                </div>      
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>  
                     </div>
