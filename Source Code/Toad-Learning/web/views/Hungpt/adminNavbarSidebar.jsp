@@ -15,7 +15,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="Home">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon">
                     <img style="width: 150px" src="./img/logo/logo.png" alt="New Logo">
                 </div>
@@ -48,7 +48,7 @@
                 <div id="collapsePro" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom User</h6>
-                        <a class="collapse-item" href="listuser">ListUser</a>
+                        <a class="collapse-item" href="listuser">List User</a>
                     </div>
                 </div>
             </li>
@@ -78,10 +78,7 @@
                 <div id="collapseCou" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Courses</h6>
-                        <a class="collapse-item" href="listcourse">All Courses</a>
-                        <a class="collapse-item" href="Addcourses">Add Courses</a>
-                        <a class="collapse-item" href="#">Edit Courses</a>
-                        <a class="collapse-item" href="#">About Courses </a>
+                        <a class="collapse-item" href="listcourse">List Courses</a>
                     </div>
                 </div>
             </li>
