@@ -37,49 +37,28 @@
                             <div class="p-5">
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
-=======
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                     <img class="col-lg-5 d-none d-lg-block bg-register-image" src="img/haandhai.jpg " alt="alt"/>
-                    <div class="col-lg-7">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
-                            </div>
-                            <form action="Register" method="get" class="user">
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="First Name">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Last Name">
-                                    </div>
->>>>>>> d9c17b0a30d805e27eb3fedb882a816f42ec333d
+
                                 </div>
                                 <p style="color: red">${mess}</p>
                                 <form action="Register" method="post" class="user">
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                             <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                                   placeholder="User Name" name="username">
+                                                   placeholder="User Name" name="username" required>
                                         </div>
                                         <div class="col-sm-6">
                                             <input type="Password" class="form-control form-control-user" id="exampleLastName"
-                                                   placeholder="Password" name="password">
+                                                   placeholder="Password" name="password" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                             <input type="text" class="form-control form-control-user"
-                                                   id="exampleInputPassword" name="fullname" placeholder="Fullname">
+                                                   id="exampleInputPassword" name="fullname" placeholder="Fullname" required>
                                         </div>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control form-control-user"
-                                                   id="exampleRepeatPassword" name="Address" placeholder="Address">
+                                                   id="exampleRepeatPassword" name="address" placeholder="Address" required>
                                         </div>
                                     </div>
                                     <div class="form-group row text-right">
@@ -96,7 +75,7 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group d-flex align-items-center">
                                                     <label for="genderSelect2" class="mr-2">Role</label>
-                                                    <select name="gender" id="genderSelect2" class="form-select">
+                                                    <select name="role" id="genderSelect2" class="form-select">
                                                         <option value="Male">Teacher</option>
                                                         <option value="Female">Student</option>
                                                     </select>
@@ -111,12 +90,12 @@
 
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" name="username" class="form-control form-control-user" id="exampleInputEmail"
-                                               placeholder="Email Address">
+                                        <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail"
+                                               placeholder="Email Address" required>
                                     </div>
                                     <div class="form-group">
                                         <input type="number" name="phone" class="form-control form-control-user" id="phonenumber"
-                                               placeholder="Phone number">
+                                               placeholder="Phone number" required>
                                     </div>
 
 

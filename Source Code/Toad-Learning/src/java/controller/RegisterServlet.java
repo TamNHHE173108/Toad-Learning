@@ -73,12 +73,18 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-      String pass, cfpass, username;
+      String  username,  password, name, gender,
+             email, mobile,role, address;
 
         // lay ra thong tin nguoi dung input o form signup
         username = request.getParameter("username");
-        pass = request.getParameter("password");
-        cfpass = request.getParameter("cfpassword");
+        password = request.getParameter("password");
+        name = request.getParameter("fullname");
+        gender = request.getParameter("gender");
+        role = request.getParameter("role");
+        email = request.getParameter("email");
+        mobile = request.getParameter("phone");
+        address = request.getParameter("address");
 
         // lay ra tat ca nhung tai khoan da ton tai trong he thong
         UsersDAO ud = new UsersDAO();
@@ -90,8 +96,8 @@ public class RegisterServlet extends HttpServlet {
             request.getRequestDispatcher("views/Hoanglh/newAccount.jsp").forward(request, response);
         }else {
             // neu khong co van de gì -> dang ky tai khoan thành công
-            ud.Register(username, pass);
-            request.getRequestDispatcher("content").forward(request, response);
+            ud.Register(username, password, name, gender, email, mobile, role, email, address);
+            response.sendRedirect("Home");
 
         }
     }
