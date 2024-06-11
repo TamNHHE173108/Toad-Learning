@@ -72,7 +72,7 @@ public class UsersDAO extends MyDAO {
     // hàm dang kí
     public void Register( String username, String password, String name, String gender,
             String email, String mobile,String role, String status, String address) {
-        String query = "INSERT [dbo].[Users] \n"
+        String query = "INSERT INTO [dbo].[Users] \n"
                 + "([Username], [Password], [FullName], [Gender], [Email], [Mobile], [Role] , [Status],[Address])\n"
                 + "VALUES(?,?,?,?,?,?,?,?,?)";
         try {
