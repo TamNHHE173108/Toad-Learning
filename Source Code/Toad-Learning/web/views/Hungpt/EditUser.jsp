@@ -51,21 +51,21 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Username</label>
-                                                <input value="${detail.username}" name="username" type="text" class="form-control" >
+                                                <input value="${detail.username}" name="username" type="text" class="form-control" readonly required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Password</label>
-                                                <input value="${detail.password}" name="password" type="text" class="form-control" >
+                                                <input value="${detail.password}" name="password" type="password" class="form-control" readonly required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Name</label>
-                                                <input value="${detail.name}" name="name" type="text" class="form-control">
+                                                <input value="${detail.name}" name="name" type="text" class="form-control" readonly required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Gender</label>
                                                 <select name="gender" class="form-select">                              
                                                     <option value="Male" ${detail.gender == 'Male' ? 'selected' : ''}>Male</option>
-                                                    <option value="Fermale" ${detail.gender == 'Fermale' ? 'selected' : ''}>Fermale</option>
+                                                    <option value="Female" ${detail.gender == 'Female' ? 'selected' : ''}>Female</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -78,15 +78,15 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <textarea name="email" class="form-control" required>${detail.email}</textarea>
+                                                <input value="${detail.email}" name="email" type="email" class="form-control" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" readonly required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Mobile</label>
-                                                <textarea  name="mobile" class="form-control" required>${detail.mobile}</textarea>
+                                                <input value="${detail.mobile}" name="mobile" class="form-control" type="tel" pattern="[0-9]{10,11}" readonly required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Address</label>
-                                                <textarea  name="address" class="form-control" required>${detail.address}</textarea>
+                                                <textarea  name="address" class="form-control" readonly required>${detail.address}</textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label>Status</label>
@@ -115,29 +115,7 @@
                 <!-- End of Page Wrapper -->
 
                 <!-- Scroll to Top Button-->
-                <a class="scroll-to-top rounded" href="#page-top">
-                    <i class="fas fa-angle-up"></i>
-                </a>
-
-                <!-- Logout Modal-->
-                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                            <div class="modal-footer">
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <a class="btn btn-primary" href="login.html">Logout</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <%@include  file ="Logout.jsp" %>
 
                 <!-- Bootstrap core JavaScript-->
                 <script src="vendor/jquery/jquery.min.js"></script>

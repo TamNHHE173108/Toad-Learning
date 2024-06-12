@@ -21,6 +21,7 @@
         <!-- Custom styles for this template-->
         <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+
     </head>
 
 
@@ -38,12 +39,26 @@
                     <div class="card-header py-3"> 
                         <div class="box">
                             <div class="container-2">
-                                <span class="icon"><i class="fa fa-search"></i></span>
-                                <input type="search" id="search" style = "margin-bottom: 5px" placeholder="Search..." />
+                                <div class="container">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-6">
+                                            <form action="search" method="post" class="form-inline">
+                                                <div class="input-group">
+                                                    <input value="${txtU}" name="txt" type="text" class="form-control bg-light border-2 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-primary" type="submit">
+                                                            <i class="fas fa-search fa-sm"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>         
+                                        <div class="col-md-6 text-right">
+                                            <a href="#addNewUser" class="btn btn-success" data-toggle="modal"><i class="material-icons"></i> <span>Add New User</span></a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <a href="#addNewUser"  class="btn btn-success" data-toggle="modal"><i class="material-icons"></i> <span>Add New User</span></a>					
                         </div>
                     </div>
                     <div class="card-body">
@@ -51,15 +66,70 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>                
-                                        <th>FullName</th>
-                                        <th>Gender</th>
-                                        <th>Role</th>
-                                        <th>Email</th>
-                                        <th>Mobile</th>
-                                        <th>Address</th>
-                                        <th>Status</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        <th>
+                                            <div class="form-control border-0 font-weight-bold">
+                                                FullName
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <form id="filterForm" action="searchgender" method="post" class="form-inline">
+                                                <div class="form-group">
+                                                    <select name="gender" id="gender" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
+                                                        <option value="All">Gender</option>
+                                                        <option value="Male" ${txtG == 'Male' ? 'selected' : ''}>Male</option>
+                                                        <option value="Female" ${txtG == 'Female' ? 'selected' : ''}>Female</option>
+                                                    </select>
+                                                </div>
+                                            </form>
+                                        </th>
+                                        <th> 
+                                            <form id="filterForm" action="searchrole" method="post" class="form-inline">
+                                                <div class="form-group">
+                                                    <select name="role" id="role" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
+                                                        <option value="All">Role</option>
+                                                        <option value="Teacher" ${txtR == 'Teacher' ? 'selected' : ''}>Teacher</option>
+                                                        <option value="Student" ${txtR == 'Student' ? 'selected' : ''}>Student</option>
+                                                        <option value="Admin" ${txtR == 'Admin' ? 'selected' : ''}>Admin</option>
+                                                    </select>
+                                                </div>
+                                            </form>
+                                        </th>
+                                        <th>
+                                            <div class="form-control border-0 font-weight-bold">
+                                                Email
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="form-control border-0 font-weight-bold">
+                                                Mobile
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="form-control border-0 font-weight-bold">
+                                                Address
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <form id="filterForm" action="searchstatus" method="post" class="form-inline">
+                                                <div class="form-group">
+                                                    <select name="status" id="status" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
+                                                        <option value="All">Status</option>
+                                                        <option value="Active" ${txtS == 'Active' ? 'selected' : ''}>Active</option>
+                                                        <option value="Inactive" ${txtS == 'Inactive' ? 'selected' : ''}>Inactive</option>
+                                                    </select>
+                                                </div>
+                                            </form>
+                                        </th>
+                                        <th>
+                                            <div class="form-control border-0 font-weight-bold">
+                                                Edit
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="form-control border-0 font-weight-bold">
+                                                Delete
+                                            </div>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -76,7 +146,7 @@
                                                 <a href="load?uid=${o.user_id}""><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
                                             </td>
                                             <td>
-                                                <a href="delete?uid=${o.user_id}" onclick="return confirm('Are you sure you want to delete this item?');">
+                                                <a href="delete?uid=${o.user_id}" onclick="return confirm('Are you sure you want to delete ${o.name}');">
                                                     <i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i>
                                                 </a>
                                             </td>                                         
@@ -99,16 +169,12 @@
                             </div>
                             <div class="modal-body">	
                                 <div class="form-group">
-                                    <label>UserID</label>
-                                    <input name="user_id" type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
                                     <label>Username</label>
                                     <input name="username" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input name="password" type="text" class="form-control" required>
+                                    <input name="password" type="password" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>FullName</label>
@@ -118,7 +184,7 @@
                                     <label>Gender</label>
                                     <select name="gender" class="form-select" aria-label="Default select example">                              
                                         <option value="Male">Male</option>
-                                        <option value="Fermale">Fermale</option>
+                                        <option value="Female">Female</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -131,11 +197,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <textarea name="email" class="form-control" required></textarea>
+                                    <input name="email" class="form-control" type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"required>
                                 </div>
                                 <div class="form-group">
                                     <label>Mobile</label>
-                                    <textarea name="mobile" class="form-control" required></textarea>
+                                    <input name="mobile" class="form-control" type="tel" pattern="[0-9]{10,11}"required>
                                 </div>
                                 <div class="form-group">
                                     <label>Address</label>
@@ -170,29 +236,7 @@
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <%@include  file ="Logout.jsp" %>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

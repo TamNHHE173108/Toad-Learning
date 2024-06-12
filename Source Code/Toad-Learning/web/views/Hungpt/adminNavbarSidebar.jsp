@@ -15,7 +15,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="Home">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon">
                     <img style="width: 150px" src="./img/logo/logo.png" alt="New Logo">
                 </div>
@@ -48,7 +48,7 @@
                 <div id="collapsePro" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom User</h6>
-                        <a class="collapse-item" href="listuser">ListUser</a>
+                        <a class="collapse-item" href="listuser">List User</a>
                     </div>
                 </div>
             </li>
@@ -78,10 +78,7 @@
                 <div id="collapseCou" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Courses</h6>
-                        <a class="collapse-item" href="listcourse">All Courses</a>
-                        <a class="collapse-item" href="Addcourses">Add Courses</a>
-                        <a class="collapse-item" href="#">Edit Courses</a>
-                        <a class="collapse-item" href="#">About Courses </a>
+                        <a class="collapse-item" href="listcourse">List Courses</a>
                     </div>
                 </div>
             </li>
@@ -135,20 +132,7 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                   aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+   
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">

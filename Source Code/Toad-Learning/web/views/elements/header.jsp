@@ -34,8 +34,20 @@
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
                     <div class="d-flex align-items-center">
-                        <button  class="btn btn-outline-primary  "  type="submit">Login</button>
-                        <button  class="btn btn-outline-success  " type="submit">Sign Up</button>
+                       
+                        <c:if test="${sessionScope.user == null}">
+                            <div >
+                                <button onclick="location.href='Login'" class="btn btn-outline-primary" type="button">Login</button>
+                                <button onclick="location.href='Register'"  class="btn btn-outline-success  " type="button">Sign Up</button>
+                            </div>
+                        </c:if>
+                        <c:if test="${sessionScope.user != null}">
+                            <div >
+                                <button onclick="location.href='Login'" class="btn btn-outline-primary" type="button">Logout</button>
+                                
+                            </div>
+                        </c:if>
+                       
                     </div>
                 </div>
             </div>

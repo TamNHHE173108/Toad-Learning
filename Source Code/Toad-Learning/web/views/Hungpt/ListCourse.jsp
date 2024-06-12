@@ -38,8 +38,22 @@
                     <div class="card-header py-3"> 
                         <div class="box">
                             <div class="container-2">
-                                <span class="icon"><i class="fa fa-search"></i></span>
-                                <input type="search" id="search" style = "margin-bottom: 5px" placeholder="Search..." />
+                                <div class="container">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-4">
+                                            <form action="searchcourse" method="post" class="form-inline">
+                                                <div class="input-group">
+                                                    <input value="${txtC}" name="txtC" type="text" class="form-control bg-light border-2 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-primary" type="submit">
+                                                            <i class="fas fa-search fa-sm"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>  
                     </div>
@@ -48,18 +62,47 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>CourseID</th>
-                                        <th>Thumbnail</th>
-                                        <th>Title</th>
-                                        <th>TopicName</th>
-                                        <th>Description</th>
-                                        <th>CreateDate</th>
-                                        <th>UpdateDate</th>
-                                        <th>Price</th>
-                                        <th>SalePrice</th>
-                                        <th>Status</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        <th>
+                                            <div class="form-control border-0 font-weight-bold">
+                                                CourseID
+                                            </div>
+                                        </th>
+                                        <th><div class="form-control border-0 font-weight-bold">Thumbnail</div></th>
+                                        <th><div class="form-control border-0 font-weight-bold">Title</div></th>
+                                        <th>
+                                            <form action="searchtopic" method="post" class="form-inline">
+
+                                                <select name="topicname" id="topicname" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
+                                                    <option value="All">Topic Name</option>
+                                                    <option value="International Business" ${txtTo == 'International Business' ? 'selected' : ''}>International Business</option>
+                                                    <option value="Software Engineering" ${txtTo == 'Software Engineering' ? 'selected' : ''}>Software Engineering</option>
+                                                    <option value="Computer Science" ${txtTo == 'Computer Science' ? 'selected' : ''}>Computer Science</option>
+                                                    <option value="Artificial Intelligence" ${txtTo == 'Artificial Intelligence' ? 'selected' : ''}>Artificial Intelligence</option>
+                                                </select>
+
+                                            </form>
+                                        </th>                
+                                        <th><form action="sortcourse" method="post" class="form-inline">
+                                                <div class="form-group">
+                                                    <select name="sortOrder" id="sortOrder" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
+                                                        <option value="All">Price</option>
+                                                        <option value="PriceASC"${txtSort == 'PriceASC' ? 'selected' : ''}>ASC</option>
+                                                        <option value="PriceDESC"${txtSort == 'PriceDESC' ? 'selected' : ''}>DESC</option>
+                                                    </select>
+                                                </div>      
+                                            </form></th>
+                                        <th><div class="form-control border-0 font-weight-bold">SalePrice</div></th>
+                                        <th><form action="searchcoursebystatus" method="post" class="form-inline">
+                                                <div class="form-group">
+                                                    <select name="statuss" id="statuss" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
+                                                        <option value="All">Status</option>
+                                                        <option value="Active" ${txtSta == 'Active' ? 'selected' : ''}>Active</option>
+                                                        <option value="Inactive" ${txtSta == 'Inactive' ? 'selected' : ''}>Inactive</option>
+                                                    </select>
+                                                </div>
+                                            </form></th>
+                                        <th><div class="form-control border-0 font-weight-bold">Edit</div></th>
+                                        <th><div class="form-control border-0 font-weight-bold">Delete</div></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -69,9 +112,6 @@
                                             <td><img src="${c.thumbnail}" alt="Description of the image" width="100px"></td>
                                             <td>${c.title}</td>
                                             <td>${c.topicID.topicName}</td>
-                                            <td>${c.description}</td>
-                                            <td>${c.createDate}</td>
-                                            <td>${c.updateDate}</td>
                                             <td>${c.price}$</td>
                                             <td>${c.salePrice}$</td>
                                             <td>${c.status}</td>
@@ -79,7 +119,8 @@
                                                 <a href="loadcourse?course_ID=${c.courseID}"><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
                                             </td>
                                             <td>
-                                                <a href=""><i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                                                <a href="deletecourse?course_ID=${c.courseID}" onclick="return confirm('Are you sure you want to delete ${c.courseID}?');">
+                                                    <i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
                                             </td>                                          
                                         </tr>
                                     </c:forEach>
@@ -99,29 +140,7 @@
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <%@include  file ="Logout.jsp" %>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
