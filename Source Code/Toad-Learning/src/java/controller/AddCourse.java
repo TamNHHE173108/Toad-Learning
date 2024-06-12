@@ -32,7 +32,7 @@ public class AddCourse extends HttpServlet {
         String updateDate = request.getParameter("updateDate");
         String thumbnail = request.getParameter("thumbnail");
         String price = request.getParameter("price");
-        String salePrice = request.getParameter("status");
+        String salePrice = request.getParameter("salePrice");
         String status = request.getParameter("status");
 
         CourseDAO courseDAO = new CourseDAO();
@@ -42,6 +42,8 @@ public class AddCourse extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //lấy dữ liệu từ form
+        
         request.getRequestDispatcher("/views/Dangph/addCourses.jsp").forward(request, response);
     }
 
