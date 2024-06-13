@@ -17,38 +17,31 @@ import java.util.List;
 
 public class CourseDAO {
 
-    Connection conn = null;
+     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    public void addCourse(String courseID, String courseName, String category, String description, String thumbnail, String createDate, String updateDate, String price, String salePrice, String status) {
-        String sql = "INSERT INTO Courses (CourseID, Title, TopicID, Description, Thumbnail, CreatedDate,UpdatedDate,Price,SalePrice, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
+    // Phương thức thêm mới khóa học vào cơ sở dữ liệu
+    public void addCourse(String title, String topicID, String description,
+            String thumbnail, String price, String salePrice, String status, String courseID) {
+        String query = "INSERT INTO Courses (CourseID, Title, TopicID, Description, Thumbnail, CreatedDate, UpdatedDate, Price, SalePrice, Status) " +
+                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
-            conn = new DBContext().getConnection();
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, courseID);
-            ps.setString(2, courseName);
-            ps.setString(3, category);
-            ps.setString(4, description);
-            ps.setString(5, thumbnail);
-            ps.setString(6, createDate);
-            ps.setString(7, updateDate);
-            ps.setString(8, price);
-            ps.setString(9, salePrice);
-            ps.setString(10, status);
+            conn = new DBContext().getConnection();//mo ket noi voi sql
+            ps = conn.prepareStatement(query);
+            ps.setString(1, title);
+            ps.setString(2, topicID);
+            ps.setString(3, description);
+            ps.setString(4, thumbnail);
+            ps.setString(5, price);
+            ps.setString(6, salePrice);
+            ps.setString(7, status);
+            ps.setString(8, courseID);
             ps.executeUpdate();
-        } catch (SQLException e) {
-//            throw e;
-//        } finally {
-//            if (ps != null) {
-//                ps.close();
-//            }
-//            if (conn != null) {
-//                conn.close();
-//            }
+        } catch (Exception e) {
         }
+       
     }
-
     public List<Course> listCourses() {
         List<Course> list = new ArrayList<>();
         String sql = "SELECT CourseID, Title, Topics.TopicName, Courses.Description,Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status\n"
