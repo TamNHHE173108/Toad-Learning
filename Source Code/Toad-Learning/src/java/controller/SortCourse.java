@@ -35,19 +35,19 @@ public class SortCourse extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String sortOrder = request.getParameter("sortOrder");
+        String sortPrice = request.getParameter("sortPrice");
         List<Course> listC;
         CourseDAO dal = new CourseDAO();
         SearchCourseDAO dao = new SearchCourseDAO();
-        if ("PriceASC".equals(sortOrder)) {
+        if ("PriceASC".equals(sortPrice)) {
             listC = dao.sortByPriceASC();
-        } else if ("PriceDESC".equals(sortOrder)) {
+        } else if ("PriceDESC".equals(sortPrice)) {
             listC = dao.sortByPriceDESC();
         } else {
             listC = dal.listCourses();
         }
         request.setAttribute("listCourse", listC);
-        request.setAttribute("txtSort", sortOrder);
+        request.setAttribute("txtSort", sortPrice);
         request.getRequestDispatcher("/views/Hungpt/ListCourse.jsp").forward(request, response);
     }
 

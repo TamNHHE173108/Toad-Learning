@@ -10,7 +10,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Course - List Course</title>
+        <title>Lesson - List Lesson</title>
 
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -68,7 +68,8 @@
                                         <tr> 
                                             <td>${c.courseID}</td>
                                             <td><img src="${c.thumbnail}" alt="Description of the image" width="100px"></td>
-                                            <td>${c.title}</td>
+                                            
+                                            <td><a href="ListLesson?courseID=${c.courseID}">${c.title}</a></td>
                                             <td>${c.topicID.topicName}</td>
                                             <td>${c.description}</td>
                                             <td>${c.createDate}</td>
@@ -182,7 +183,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="Login">Logout</a>
                 </div>
             </div>
         </div>

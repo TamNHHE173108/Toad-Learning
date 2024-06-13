@@ -1,16 +1,59 @@
 package dao;
 
+import dal.DBContext;
 import entity.Lesson;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LessonDAO {
+
+    
+    
     
     private Connection connection;
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
 
-    public LessonDAO(Connection connection) {
-        this.connection = connection;
+    
+        public List<Lesson> getLessonByCourseID(String courseID) {
+        List<Lesson> lessonList = new ArrayList<>();
+        String xSql = "SELECT * FROM Lessons WHERE courseID = ?";
+        
+        try {
+            conn = new DBContext().getConnection(); // Mở kết nối với SQL
+            ps = conn.prepareStatement(xSql);
+            ps.setString(1, courseID);
+            rs = ps.executeQuery();
+
+            String id, title, content, status;
+            while (rs.next()) {
+                id = rs.getString("LessonID");
+                title = rs.getString("Title");
+                content = rs.getString("Content");
+                status = rs.getString("Status");
+
+                Lesson lesson = new Lesson(id, courseID, title, content, status);
+                lessonList.add(lesson);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Đóng tài nguyên
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return lessonList;
     }
 
     // Thêm một bài học mới vào cơ sở dữ liệu
