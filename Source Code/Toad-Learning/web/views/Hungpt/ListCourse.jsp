@@ -82,16 +82,28 @@
 
                                             </form>
                                         </th>                
-                                        <th><form action="sortcourse" method="post" class="form-inline">
+                                        <th>
+                                            <form action="sortcourse" method="post" class="form-inline">
                                                 <div class="form-group">
-                                                    <select name="sortOrder" id="sortOrder" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
+                                                    <select name="sortPrice" id="sortPrice" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
                                                         <option value="All">Price</option>
                                                         <option value="PriceASC"${txtSort == 'PriceASC' ? 'selected' : ''}>ASC</option>
                                                         <option value="PriceDESC"${txtSort == 'PriceDESC' ? 'selected' : ''}>DESC</option>
                                                     </select>
                                                 </div>      
-                                            </form></th>
-                                        <th><div class="form-control border-0 font-weight-bold">SalePrice</div></th>
+                                            </form>
+                                        </th>
+                                        <th>
+                                            <form action="sortsaleprice" method="post" class="form-inline">
+                                                <div class="form-group">
+                                                    <select name="sortSalePrice" id="sortSalePrice" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
+                                                        <option value="All">Sale Price</option>
+                                                        <option value="SalePriceASC"${txtSale == 'SalePriceASC' ? 'selected' : ''}>ASC</option>
+                                                        <option value="SalePriceDESC"${txtSale == 'SalePriceDESC' ? 'selected' : ''}>DESC</option>
+                                                    </select>
+                                                </div>      
+                                            </form>
+                                        </th>
                                         <th><form action="searchcoursebystatus" method="post" class="form-inline">
                                                 <div class="form-group">
                                                     <select name="statuss" id="statuss" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
