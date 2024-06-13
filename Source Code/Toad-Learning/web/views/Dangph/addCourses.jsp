@@ -28,7 +28,7 @@
 
         .form-container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 800px;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
@@ -129,11 +129,11 @@
             <h1>Add Courses</h1>
             <div class="success" id="success">Add new course successful</div>
             <div class="error" id="error">Please fill out all required fields.</div>
-            <form id="newCourseForm" action="/Addcourses" method="post" enctype="multipart/form-data" onsubmit="handleSubmit(event)">
+            <form id="newCourseForm" action="/Addcourses" method="post" enctype="multipart/form-data">
                 <label for="courseID">Course ID:</label>
                 <input type="text" id="courseID" name="courseID" required>
 
-                <label for="courseName">Title:</label>
+                <label for="courseName">Course Name:</label>
                 <input type="text" id="courseName" name="courseName" required>
 
                 <label for="topicID">Topic ID:</label>
@@ -177,7 +177,7 @@
     </div>
 
     <script>
-        function handleSubmit(event) {
+        document.getElementById('newCourseForm').addEventListener('submit', function(event) {
             event.preventDefault();
             var isValid = true;
             var requiredFields = document.querySelectorAll('#newCourseForm [required]');
@@ -190,14 +190,12 @@
             if (isValid) {
                 document.getElementById('error').style.display = 'none';
                 document.getElementById('success').style.display = 'block';
-                // Reset form fields
-                document.getElementById('newCourseForm').reset();
+                
             } else {
                 document.getElementById('success').style.display = 'none';
                 document.getElementById('error').style.display = 'block';
             }
-        }
+        });
     </script>
 </body>
 </html>
-

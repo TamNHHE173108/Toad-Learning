@@ -8,6 +8,10 @@
         <servlet-name>NewSubject</servlet-name>
         <servlet-class>controller.NewSubject</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CourseDetail</servlet-name>
+        <servlet-class>controller.CourseDetail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DashboardLectures</servlet-name>
         <url-pattern>/dashboardlectures</url-pattern>
@@ -15,5 +19,9 @@
     <servlet-mapping>
         <servlet-name>NewSubject</servlet-name>
         <url-pattern>/newsubject</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CourseDetail</servlet-name>
+        <url-pattern>/coursedetail</url-pattern>
     </servlet-mapping>
 </web-app>

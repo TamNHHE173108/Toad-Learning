@@ -36,54 +36,64 @@
                 <!-- DataTales -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3"> 
-                        <div class="box">
-                            <div class="container-2">
-                                <span class="icon"><i class="fa fa-search"></i></span>
-                                <input type="search" id="search" style = "margin-bottom: 5px" placeholder="Search..." />
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <a href="#addNewCourse"  class="btn btn-success" data-toggle="modal"><i class="material-icons"></i> <span>Add New Course</span></a>					
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>CourseID</th>
-                                        <th>Thumbnail</th>
-                                        <th>Title</th>
-                                        <th>TopicName</th>
-                                        <th>Description</th>
-                                        <th>CreateDate</th>
-                                        <th>UpdateDate</th>
-                                        <th>Price</th>
-                                        <th>SalePrice</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach items="${listC}" var ="c">
-                                        <tr> 
-                                            <td><a href="coursedetail?course_ID=${c.courseID}">${c.courseID}</a></td>
-                                            <td><img src="${c.thumbnail}" alt="Description of the image" width="100px"></td>
-                                            
-                                            <td>${c.title}</td>
-                                            <td>${c.topicID.topicName}</td>
-                                            <td>${c.description}</td>
-                                            <td>${c.createDate}</td>
-                                            <td>${c.updateDate}</td>
-                                            <td>${c.price}$</td>
-                                            <td>${c.salePrice}$</td>
-                                            <td>${c.status}</td>
-                                            
-                                    </c:forEach>
-                                </tbody>
-                            </table>
+                        <div class="col-sm-9">
+                        <div class="container">
+                            <div class="card">
+                                <div class="row">
+                                    <aside class="col-sm-5 border-right">
+                                        <article class="gallery-wrap"> 
+                                            <div class="img-big-wrap">
+                                                <div> <a href="#"><img src="${detailcourse.thumbnail}"></a></div>
+                                        </div> <!-- slider-product.// -->
+                                        <div class="img-small-wrap">
+                                        </div> <!-- slider-nav.// -->
+                                    </article> <!-- gallery-wrap .end// -->
+                                </aside>
+                                <aside class="col-sm-7">
+                                    <article class="card-body p-5">
+                                        <h3 class="title mb-3">${detailcourse.courseID}</h3>
 
-                        </div>
+                                        <p class="price-detail-wrap"> 
+                                            <span class="price h3 text-warning"> 
+                                                <span class="currency">US $</span><span class="num">${detailcourse.price}</span>
+                                            </span> 
+                                        </p> <!-- price-detail-wrap .// -->
+                                        <dl class="item-property">
+                                            <dt>Description</dt>
+                                            <dd><p>
+                                                    ${detailcourse.description}
+                                                </p></dd>
+                                        </dl>
+
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <dl class="param param-inline">
+                                                    <dt>Quantity: </dt>
+                                                    <dd>
+                                                        <select class="form-control form-control-sm" style="width:70px;">
+                                                            <option> 1 </option>
+                                                            <option> 2 </option>
+                                                            <option> 3 </option>
+                                                        </select>
+                                                    </dd>
+                                                </dl>  <!-- item-property .// -->
+                                            </div> <!-- col.// -->
+
+                                        </div> <!-- row.// -->
+                                        <hr>
+                                        <a href="#" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
+                                        <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
+                                    </article> <!-- card-body.// -->
+                                </aside> <!-- col.// -->
+                            </div> <!-- row.// -->
+                        </div> <!-- card.// -->
+
+
                     </div>
+                       
+                    </div>
+                    
                 </div>
             </div>
             <div id="addNewCourse" class="modal fade">
