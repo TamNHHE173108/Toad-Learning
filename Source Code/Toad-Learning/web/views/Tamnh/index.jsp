@@ -10,7 +10,6 @@
 <html lang="en">
 
     <head>
-        <jsp:useBean id ="list" class="dao.ListCourseDAO" scope="request"/>
         <meta charset="utf-8">
         <title>eLEARNING - eLearning HTML Template</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -41,20 +40,7 @@
     </head>
     
     <body>
-        <c:forEach items="${list.listCoursesLecture()}" var="i">
-         <div>
-            <h2>${course.title}</h2>
-            <p>${course.description}</p>
-            <!-- Thêm mã HTML/JSP để hiển thị thông tin khác của khóa học (ví dụ: giá, hình ảnh, ...) -->
-        </div>
-    </c:forEach>   
-            
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
+  
         <!-- Spinner End -->
 
 
@@ -408,16 +394,6 @@
 
 
 <!-- Đoạn mã c:forEach -->
-<c:forEach items="${list.listCoursesLecture()}" var="course">
-    <div>
-        <h2>${course.title}</h2>
-        <p>${course.description}</p>
-        <!-- Thêm mã HTML/JSP để hiển thị thông tin khác của khóa học (ví dụ: giá, hình ảnh, ...) -->
-        <p>Price: ${course.price}</p>
-        <p>Sale Price: ${course.salePrice}</p>
-        <img src="${course.thumbnail}" alt="Course Thumbnail">
-    </div>
-</c:forEach>
 
 
         <!-- Team Start -->
