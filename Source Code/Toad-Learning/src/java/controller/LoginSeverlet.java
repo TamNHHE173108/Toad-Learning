@@ -86,7 +86,13 @@ public class LoginSeverlet extends HttpServlet {
         if (u == null) {
             request.setAttribute("mess", "Wrong email or password!");
             request.getRequestDispatcher("views/Hoanglh/Login.jsp").forward(request, response);
-        } else if (u.getRole().equals("Teacher")) { // neu tai khoan tont tai, tao session -> tra ve home (servlet)
+        } else if(u.getStatus().equals("InActive")){
+            request.setAttribute("mess", "Tai khoan ngung hoat dong!");
+            request.getRequestDispatcher("views/Hoanglh/Login.jsp").forward(request, response);
+            
+        } 
+        
+        else if (u.getRole().equals("Teacher")) { // neu tai khoan tont tai, tao session -> tra ve home (servlet)
             HttpSession session = request.getSession();
             session.setAttribute("user", u);
             response.sendRedirect("dashboardlectures");

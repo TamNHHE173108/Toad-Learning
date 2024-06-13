@@ -43,7 +43,7 @@
                         </c:if>
                         <c:if test="${sessionScope.user != null}">
                             <div >
-                                <button onclick="location.href='Login'" class="btn btn-outline-primary" type="button">Logout</button>
+                                <button onclick="location.href='logout'" class="btn btn-outline-primary" type="button">Logout</button>
                                 
                             </div>
                         </c:if>

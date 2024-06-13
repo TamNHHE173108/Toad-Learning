@@ -75,6 +75,7 @@ public class RegisterServlet extends HttpServlet {
     throws ServletException, IOException {
       String  username,  password, name, gender,
              email, mobile,role, address;
+      String status = "Active";
 
         // lay ra thong tin nguoi dung input o form signup
         username = request.getParameter("username");
@@ -97,7 +98,7 @@ public class RegisterServlet extends HttpServlet {
         }else {
             // neu khong co van de gì -> dang ky tai khoan thành công
 
-            ud.Register(username, password, name, gender, email, mobile, role, email, address);
+            ud.Register(username, password, name, gender, email, mobile, role,status, address);
             response.sendRedirect("Home");
 
 //            ud.Register(username, pass);

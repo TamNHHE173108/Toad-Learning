@@ -75,8 +75,8 @@
                                                 <div class="form-group d-flex align-items-center">
                                                     <label for="genderSelect2" class="mr-2">Role</label>
                                                     <select name="role" id="genderSelect2" class="form-select">
-                                                        <option value="Male">Teacher</option>
-                                                        <option value="Female">Student</option>
+                                                        <option value="Teacher">Teacher</option>
+                                                        <option value="Student">Student</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -115,7 +115,7 @@
                                     <a class="small" href="forgot-password.html">Forgot Password?</a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" href="login.html">Already have an account? Login!</a>
+                                    <a class="small" href="Login">Already have an account? Login!</a>
                                 </div>
                             </div>
                         </div>
