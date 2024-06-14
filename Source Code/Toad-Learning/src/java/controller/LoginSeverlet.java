@@ -86,7 +86,7 @@ public class LoginSeverlet extends HttpServlet {
         if (u == null) {
             request.setAttribute("mess", "Wrong email or password!");
             request.getRequestDispatcher("views/Hoanglh/Login.jsp").forward(request, response);
-        } else if(u.getStatus().equals("InActive")){
+        } else if(u.getStatus().equals("Inactive")){
             request.setAttribute("mess", "Tai khoan ngung hoat dong!");
             request.getRequestDispatcher("views/Hoanglh/Login.jsp").forward(request, response);
             

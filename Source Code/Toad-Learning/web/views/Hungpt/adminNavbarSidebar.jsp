@@ -17,8 +17,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon">
-                    <img style="width: 150px" src="./img/logo/logo.png" alt="New Logo">
+                    <img style="width: 120px" src="./img/logo/logo.png" alt="New Logo">
                 </div>
+                <div class="sidebar-brand-text mx-2"></div>
             </a>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -280,9 +281,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hello ${user.name}</span>
                                 <img class="img-profile rounded-circle"
-                                     src="img/undraw_profile.svg">
+                                     src="img/admin.jpg" alt="profile">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

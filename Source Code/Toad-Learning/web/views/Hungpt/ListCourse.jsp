@@ -150,7 +150,9 @@
         <!-- End of Content Wrapper -->
     </div>
     <!-- End of Page Wrapper -->
-
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
     <!-- Scroll to Top Button-->
     <%@include  file ="Logout.jsp" %>
 
