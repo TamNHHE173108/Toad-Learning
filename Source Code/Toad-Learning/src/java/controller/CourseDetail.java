@@ -4,23 +4,22 @@
  */
 package controller;
 
-import dao.LessonDAO;
-import entity.Lesson;
+import dao.CourseDAO;
+import entity.Course;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author lehoa
+ * @author Admin
  */
-@WebServlet(name = "ListLesson", urlPatterns = {"/ListLesson"})
-public class ListLesson extends HttpServlet {
+public class CourseDetail extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,18 +33,12 @@ public class ListLesson extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ListLesson</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ListLesson at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        String courseID = request.getParameter("course_ID");
+        CourseDAO dao = new CourseDAO();
+        Course course = dao.getCourseByID(courseID);   
+        request.setAttribute("detailcourse", course);
+        request.getRequestDispatcher("/views/Havt/HomePageForLectures/CourseDetail.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -60,17 +53,7 @@ public class ListLesson extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String stringcourseID = request.getParameter("courseID");
-         
-        LessonDAO ls = new LessonDAO();
-
-        List<Lesson> listP;
-
-        listP = ls.getLessonByCourseID(stringcourseID);
-        request.setAttribute("listP", listP);
-        request.setAttribute("courseID", stringcourseID);
-
-        request.getRequestDispatcher("/views/Hoanglh/lessonList.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**

@@ -13,14 +13,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author lehoa
  */
-@WebServlet(name = "ListLesson", urlPatterns = {"/ListLesson"})
-public class ListLesson extends HttpServlet {
+@WebServlet(name = "AddLesson", urlPatterns = {"/AddLesson"})
+public class AddLesson extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +42,10 @@ public class ListLesson extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ListLesson</title>");
+            out.println("<title>Servlet AddLesson</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ListLesson at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddLesson at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,17 +63,7 @@ public class ListLesson extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String stringcourseID = request.getParameter("courseID");
-         
-        LessonDAO ls = new LessonDAO();
-
-        List<Lesson> listP;
-
-        listP = ls.getLessonByCourseID(stringcourseID);
-        request.setAttribute("listP", listP);
-        request.setAttribute("courseID", stringcourseID);
-
-        request.getRequestDispatcher("/views/Hoanglh/lessonList.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -82,10 +75,26 @@ public class ListLesson extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
+   protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+
+    String stringcourseID = request.getParameter("courseID");
+    String lessonID = request.getParameter("lessonID");
+    String title = request.getParameter("title");
+    String content = request.getParameter("content");
+    String status = request.getParameter("status");
+
+    // Tạo đối tượng Lesson từ các tham số nhận được
+    Lesson lesson = new Lesson(lessonID, stringcourseID, title, content, status);
+    LessonDAO ls = new LessonDAO();
+
+    // Thêm bài học vào cơ sở dữ liệu
+    ls.addLesson(lesson);
+
+    // Dẫn hướng tới servlet ListLessonServlet
+    response.sendRedirect(request.getContextPath() + "/ListLesson?courseID=" + stringcourseID);
+}
+
 
     /**
      * Returns a short description of the servlet.
