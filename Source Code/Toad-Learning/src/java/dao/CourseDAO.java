@@ -12,36 +12,54 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CourseDAO {
 
-     Connection conn = null;
+    Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
 
     // Phương thức thêm mới khóa học vào cơ sở dữ liệu
-    public void addCourse(String title, String topicID, String description,
-            String thumbnail, String price, String salePrice, String status, String courseID) {
-        String query = "INSERT INTO Courses (CourseID, Title, TopicID, Description, Thumbnail, CreatedDate, UpdatedDate, Price, SalePrice, Status) " +
-                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public void addCourse(Course course) {
+
+        String query = "INSERT INTO Courses (CourseID, Title, TopicID, Description, Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
         try {
-            conn = new DBContext().getConnection();//mo ket noi voi sql
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
-            ps.setString(1, title);
-            ps.setString(2, topicID);
-            ps.setString(3, description);
-            ps.setString(4, thumbnail);
-            ps.setString(5, price);
-            ps.setString(6, salePrice);
-            ps.setString(7, status);
-            ps.setString(8, courseID);
+            ps.setString(1, course.getCourseID());
+            ps.setString(2, course.getTitle());
+            ps.setString(3, course.getTopicID().getTopicID());
+            ps.setString(4, course.getDescription());
+            ps.setString(5, course.getThumbnail());
+            ps.setString(6, course.getPrice());
+            ps.setString(7, course.getSalePrice());
+            ps.setObject(8, LocalDateTime.parse(course.getCreateDate()));
+            ps.setObject(9, LocalDateTime.parse(course.getUpdateDate()));
+            ps.setString(10, course.getStatus());
+
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            // Xử lý các ngoại lệ theo logic của ứng dụng
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
-       
     }
+
     public List<Course> listCourses() {
         List<Course> list = new ArrayList<>();
         String sql = "SELECT CourseID, Title, Topics.TopicName, Courses.Description,Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status\n"
@@ -64,7 +82,7 @@ public class CourseDAO {
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
-                Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                Course course = new Course(courseID, title, description, thumbnail, price, salePrice, createDate, updateDate, status, status);
                 list.add(course);
             }
         } catch (SQLException e) {
@@ -127,7 +145,7 @@ public class CourseDAO {
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
-                Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                Course course = new Course(courseID, title, description, thumbnail, price, salePrice, createDate, updateDate, status, status);
                 return course;
             }
         } catch (Exception e) {
