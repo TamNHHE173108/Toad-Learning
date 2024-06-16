@@ -35,18 +35,33 @@ public class AddNewCourse extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddNewCourse</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AddNewCourse at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        //Lấy dữ liệu từ form
+        String courseID = request.getParameter("courseID");
+        String courseName = request.getParameter("courseName");
+        String description = request.getParameter("description");
+        String topicID = request.getParameter("topicID");
+        String createDate = request.getParameter("createdDate");
+        String updateDate = request.getParameter("updatedDate");
+        String thumbnail = ""; // Assuming you handle file upload separately
+        String price = request.getParameter("price");
+        String salePrice = request.getParameter("salePrice");
+        String status = request.getParameter("status");
+        AddCourseDAO c = new AddCourseDAO();
+        try {
+            Course a = c.getCourseByID(courseID);
+            if (a == null) {
+                c.addCourse(courseID, status, topicID, description, thumbnail, price, salePrice, LocalDateTime.MAX, LocalDateTime.MAX, status);
+                response.sendRedirect("listcourse");
+            } else {
+                request.setAttribute("error", courseID + "exitsed");
+                request.getRequestDispatcher("/views/Dangph/addCourses.jsp").forward(request, response);
+            }
+            
+        } catch (NumberFormatException e) {
+            System.out.println(e);
+            
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,34 +76,8 @@ public class AddNewCourse extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //Lấy dữ liệu từ form
-        String courseID = request.getParameter("courseID");
-        String courseName = request.getParameter("courseName");
-        String description = request.getParameter("description");
-        String topicID = request.getParameter("topicID");
-        String createDate = request.getParameter("createdDate");
-        String updateDate = request.getParameter("updatedDate");
-        String thumbnail = ""; // Assuming you handle file upload separately
-        String price = request.getParameter("price");
-        String salePrice = request.getParameter("salePrice");
-        String status = request.getParameter("status");
-        CourseDAO c = new CourseDAO();
-        try {
-            Course a = c.getCourseByID(courseID);
-            if (a == null) {
-                Course newCourse = new Course(courseID, courseName, topicID, description, thumbnail, price, salePrice, createDate, updateDate, status);
-                c.addCourse(newCourse);
-                response.sendRedirect("listcourse");
-            } else {
-                request.setAttribute("error", courseID + "exitsed");
-                request.getRequestDispatcher("/views/Dangph/addCourses.jsp").forward(request, response);
-            }
-
-        } catch (NumberFormatException e) {
-            System.out.println(e);
-
-        }
-
+        processRequest(request, response);
+        
     }
 
     /**
