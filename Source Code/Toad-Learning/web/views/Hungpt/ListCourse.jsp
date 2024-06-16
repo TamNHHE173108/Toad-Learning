@@ -53,7 +53,7 @@
                                             </form>
                                         </div>
                                         <div class="col-md-4 text-right">
-                                            <a href="/Toad-Learning/Addcourses" class="btn btn-success">
+                                            <a href="/Toad-Learning/views/Dangph/addCourses.jsp" class="btn btn-success">
                                                 Add New Courses
                                             </a>
                                         </div>
