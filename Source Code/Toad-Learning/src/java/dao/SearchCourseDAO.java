@@ -49,7 +49,7 @@ public class SearchCourseDAO {
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
-                Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                Course course = new Course(courseID, title, description, thumbnail, price, salePrice, createDate, updateDate, status, status);
                 list.add(course);
             }
         } catch (SQLException e) {
@@ -86,7 +86,7 @@ public class SearchCourseDAO {
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
-                Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                Course course = new Course(courseID, title, description, thumbnail, price, salePrice, createDate, updateDate, status, status);
                 list.add(course);
             }
         } catch (SQLException e) {
@@ -123,7 +123,7 @@ public class SearchCourseDAO {
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
-                Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                Course course = new Course(courseID, title, description, thumbnail, price, salePrice, createDate, updateDate, status, status);
                 list.add(course);
             }
         } catch (SQLException e) {
@@ -159,7 +159,7 @@ public class SearchCourseDAO {
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
-                Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                Course course = new Course(courseID, title, description, thumbnail, price, salePrice, createDate, updateDate, status, status);
                 list.add(course);
             }
         } catch (SQLException e) {
@@ -195,7 +195,7 @@ public class SearchCourseDAO {
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
-                Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                Course course = new Course(courseID, title, description, thumbnail, price, salePrice, createDate, updateDate, status, status);
                 list.add(course);
             }
         } catch (SQLException e) {
@@ -231,7 +231,7 @@ public class SearchCourseDAO {
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
-                Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                Course course = new Course(courseID, title, description, thumbnail, price, salePrice, createDate, updateDate, status, status);
                 list.add(course);
             }
         } catch (SQLException e) {
@@ -266,7 +266,7 @@ public class SearchCourseDAO {
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
-                Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                Course course = new Course(courseID, title, description, thumbnail, price, salePrice, createDate, updateDate, status, status);
                 list.add(course);
             }
         } catch (SQLException e) {
