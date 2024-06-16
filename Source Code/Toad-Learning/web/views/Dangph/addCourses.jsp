@@ -170,7 +170,7 @@
 
                 <div class="buttons">
                     <input type="submit" value="Add Course">
-                    <a href="/Toad-Learning/Dashboard" class="back-button">Return to Dashboard</a>
+                    <a href="/Toad-Learning/listcourse" class="back-button">Return to List Course</a>
                 </div>
             </form>
         </div>
