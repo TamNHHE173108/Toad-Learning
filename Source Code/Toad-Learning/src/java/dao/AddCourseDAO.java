@@ -5,16 +5,19 @@
 package dao;
 
 import dal.DBContext;
+import entity.Course;
+import entity.Topic;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class AddCourseDAO {
 
-    Connection connection = null;
+    Connection conn = null;
     PreparedStatement ps = null;
-
+    ResultSet rs = null;
     public void addCourse(String courseID, String title, String topicID, String description,
             String thumbnail, String price, String salePrice, LocalDateTime createdDate,
             LocalDateTime updatedDate, String status) {
@@ -40,8 +43,8 @@ public class AddCourseDAO {
                 + "           ?)";
 
         try {
-            connection = new DBContext().getConnection();
-            ps = connection.prepareStatement(query);
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
             ps.setString(1, courseID);
             ps.setString(2, title);
             ps.setString(3, topicID);
@@ -62,12 +65,46 @@ public class AddCourseDAO {
                 if (ps != null) {
                     ps.close();
                 }
-                if (connection != null) {
-                    connection.close();
+                if (conn != null) {
+                    conn.close();
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
         }
+    }
+
+
+    public Course getCourseByID(String course_ID) {
+        String query = "SELECT CourseID, Title, Topics.TopicName, Courses.Description, Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status\n"
+                + "FROM Courses\n"
+                + "INNER JOIN Topics ON Courses.TopicID=Topics.TopicID\n"
+                + "WHERE CourseID = ?";
+        try {
+            conn = new DBContext().getConnection();//mo ket noi voi sql
+            ps = conn.prepareStatement(query);
+            ps.setString(1, course_ID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String courseID = rs.getString(1);
+                String title = rs.getString(2);
+                String topicName = rs.getString(3);
+                String description = rs.getString(4);
+                String thumbnail = rs.getString(5);
+                String price = rs.getString(6);
+                String salePrice = rs.getString(7);
+                String createDate = rs.getString(8);
+                String updateDate = rs.getString(9);
+                String status = rs.getString(10);
+                Topic topic = new Topic(topicName);
+
+                Course course = new Course(courseID, title, description, thumbnail, price, salePrice, createDate, updateDate, status, status);
+                return course;
+            }
+        } catch (Exception e) {
+            // Xử lý các exception tại đây
+
+        }
+        return null;
     }
 }
