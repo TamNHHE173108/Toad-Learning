@@ -15,33 +15,31 @@ import java.util.logging.Logger;
  * @author FPT University - PRJ30X
  */
 
+
+
 public class DBContext {
     protected Connection connection;
-    public DBContext()
-    {
-        //@Students: You are allowed to edit user, pass, url variables to fit 
-        //your system configuration
-        //You can also add more methods for Database Interaction tasks. 
-        //But we recommend you to do it in another class
-        // For example : StudentDBContext extends DBContext , 
-        //where StudentDBContext is located in dal package, 
+
+    public DBContext() {
+        // You can modify these variables to match your system configuration.
+        String user = "sa";
+        String pass = "123";
+        String url = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=SWP391_1";
+
         try {
-            String user = "sa";
-            String pass = "123";
-<<<<<<< HEAD
-
-            String url = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=SWP391_1";
-
-=======
-            String url = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=SWP391_3";
->>>>>>> 770a66fa91db0deb9e6ad9664efbc489f1b8de48
+            // Load the SQL Server JDBC driver.
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            
+            // Establish the connection to the database.
             connection = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException ex) {
+            // Log the exception.
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public Connection getConnection() {
         return connection;
     }
 }
+
