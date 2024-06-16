@@ -35,12 +35,12 @@
 
                 <!-- DataTales -->
                 <div class="card shadow mb-4">
-                    <div class="card-header py-3"> 
+                    <div class="card-header py-3">
                         <div class="box">
                             <div class="container-2">
                                 <div class="container">
                                     <div class="row align-items-center">
-                                        <div class="col-md-4">
+                                        <div class="col-md-8">
                                             <form action="searchcourse" method="post" class="form-inline">
                                                 <div class="input-group">
                                                     <input value="${txtC}" name="txtC" type="text" class="form-control bg-light border-2 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
@@ -52,117 +52,124 @@
                                                 </div>
                                             </form>
                                         </div>
+                                        <div class="col-md-4 text-right">
+                                            <a href="/Toad-Learning/Addcourses" class="btn btn-success">
+                                                Add New Courses
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>  
                     </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <div class="form-control border-0 font-weight-bold">
-                                                CourseID
-                                            </div>
-                                        </th>
-                                        <th><div class="form-control border-0 font-weight-bold">Thumbnail</div></th>
-                                        <th><div class="form-control border-0 font-weight-bold">Title</div></th>
-                                        <th>
-                                            <form action="searchtopic" method="post" class="form-inline">
+                </div>
 
-                                                <select name="topicname" id="topicname" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
-                                                    <option value="All">Topic Name</option>
-                                                    <option value="International Business" ${txtTo == 'International Business' ? 'selected' : ''}>International Business</option>
-                                                    <option value="Software Engineering" ${txtTo == 'Software Engineering' ? 'selected' : ''}>Software Engineering</option>
-                                                    <option value="Computer Science" ${txtTo == 'Computer Science' ? 'selected' : ''}>Computer Science</option>
-                                                    <option value="Artificial Intelligence" ${txtTo == 'Artificial Intelligence' ? 'selected' : ''}>Artificial Intelligence</option>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="form-control border-0 font-weight-bold">
+                                            CourseID
+                                        </div>
+                                    </th>
+                                    <th><div class="form-control border-0 font-weight-bold">Thumbnail</div></th>
+                                    <th><div class="form-control border-0 font-weight-bold">Title</div></th>
+                                    <th>
+                                        <form action="searchtopic" method="post" class="form-inline">
+
+                                            <select name="topicname" id="topicname" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
+                                                <option value="All">Topic Name</option>
+                                                <option value="International Business" ${txtTo == 'International Business' ? 'selected' : ''}>International Business</option>
+                                                <option value="Software Engineering" ${txtTo == 'Software Engineering' ? 'selected' : ''}>Software Engineering</option>
+                                                <option value="Computer Science" ${txtTo == 'Computer Science' ? 'selected' : ''}>Computer Science</option>
+                                                <option value="Artificial Intelligence" ${txtTo == 'Artificial Intelligence' ? 'selected' : ''}>Artificial Intelligence</option>
+                                            </select>
+
+                                        </form>
+                                    </th>                
+                                    <th>
+                                        <form action="sortcourse" method="post" class="form-inline">
+                                            <div class="form-group">
+                                                <select name="sortPrice" id="sortPrice" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
+                                                    <option value="All">Price</option>
+                                                    <option value="PriceASC"${txtSort == 'PriceASC' ? 'selected' : ''}>ASC</option>
+                                                    <option value="PriceDESC"${txtSort == 'PriceDESC' ? 'selected' : ''}>DESC</option>
                                                 </select>
-
-                                            </form>
-                                        </th>                
-                                        <th>
-                                            <form action="sortcourse" method="post" class="form-inline">
-                                                <div class="form-group">
-                                                    <select name="sortPrice" id="sortPrice" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
-                                                        <option value="All">Price</option>
-                                                        <option value="PriceASC"${txtSort == 'PriceASC' ? 'selected' : ''}>ASC</option>
-                                                        <option value="PriceDESC"${txtSort == 'PriceDESC' ? 'selected' : ''}>DESC</option>
-                                                    </select>
-                                                </div>      
-                                            </form>
-                                        </th>
-                                        <th>
-                                            <form action="sortsaleprice" method="post" class="form-inline">
-                                                <div class="form-group">
-                                                    <select name="sortSalePrice" id="sortSalePrice" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
-                                                        <option value="All">Sale Price</option>
-                                                        <option value="SalePriceASC"${txtSale == 'SalePriceASC' ? 'selected' : ''}>ASC</option>
-                                                        <option value="SalePriceDESC"${txtSale == 'SalePriceDESC' ? 'selected' : ''}>DESC</option>
-                                                    </select>
-                                                </div>      
-                                            </form>
-                                        </th>
-                                        <th><form action="searchcoursebystatus" method="post" class="form-inline">
-                                                <div class="form-group">
-                                                    <select name="statuss" id="statuss" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
-                                                        <option value="All">Status</option>
-                                                        <option value="Active" ${txtSta == 'Active' ? 'selected' : ''}>Active</option>
-                                                        <option value="Inactive" ${txtSta == 'Inactive' ? 'selected' : ''}>Inactive</option>
-                                                    </select>
-                                                </div>
-                                            </form></th>
-                                        <th><div class="form-control border-0 font-weight-bold">Edit</div></th>
-                                        <th><div class="form-control border-0 font-weight-bold">Delete</div></th>
+                                            </div>      
+                                        </form>
+                                    </th>
+                                    <th>
+                                        <form action="sortsaleprice" method="post" class="form-inline">
+                                            <div class="form-group">
+                                                <select name="sortSalePrice" id="sortSalePrice" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
+                                                    <option value="All">Sale Price</option>
+                                                    <option value="SalePriceASC"${txtSale == 'SalePriceASC' ? 'selected' : ''}>ASC</option>
+                                                    <option value="SalePriceDESC"${txtSale == 'SalePriceDESC' ? 'selected' : ''}>DESC</option>
+                                                </select>
+                                            </div>      
+                                        </form>
+                                    </th>
+                                    <th><form action="searchcoursebystatus" method="post" class="form-inline">
+                                            <div class="form-group">
+                                                <select name="statuss" id="statuss" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
+                                                    <option value="All">Status</option>
+                                                    <option value="Active" ${txtSta == 'Active' ? 'selected' : ''}>Active</option>
+                                                    <option value="Inactive" ${txtSta == 'Inactive' ? 'selected' : ''}>Inactive</option>
+                                                </select>
+                                            </div>
+                                        </form></th>
+                                    <th><div class="form-control border-0 font-weight-bold">Edit</div></th>
+                                    <th><div class="form-control border-0 font-weight-bold">Delete</div></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${listCourse}" var ="c">
+                                    <tr> 
+                                        <td>${c.courseID}</td>
+                                        <td><img src="${c.thumbnail}" alt="Description of the image" width="100px"></td>
+                                        <td>${c.title}</td>
+                                        <td>${c.topicID.topicName}</td>
+                                        <td>${c.price}$</td>
+                                        <td>${c.salePrice}$</td>
+                                        <td>${c.status}</td>
+                                        <td>
+                                            <a href="loadcourse?course_ID=${c.courseID}"><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+                                        </td>
+                                        <td>
+                                            <a href="deletecourse?course_ID=${c.courseID}" onclick="return confirm('Are you sure you want to delete ${c.courseID}?');">
+                                                <i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                                        </td>                                          
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach items="${listCourse}" var ="c">
-                                        <tr> 
-                                            <td>${c.courseID}</td>
-                                            <td><img src="${c.thumbnail}" alt="Description of the image" width="100px"></td>
-                                            <td>${c.title}</td>
-                                            <td>${c.topicID.topicName}</td>
-                                            <td>${c.price}$</td>
-                                            <td>${c.salePrice}$</td>
-                                            <td>${c.status}</td>
-                                            <td>
-                                                <a href="loadcourse?course_ID=${c.courseID}"><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
-                                            </td>
-                                            <td>
-                                                <a href="deletecourse?course_ID=${c.courseID}" onclick="return confirm('Are you sure you want to delete ${c.courseID}?');">
-                                                    <i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-                                            </td>                                          
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
+                                </c:forEach>
+                            </tbody>
+                        </table>
 
-                        </div>
                     </div>
                 </div>
             </div>
-
-
-            <%@include file = "adminfooter.jsp" %>
         </div>
-        <!-- End of Content Wrapper -->
+
+
+        <%@include file = "adminfooter.jsp" %>
     </div>
-    <!-- End of Page Wrapper -->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-    <!-- Scroll to Top Button-->
-    <%@include  file ="Logout.jsp" %>
+    <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+<!-- Scroll to Top Button-->
+<%@include  file ="Logout.jsp" %>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
 
 
 
