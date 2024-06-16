@@ -129,7 +129,7 @@
             <h1>Add Courses</h1>
             <div class="success" id="success">Add new course successful</div>
             <div class="error" id="error">Please fill out all required fields.</div>
-            <form id="newCourseForm" action="/Addcourses" method="post" enctype="multipart/form-data">
+            <form id="newCourseForm" action="/AddNewCourse" method="post" enctype="multipart/form-data">
                 <label for="courseID">Course ID:</label>
                 <input type="text" id="courseID" name="courseID" required>
 
