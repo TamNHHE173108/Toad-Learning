@@ -23,10 +23,19 @@ public class CourseDAO {
     ResultSet rs = null;
 
     // Phương thức thêm mới khóa học vào cơ sở dữ liệu
-    public void addCourse(Course course) {
+    public void insertCourse(Course course) {
 
-        String query = "INSERT INTO Courses (CourseID, Title, TopicID, Description, Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Courses (CourseID, Title, TopicID, Description, Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status) \n" +
+"                VALUES (?,\n" +
+"				?, \n" +
+"				?, \n" +
+"				?,\n" +
+"				?, \n" +
+"				?, \n" +
+"				?, \n" +
+"				?, \n" +
+"				?,\n" +
+"				?);";
 
         try {
             conn = new DBContext().getConnection();
