@@ -4,8 +4,6 @@
  */
 package entity;
 
-import java.time.LocalDateTime;
-
 public class Course {
     private String courseID;
     private String title;
@@ -21,7 +19,7 @@ public class Course {
     public Course() {
     }
 
-    public Course(String courseID, String title, String description, String thumbnail, String price, String salePrice, String createDate, String updateDate, String status) {
+    public Course(String courseID, String title, Topic topicID, String description, String thumbnail,String price,String salePrice, String createDate, String updateDate, String status) {
         this.courseID = courseID;
         this.title = title;
         this.topicID = topicID;
@@ -34,7 +32,7 @@ public class Course {
         this.status = status;
     }
 
-
+    
     public String getCourseID() {
         return courseID;
     }
@@ -124,3 +122,4 @@ public class Course {
     
     
 }
+
