@@ -24,7 +24,7 @@ public class DBContext {
         // You can modify these variables to match your system configuration.
         String user = "sa";
         String pass = "123";
-        String url = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=SWP391_1";
+        String url = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=ToadLearning";
 
         try {
             // Load the SQL Server JDBC driver.
