@@ -25,9 +25,9 @@ public class DBContext {
         String user = "sa";
         String pass = "123";
         String url = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=ToadLearning";
-
+        
         try {
-            // Load the SQL Server JDBC driver.
+            
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             
             // Establish the connection to the database.
