@@ -54,7 +54,6 @@ public class AddNewCourse extends HttpServlet {
                 response.sendRedirect("listcourse");
             } else {
                 request.setAttribute("error", courseID + "exitsed");
-                request.getRequestDispatcher("/views/Dangph/addCourses.jsp").forward(request, response);
             }
             
         } catch (NumberFormatException e) {
