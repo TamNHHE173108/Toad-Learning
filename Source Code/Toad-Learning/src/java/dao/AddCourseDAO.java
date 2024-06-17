@@ -18,29 +18,11 @@ public class AddCourseDAO {
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    public void addCourse(String courseID, String title, String topicID, String description,
-            String thumbnail, String price, String salePrice, LocalDateTime createdDate,
-            LocalDateTime updatedDate, String status) {
 
-        String query = "		   INSERT INTO [dbo].[Courses]\n"
-                + "           ([CourseID]\n"
-                + "           ,[Title]\n"
-                + "           ,[TopicID]\n"
-                + "           ,[Description]\n"
-                + "           ,[Thumbnail]\n"
-                + "           ,[Price]\n"
-                + "           ,[SalePrice]\n"
-                + "           ,[CreatedDate]\n"
-                + "           ,[UpdatedDate]\n"
-                + "           ,[Status])\n"
-                + "     VALUES\n"
-                + "           (?,\n"
-                + "           ?,\n"
-                + "?, ?,?,?,\n"
-                + "          ?,\n"
-                + "           ?,\n"
-                + "           ?,\n"
-                + "           ?)";
+    public void addCourse(String courseID, String title, String topicID, String description, String thumbnail, String price, String salePrice, LocalDateTime createdDate, LocalDateTime updatedDate, String status) {
+
+        String query = "INSERT INTO Courses (CourseID, Title, TopicID, Description, Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conn = new DBContext().getConnection();
@@ -74,18 +56,17 @@ public class AddCourseDAO {
         }
     }
 
-
     public Course getCourseByID(String course_ID) {
-        String query = "SELECT CourseID, Title, Topics.TopicName, Courses.Description, Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status\n"
-                + "FROM Courses\n"
-                + "INNER JOIN Topics ON Courses.TopicID=Topics.TopicID\n"
+        String query = "SELECT CourseID, Title, Topics.TopicName, Courses.Description, Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status "
+                + "FROM Courses "
+                + "INNER JOIN Topics ON Courses.TopicID = Topics.TopicID "
                 + "WHERE CourseID = ?";
         try {
-            conn = new DBContext().getConnection();//mo ket noi voi sql
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, course_ID);
             rs = ps.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 String courseID = rs.getString(1);
                 String title = rs.getString(2);
                 String topicName = rs.getString(3);
@@ -93,17 +74,31 @@ public class AddCourseDAO {
                 String thumbnail = rs.getString(5);
                 String price = rs.getString(6);
                 String salePrice = rs.getString(7);
-                String createDate = rs.getString(8);
-                String updateDate = rs.getString(9);
+                LocalDateTime createDate = rs.getTimestamp(8).toLocalDateTime();
+                LocalDateTime updateDate = rs.getTimestamp(9).toLocalDateTime();
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
-                Course course = new Course(courseID, title, description, thumbnail, price, salePrice, createDate, updateDate, status, status);
+                Course course = new Course(courseID, title, description, thumbnail, price, salePrice, createDate.toString(), updateDate.toString(), status);
                 return course;
             }
-        } catch (Exception e) {
-            // Xử lý các exception tại đây
-
+        } catch (SQLException e) {
+            // Handle exceptions as per your application's requirements
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
         return null;
     }
