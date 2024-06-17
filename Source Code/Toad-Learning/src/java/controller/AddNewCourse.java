@@ -5,102 +5,86 @@
 package controller;
 
 import dao.AddCourseDAO;
-import dao.CourseDAO;
 import entity.Course;
+import entity.Topic;
+
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.time.LocalDateTime;
 
-/**
- *
- * @author My Lap
- */
 @WebServlet(name = "AddNewCourse", urlPatterns = {"/AddNewCourse"})
 public class AddNewCourse extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //Lấy dữ liệu từ form
+
+        // Retrieve data from the form
         String courseID = request.getParameter("courseID");
         String courseName = request.getParameter("courseName");
         String description = request.getParameter("description");
         String topicID = request.getParameter("topicID");
-        String createDate = request.getParameter("createdDate");
-        String updateDate = request.getParameter("updatedDate");
+        String createDateStr = request.getParameter("createdDate");
+        String updateDateStr = request.getParameter("updatedDate");
         String thumbnail = ""; // Assuming you handle file upload separately
-        String price = request.getParameter("price");
-        String salePrice = request.getParameter("salePrice");
+        float price = Float.parseFloat(request.getParameter("price"));
+        float salePrice = request.getParameter("salePrice").isEmpty() ? 0 : Float.parseFloat(request.getParameter("salePrice"));
         String status = request.getParameter("status");
-        AddCourseDAO c = new AddCourseDAO();
+
+        // Parse dates
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        LocalDateTime createdDate = LocalDateTime.parse(createDateStr, formatter);
+        LocalDateTime updatedDate = LocalDateTime.parse(updateDateStr, formatter);
+
+        AddCourseDAO courseDAO = new AddCourseDAO();
         try {
-            Course a = c.getCourseByID(courseID);
-            if (a == null) {
-                c.addCourse(courseID, status, topicID, description, thumbnail, price, salePrice, LocalDateTime.MAX, LocalDateTime.MAX, status);
-                response.sendRedirect("listcourse");
+            Course existingCourse = courseDAO.getCourseByID(courseID);
+            if (existingCourse == null) {
+                // Fetch the Topic object corresponding to topicID
+                Topic topic = courseDAO.getTopicByID(topicID); // Implement this method in DAO
+
+                // Create a new Course object and set its properties
+                Course newCourse = new Course(courseID, courseName, description, thumbnail, String.valueOf(price), String.valueOf(salePrice), createdDate.toString(), updatedDate.toString(), status);
+                newCourse.setTopicID(topic); // Set the retrieved Topic object
+
+                courseDAO.addCourse(newCourse); // Pass the Course object to the DAO
+
+                response.sendRedirect(request.getContextPath() + "/listcourse");
             } else {
-                request.setAttribute("error", courseID + "exitsed");
+                request.setAttribute("error", "Course ID " + courseID + " already exists.");
+                request.getRequestDispatcher("/Toad-Learning/views/Dangph/addCourses.jsp").forward(request, response);
             }
-            
         } catch (NumberFormatException e) {
-            System.out.println(e);
-            
+            e.printStackTrace();
+            request.setAttribute("error", "Invalid number format.");
+            request.getRequestDispatcher("/Toad-Learning/views/Dangph/addCourses.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("error", "An error occurred while adding the course.");
+            request.getRequestDispatcher("/Toad-Learning/views/Dangph/addCourses.jsp").forward(request, response);
         }
-        
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }
