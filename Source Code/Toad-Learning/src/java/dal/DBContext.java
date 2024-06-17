@@ -27,10 +27,10 @@ public class DBContext {
         String url = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=ToadLearning";
         
         try {
-            
+                
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             
-            // Establish the connection to the database.
+           
             connection = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException ex) {
             // Log the exception.
