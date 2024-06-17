@@ -22,52 +22,33 @@ public class CourseDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    // Phương thức thêm mới khóa học vào cơ sở dữ liệu
-    public void insertCourse(Course course) {
+// Phương thức thêm mới khóa học vào cơ sở dữ liệu
+public boolean insertCourse(Course course) {
+    String query = "INSERT INTO Courses (CourseID, Title, TopicID, Description, Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status) " +
+                   "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        String query = "INSERT INTO Courses (CourseID, Title, TopicID, Description, Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status) \n" +
-"                VALUES (?,\n" +
-"				?, \n" +
-"				?, \n" +
-"				?,\n" +
-"				?, \n" +
-"				?, \n" +
-"				?, \n" +
-"				?, \n" +
-"				?,\n" +
-"				?);";
+    try (Connection conn = new DBContext().getConnection();
+         PreparedStatement ps = conn.prepareStatement(query)) {
 
-        try {
-            conn = new DBContext().getConnection();
-            ps = conn.prepareStatement(query);
-            ps.setString(1, course.getCourseID());
-            ps.setString(2, course.getTitle());
-            ps.setString(3, course.getTopicID().getTopicID());
-            ps.setString(4, course.getDescription());
-            ps.setString(5, course.getThumbnail());
-            ps.setString(6, course.getPrice());
-            ps.setString(7, course.getSalePrice());
-            ps.setObject(8, LocalDateTime.parse(course.getCreateDate()));
-            ps.setObject(9, LocalDateTime.parse(course.getUpdateDate()));
-            ps.setString(10, course.getStatus());
+        ps.setString(1, course.getCourseID());
+        ps.setString(2, course.getTitle());
+        ps.setString(3, course.getTopicID().getTopicID());
+        ps.setString(4, course.getDescription());
+        ps.setString(5, course.getThumbnail());
+        ps.setString(6, course.getPrice());
+        ps.setString(7, course.getSalePrice());
+        ps.setObject(8, LocalDateTime.parse(course.getCreateDate()));
+        ps.setObject(9, LocalDateTime.parse(course.getUpdateDate()));
+        ps.setString(10, course.getStatus());
 
-            ps.executeUpdate();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            // Xử lý các ngoại lệ theo logic của ứng dụng
-        } finally {
-            try {
-                if (ps != null) {
-                    ps.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-        }
+        return ps.executeUpdate() > 0;
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        // Xử lý các ngoại lệ theo logic của ứng dụng
     }
+    return false;
+}
+
 
     public List<Course> listCourses() {
         List<Course> list = new ArrayList<>();
