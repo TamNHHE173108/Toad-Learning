@@ -19,7 +19,7 @@ public class Course {
     public Course() {
     }
 
-    public Course(String courseID, String title, String description, String thumbnail, String price, String salePrice, String createDate, String updateDate, String status, String status1) {
+    public Course(String courseID, String title, String description, String thumbnail, String price, String salePrice, String createDate, String updateDate, String status) {
         this.courseID = courseID;
         this.title = title;
         this.topicID = topicID;
