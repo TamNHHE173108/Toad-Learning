@@ -19,7 +19,7 @@
             rel="stylesheet">
 
         <!-- Custom styles for this template-->
-        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+        <link href="css/sb-admin-2.css" rel="stylesheet">
 
     </head>
 
@@ -122,7 +122,7 @@
                                         <tr> 
                                             <td>${c.courseID}</td>
                                             <td><img src="${c.thumbnail}" alt="Description of the image" width="100px"></td>
-                                            <td><<a href="ListLesson?courseID=${c.courseID}">${c.title}</a></td>
+                                            <td><a href="ListLesson?courseID=${c.courseID}">${c.title}</a></td>
                                             <td>${c.topicID.topicName}</td>
                                             <td>${c.price}$</td>
                                             <td>${c.salePrice}$</td>

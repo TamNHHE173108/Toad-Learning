@@ -47,13 +47,13 @@ public class AddNewCourse extends HttpServlet {
             Course existingCourse = courseDAO.getCourseByID(courseID);
             if (existingCourse == null) {
                 // Fetch the Topic object corresponding to topicID
-                Topic topic = courseDAO.getTopicByID(topicID); // Implement this method in DAO
-
-                // Create a new Course object and set its properties
-                Course newCourse = new Course(courseID, courseName, description, thumbnail, String.valueOf(price), String.valueOf(salePrice), createdDate.toString(), updatedDate.toString(), status);
-                newCourse.setTopicID(topic); // Set the retrieved Topic object
-
-                courseDAO.addCourse(newCourse); // Pass the Course object to the DAO
+//                Topic topic = courseDAO.getTopicByID(topicID); // Implement this method in DAO
+//
+//                // Create a new Course object and set its properties
+//                Course newCourse = new Course(courseID, courseName, description, thumbnail, String.valueOf(price), String.valueOf(salePrice), createdDate.toString(), updatedDate.toString(), status);
+//                newCourse.setTopicID(topic); // Set the retrieved Topic object
+//
+//                courseDAO.addCourse(newCourse); // Pass the Course object to the DAO
 
                 response.sendRedirect(request.getContextPath() + "/listcourse");
             } else {
