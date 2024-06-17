@@ -4,6 +4,8 @@
  */
 package entity;
 
+import java.time.LocalDateTime;
+
 public class Course {
     private String courseID;
     private String title;
@@ -32,7 +34,7 @@ public class Course {
         this.status = status;
     }
 
-    
+
     public String getCourseID() {
         return courseID;
     }
