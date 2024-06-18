@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-
+        <link rel="icon" href="./img/logo/logo2.png" type="image/png">
         <title>Course - EditUser</title>
 
         <!-- Custom fonts for this template-->
@@ -19,7 +19,7 @@
             rel="stylesheet">
 
         <!-- Custom styles for this template-->
-        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+        <link href="css/sb-admin-2.css" rel="stylesheet">
 
     </head>
 
