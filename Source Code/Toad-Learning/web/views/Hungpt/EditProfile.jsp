@@ -104,8 +104,8 @@
                                                     <input type="submit" class="btn btn-primary px-4" value="Save Changes">
                                                 </div>
                                             </div>
-                                                    <input value="${user.role}" name="role" type="text" class="form-control" hidden>
-                                                    <input value="${user.status}" name="status" type="text" class="form-control" hidden>
+                                            <input value="${user.role}" name="role" type="text" class="form-control" hidden>
+                                            <input value="${user.status}" name="status" type="text" class="form-control" hidden>
                                         </form>
                                     </div>
                                 </div>
@@ -115,22 +115,23 @@
                     </div>
                 </div>
             </div>
-            <%@include file = "adminfooter.jsp" %>
         </div>
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
-        <!-- End of Page Wrapper -->
+    <%@include file = "adminfooter.jsp" %>
 
-        <!-- Scroll to Top Button-->
-        <%@include  file ="Logout.jsp" %>
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+    <!-- End of Page Wrapper -->
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Scroll to Top Button-->
+    <%@include  file ="Logout.jsp" %>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
-    </body>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+</body>
 </html>

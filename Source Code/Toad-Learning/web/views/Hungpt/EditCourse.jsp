@@ -95,25 +95,27 @@
                         </div>
                         <!-- Content Row -->
                         <!-- End of Main Content -->
-
-                        <%@include file = "adminfooter.jsp" %>
-
                     </div>
                     <!-- End of Content Wrapper -->
                 </div>
+                <%@include file = "adminfooter.jsp" %>
+
             </div>
-            <!-- End of Page Wrapper -->
-
-            <!-- Scroll to Top Button-->
-            <%@include  file ="Logout.jsp" %>
-
-            <!-- Bootstrap core JavaScript-->
-            <script src="vendor/jquery/jquery.min.js"></script>
-            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        </div>
 
 
-            <!-- Custom scripts for all pages-->
-            <script src="js/sb-admin-2.min.js"></script>
+        <!-- End of Page Wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <%@include  file ="Logout.jsp" %>
+
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
     </body>
 
 </html>

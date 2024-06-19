@@ -224,27 +224,24 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Content Row -->
-            <!-- End of Main Content -->
-
-            <%@include file = "adminfooter.jsp" %>
-
         </div>
-        <!-- End of Content Wrapper -->
-    </div>
-    <!-- End of Page Wrapper -->
+    <!-- Content Row -->
+    <!-- End of Main Content -->
 
-    <!-- Scroll to Top Button-->
-    <%@include  file ="Logout.jsp" %>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <%@include file = "adminfooter.jsp" %>
 
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+
+<!-- Scroll to Top Button-->
+<%@include  file ="Logout.jsp" %>
+
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
 
 
 
