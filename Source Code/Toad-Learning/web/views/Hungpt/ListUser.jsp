@@ -76,8 +76,8 @@
                                                 <div class="form-group">
                                                     <select name="gender" id="gender" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
                                                         <option value="All">Gender</option>
-                                                        <option value="Male" ${txtG == 'Male' ? 'selected' : ''}>Male</option>
-                                                        <option value="Female" ${txtG == 'Female' ? 'selected' : ''}>Female</option>
+                                                        <option value="Male" >Male</option>
+                                                        <option value="Female">Female</option>
                                                     </select>
                                                 </div>
                                             </form>
@@ -87,9 +87,9 @@
                                                 <div class="form-group">
                                                     <select name="role" id="role" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
                                                         <option value="All">Role</option>
-                                                        <option value="Teacher" ${txtR == 'Teacher' ? 'selected' : ''}>Teacher</option>
-                                                        <option value="Student" ${txtR == 'Student' ? 'selected' : ''}>Student</option>
-                                                        <option value="Admin" ${txtR == 'Admin' ? 'selected' : ''}>Admin</option>
+                                                        <option value="Teacher">Teacher</option>
+                                                        <option value="Student">Student</option>
+                                                        <option value="Admin">Admin</option>
                                                     </select>
                                                 </div>
                                             </form>
@@ -114,8 +114,8 @@
                                                 <div class="form-group">
                                                     <select name="status" id="status" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
                                                         <option value="All">Status</option>
-                                                        <option value="Active" ${txtS == 'Active' ? 'selected' : ''}>Active</option>
-                                                        <option value="Inactive" ${txtS == 'Inactive' ? 'selected' : ''}>Inactive</option>
+                                                        <option value="Active">Active</option>
+                                                        <option value="Inactive">Inactive</option>
                                                     </select>
                                                 </div>
                                             </form>

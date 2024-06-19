@@ -74,10 +74,10 @@
 
                                                 <select name="topicname" id="topicname" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
                                                     <option value="All">Topic Name</option>
-                                                    <option value="International Business" ${txtTo == 'International Business' ? 'selected' : ''}>International Business</option>
-                                                    <option value="Software Engineering" ${txtTo == 'Software Engineering' ? 'selected' : ''}>Software Engineering</option>
-                                                    <option value="Computer Science" ${txtTo == 'Computer Science' ? 'selected' : ''}>Computer Science</option>
-                                                    <option value="Artificial Intelligence" ${txtTo == 'Artificial Intelligence' ? 'selected' : ''}>Artificial Intelligence</option>
+                                                    <option value="International Business" >International Business</option>
+                                                    <option value="Software Engineering" >Software Engineering</option>
+                                                    <option value="Computer Science" >Computer Science</option>
+                                                    <option value="Artificial Intelligence">Artificial Intelligence</option>
                                                 </select>
 
                                             </form>
@@ -87,8 +87,8 @@
                                                 <div class="form-group">
                                                     <select name="sortPrice" id="sortPrice" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
                                                         <option value="All">Price</option>
-                                                        <option value="PriceASC"${txtSort == 'PriceASC' ? 'selected' : ''}>ASC</option>
-                                                        <option value="PriceDESC"${txtSort == 'PriceDESC' ? 'selected' : ''}>DESC</option>
+                                                        <option value="PriceASC">ASC</option>
+                                                        <option value="PriceDESC">DESC</option>
                                                     </select>
                                                 </div>      
                                             </form>
@@ -98,8 +98,8 @@
                                                 <div class="form-group">
                                                     <select name="sortSalePrice" id="sortSalePrice" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
                                                         <option value="All">Sale Price</option>
-                                                        <option value="SalePriceASC"${txtSale == 'SalePriceASC' ? 'selected' : ''}>ASC</option>
-                                                        <option value="SalePriceDESC"${txtSale == 'SalePriceDESC' ? 'selected' : ''}>DESC</option>
+                                                        <option value="SalePriceASC">ASC</option>
+                                                        <option value="SalePriceDESC">DESC</option>
                                                     </select>
                                                 </div>      
                                             </form>
@@ -108,8 +108,8 @@
                                                 <div class="form-group">
                                                     <select name="statuss" id="statuss" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
                                                         <option value="All">Status</option>
-                                                        <option value="Active" ${txtSta == 'Active' ? 'selected' : ''}>Active</option>
-                                                        <option value="Inactive" ${txtSta == 'Inactive' ? 'selected' : ''}>Inactive</option>
+                                                        <option value="Active">Active</option>
+                                                        <option value="Inactive">Inactive</option>
                                                     </select>
                                                 </div>
                                             </form></th>
