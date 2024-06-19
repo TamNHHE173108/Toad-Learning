@@ -9,6 +9,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Courses</title>
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -129,7 +133,7 @@
             <h1>Add Courses</h1>
             <div class="success" id="success">Add new course successful</div>
             <div class="error" id="error">Please fill out all required fields.</div>
-            <form id="newCourseForm" action="/Addcourses" method="post" enctype="multipart/form-data">
+            <form id="newCourseForm" action="/AddNewCourse" method="post" enctype="multipart/form-data">
                 <label for="courseID">Course ID:</label>
                 <input type="text" id="courseID" name="courseID" required>
 
@@ -137,7 +141,7 @@
                 <input type="text" id="courseName" name="courseName" required>
 
                 <label for="topicID">Topic ID:</label>
-                <select id="topicID" name="topicID" required>
+                <select id="topicID" name="topicID" class="form-control" required>
                     <option value="AI">AI - Artificial Intelligence</option>
                     <option value="IB">IB - International Business</option>
                     <option value="SE">SE - Software Engineering</option>
@@ -145,7 +149,7 @@
                 </select>
 
                 <label for="description">Description:</label>
-                <textarea id="description" name="description" required></textarea>
+                <textarea id="description" name="description" rows="4" required></textarea>
 
                 <label for="thumbnail">Thumbnail:</label>
                 <input type="file" id="thumbnail" name="thumbnail" accept="image/*" required>
@@ -163,18 +167,25 @@
                 <input type="datetime-local" id="updatedDate" name="updatedDate" required>
 
                 <label for="status">Status:</label>
-                <select id="status" name="status" required>
+                <select id="status" name="status" class="form-control" required>
                     <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
                 </select>
 
                 <div class="buttons">
-                    <input type="submit" value="Add Course">
-                    <a href="/Toad-Learning/Dashboard" class="back-button">Return to Dashboard</a>
+                    <input type="submit" value="Add Course" class="btn btn-primary">
+                    <a href="/Toad-Learning/listcourse" class="back-button btn btn-secondary">Return to List Course</a>
                 </div>
             </form>
         </div>
     </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom scripts for all pages -->
+    <script src="js/sb-admin-2.min.js"></script>
 
     <script>
         document.getElementById('newCourseForm').addEventListener('submit', function(event) {
@@ -190,7 +201,8 @@
             if (isValid) {
                 document.getElementById('error').style.display = 'none';
                 document.getElementById('success').style.display = 'block';
-                
+                // Uncomment the following line to submit the form after validation
+                // this.submit();
             } else {
                 document.getElementById('success').style.display = 'none';
                 document.getElementById('error').style.display = 'block';

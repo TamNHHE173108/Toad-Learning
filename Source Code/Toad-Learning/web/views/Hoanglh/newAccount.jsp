@@ -31,8 +31,8 @@
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
                     <div class="row">
-                        <img class="col-lg-5 d-none d-lg-block bg-register-image" src="img/haandhai.jpg " alt="alt"/>
-                        <div class="col-lg-7">
+                        <img class="col-lg-6 d-none d-lg-block bg-register-image" src="img/haandhai.jpg " alt="alt"/>
+                        <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
@@ -60,9 +60,9 @@
                                                    id="exampleRepeatPassword" name="address" placeholder="Address" required>
                                         </div>
                                     </div>
-                                    <div class="form-group row text-right">
+                                    <div class="form-group">
                                         <div class="row">
-                                            <div class="col-sm-8 mb-3 mb-sm-0">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <div class="form-group">
                                                     <label for="genderSelect1">Gender</label>
                                                     <select name="gender" id="genderSelect1" class="form-select">
@@ -71,9 +71,9 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group d-flex align-items-center">
-                                                    <label for="genderSelect2" class="mr-2">Role</label>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="genderSelect2" >Role</label>
                                                     <select name="role" id="genderSelect2" class="form-select">
                                                         <option value="Teacher">Teacher</option>
                                                         <option value="Student">Student</option>

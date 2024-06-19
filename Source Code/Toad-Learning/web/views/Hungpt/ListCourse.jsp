@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-
+        <link rel="icon" href="./img/logo/logo2.png" type="image/png">
         <title>Course - List Course</title>
 
         <!-- Custom fonts for this template-->
@@ -19,7 +19,7 @@
             rel="stylesheet">
 
         <!-- Custom styles for this template-->
-        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+        <link href="css/sb-admin-2.css" rel="stylesheet">
 
     </head>
 
@@ -122,7 +122,11 @@
                                         <tr> 
                                             <td>${c.courseID}</td>
                                             <td><img src="${c.thumbnail}" alt="Description of the image" width="100px"></td>
+<<<<<<< HEAD
                                             <td><<a href="ListLesson?courseID=${c.courseID}">${c.title}</a></td>
+=======
+                                            <td><a href="ListLesson?courseID=${c.courseID}">${c.title}</a></td>
+>>>>>>> 9dbe5b187686b819407a27648146ecb4e1f13627
                                             <td>${c.topicID.topicName}</td>
                                             <td>${c.price}$</td>
                                             <td>${c.salePrice}$</td>

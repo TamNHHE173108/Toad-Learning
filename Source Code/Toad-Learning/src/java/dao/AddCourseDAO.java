@@ -5,69 +5,80 @@
 package dao;
 
 import dal.DBContext;
+import entity.Course;
+import entity.Topic;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddCourseDAO {
+    private final Connection conn;
 
-    Connection connection = null;
-    PreparedStatement ps = null;
+    public AddCourseDAO() {
+        conn = new DBContext().getConnection();
+    }
 
-    public void addCourse(String courseID, String title, String topicID, String description,
-            String thumbnail, String price, String salePrice, LocalDateTime createdDate,
-            LocalDateTime updatedDate, String status) {
-
-        String query = "		   INSERT INTO [dbo].[Courses]\n"
-                + "           ([CourseID]\n"
-                + "           ,[Title]\n"
-                + "           ,[TopicID]\n"
-                + "           ,[Description]\n"
-                + "           ,[Thumbnail]\n"
-                + "           ,[Price]\n"
-                + "           ,[SalePrice]\n"
-                + "           ,[CreatedDate]\n"
-                + "           ,[UpdatedDate]\n"
-                + "           ,[Status])\n"
-                + "     VALUES\n"
-                + "           (?,\n"
-                + "           ?,\n"
-                + "?, ?,?,?,\n"
-                + "          ?,\n"
-                + "           ?,\n"
-                + "           ?,\n"
-                + "           ?)";
-
-        try {
-            connection = new DBContext().getConnection();
-            ps = connection.prepareStatement(query);
-            ps.setString(1, courseID);
-            ps.setString(2, title);
-            ps.setString(3, topicID);
-            ps.setString(4, description);
-            ps.setString(5, thumbnail);
-            ps.setString(6, price);
-            ps.setString(7, salePrice);
-            ps.setObject(8, createdDate);
-            ps.setObject(9, updatedDate);
-            ps.setString(10, status);
-
+    public void addCourse(Course course) throws SQLException {
+        String query = "INSERT INTO Courses (CourseID, Title, TopicID, Description, Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, course.getCourseID());
+            ps.setString(2, course.getTitle());
+            ps.setString(3, course.getTopicID().getTopicID()); // Get TopicID from Topic object
+            ps.setString(4, course.getDescription());
+            ps.setString(5, course.getThumbnail());
+            ps.setFloat(6, Float.parseFloat(course.getPrice()));
+            ps.setFloat(7, Float.parseFloat(course.getSalePrice()));
+            ps.setString(8, course.getCreateDate());
+            ps.setString(9, course.getUpdateDate());
+            ps.setString(10, course.getStatus());
             ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
-            // Handle exceptions as per your application's requirements
-        } finally {
-            try {
-                if (ps != null) {
-                    ps.close();
-                }
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+            throw ex; // Propagate exception for handling in servlet
         }
+    }
+
+    public Course getCourseByID(String courseID) {
+        String query = "SELECT CourseID, Title, Description, Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status, TopicID, TopicName "
+                + "FROM Courses "
+                + "INNER JOIN Topics ON Courses.TopicID = Topics.TopicID "
+                + "WHERE CourseID = ?";
+        try (PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, courseID);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    String courseId = rs.getString("CourseID");
+                    String title = rs.getString("Title");
+                    String description = rs.getString("Description");
+                    String thumbnail = rs.getString("Thumbnail");
+                    String price = rs.getString("Price");
+                    String salePrice = rs.getString("SalePrice");
+                    String createDate = rs.getString("CreatedDate");
+                    String updateDate = rs.getString("UpdatedDate");
+                    String status = rs.getString("Status");
+                    String topicID = rs.getString("TopicID");
+                    String topicName = rs.getString("TopicName");
+
+                    // Create Topic object from retrieved data
+                    Topic topic = new Topic(topicID, topicName);
+
+                    // Create Course object with retrieved data
+                    Course course = new Course(courseId, title, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                    course.setTopicID(topic); // Set Topic object
+
+                    return course;
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 }
