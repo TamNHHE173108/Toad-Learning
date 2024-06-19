@@ -148,24 +148,23 @@
             <%@include file = "adminfooter.jsp" %>
         </div>
         <!-- End of Content Wrapper -->
-    </div>
-    <!-- End of Page Wrapper -->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-    <!-- Scroll to Top Button-->
-    <%@include  file ="Logout.jsp" %>
+        <!-- End of Page Wrapper -->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+        <!-- Scroll to Top Button-->
+        <%@include  file ="Logout.jsp" %>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
 
-</body>
+
+
+    </body>
 
 </html>
