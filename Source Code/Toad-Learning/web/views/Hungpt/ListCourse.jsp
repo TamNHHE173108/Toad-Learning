@@ -122,11 +122,7 @@
                                         <tr> 
                                             <td>${c.courseID}</td>
                                             <td><img src="${c.thumbnail}" alt="Description of the image" width="100px"></td>
-<<<<<<< HEAD
-                                            <td><<a href="ListLesson?courseID=${c.courseID}">${c.title}</a></td>
-=======
                                             <td><a href="ListLesson?courseID=${c.courseID}">${c.title}</a></td>
->>>>>>> 9dbe5b187686b819407a27648146ecb4e1f13627
                                             <td>${c.topicID.topicName}</td>
                                             <td>${c.price}$</td>
                                             <td>${c.salePrice}$</td>

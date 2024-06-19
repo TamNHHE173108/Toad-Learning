@@ -67,13 +67,13 @@ public class AddCourseDAO {
                     String topicName = rs.getString("TopicName");
 
                     // Create Topic object from retrieved data
-                    Topic topic = new Topic(topicID, topicName);
+//                    Topic topic = new Topic(topicID, topicName);
+//
+//                    // Create Course object with retrieved data
+//                    Course course = new Course(courseId, title, description, thumbnail, price, salePrice, createDate, updateDate, status);
+//                    course.setTopicID(topic); // Set Topic object
 
-                    // Create Course object with retrieved data
-                    Course course = new Course(courseId, title, description, thumbnail, price, salePrice, createDate, updateDate, status);
-                    course.setTopicID(topic); // Set Topic object
-
-                    return course;
+//                    return course;
                 }
             }
         } catch (SQLException ex) {
