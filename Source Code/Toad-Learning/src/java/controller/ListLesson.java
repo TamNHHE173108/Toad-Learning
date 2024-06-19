@@ -6,6 +6,7 @@ package controller;
 
 import dao.LessonDAO;
 import entity.Lesson;
+import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -61,6 +63,8 @@ public class ListLesson extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String stringcourseID = request.getParameter("courseID");
+        HttpSession session = request.getSession();
+        User a = (User)session.getAttribute("user");
          
         LessonDAO ls = new LessonDAO();
 
@@ -69,8 +73,16 @@ public class ListLesson extends HttpServlet {
         listP = ls.getLessonByCourseID(stringcourseID);
         request.setAttribute("listP", listP);
         request.setAttribute("courseID", stringcourseID);
+        String role = a.getRole();
+        if(role.equals("Admin")){
+             request.getRequestDispatcher("/views/Hoanglh/LessonListForAdmin.jsp").forward(request, response);
+            
+        } else if(role.equals("Teacher")){
+             request.getRequestDispatcher("/views/Hoanglh/lessonList.jsp").forward(request, response);
+            
+        }
 
-        request.getRequestDispatcher("/views/Hoanglh/lessonList.jsp").forward(request, response);
+       
     }
 
     /**

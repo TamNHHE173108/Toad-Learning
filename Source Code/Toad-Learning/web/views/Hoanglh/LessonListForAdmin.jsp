@@ -1,3 +1,4 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +28,7 @@
     <body id="page-top">
         <!-- Page Wrapper -->
         <div id="wrapper">
-            <%@include file ="SideBar.jsp" %>
+            <%@include file ="adminNavbarSidebar.jsp" %>
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->

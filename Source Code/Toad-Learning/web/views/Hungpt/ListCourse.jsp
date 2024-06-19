@@ -122,7 +122,7 @@
                                         <tr> 
                                             <td>${c.courseID}</td>
                                             <td><img src="${c.thumbnail}" alt="Description of the image" width="100px"></td>
-                                            <td>${c.title}</td>
+                                            <td><<a href="ListLesson?courseID=${c.courseID}">${c.title}</a></td>
                                             <td>${c.topicID.topicName}</td>
                                             <td>${c.price}$</td>
                                             <td>${c.salePrice}$</td>
