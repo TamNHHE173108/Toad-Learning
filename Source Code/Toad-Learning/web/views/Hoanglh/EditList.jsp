@@ -31,7 +31,7 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Edit Course</h1> 
+                <h1 class="h3 mb-2 text-gray-800">Edit Lesson</h1> 
 
                 <!-- DataTales -->
                 <div class="card shadow mb-4">
@@ -40,63 +40,48 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <form action="editcourse" method="post">
-                                        <div class="modal-header">						
-                                            <h4 class="modal-title">Edit Course</h4>
-                                            <button onclick="window.location.href = 'listcourse'" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label>Course_ID</label>
-                                                <input value="${detailcourse.courseID}" name="courseID" type="text" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="thumbnail" >Thumbnail</label>                                         
-                                                <img src="${detailcourse.thumbnail}" id="thumbnail-preview"class="img-thumbnail" style="max-width: 150px;">
-                                                <input value="${detailcourse.thumbnail}" name="thumbnail" type="text" class="form-control" hidden>
+    <div class="modal-header">						
+        <h4 class="modal-title">Edit Lesson</h4>
+        <button onclick="window.location.href = 'ListLesson?courseID=${detaillesson.courseID}'" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label>LessonID</label>
+            <input value="${detaillesson.lessonID}" name="lessonID" type="text" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+            <label>CourseID</label>
+            <input value="${detaillesson.courseID}" name="courseID" type="text" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+            <label>Title</label>
+            <input value="${detaillesson.title}" name="title" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Content</label>
+            <textarea name="content" class="form-control">${detaillesson.content}</textarea>
+        </div>
+        <div class="form-group">
+            <label>Status</label>
+            <select name="status" class="form-select" aria-label="Default select example">
+                <option value="Active" ${detaillesson.status == 'Active' ? 'selected' : ''}>Active</option>
+                <option value="Inactive" ${detaillesson.status == 'Inactive' ? 'selected' : ''}>Inactive</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input onclick="window.location.href = 'ListLesson?courseID=${detaillesson.courseID}'" type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+        <input type="submit" class="btn btn-success" value="Edit">
+    </div>
+</form>
 
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Title</label>
-                                                <input value="${detailcourse.title}" name="title" type="text" class="form-control" >
-                                            </div>
-                                            <label>Topip Name</label>
-                                            <select name="topicID" class="form-select" aria-label="Default select example">                              
-                                                <option value="IB" ${detailcourse.topicID.topicName == 'International Business' ? 'selected' : ''}>International Business</option>
-                                                <option value="SE" ${detailcourse.topicID.topicName == 'Software Engineering' ? 'selected' : ''}>Software Engineering</option>
-                                                <option value="CS" ${detailcourse.topicID.topicName == 'Computer Science' ? 'selected' : ''}>Computer Science</option>
-                                                <option value="AI" ${detailcourse.topicID.topicName == 'Artificial Intelligence' ? 'selected' : ''}>Artificial Intelligence</option>
-                                            </select>
-                                            <div class="form-group">
-                                                <label>	Description</label>
-                                                <input value="${detailcourse.description}" name="description" type="text" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Price</label>
-                                                <input value="${detailcourse.price}" name="price" type="text" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>SalePrice</label>
-                                                <input value="${detailcourse.salePrice}" name="salePrice" type="text" class="form-control">
-                                            </div>
-                                            <label>Status</label>
-                                            <select name="status" class="form-select" aria-label="Default select example">                              
-                                                <option value="Active" ${detailcourse.status == 'Active' ? 'selected' : ''}>Active</option>
-                                                <option value="Inactive" ${detailcourse.status == 'Inactive' ? 'selected' : ''}>Inactive</option>
-                                            </select>
-
-                                        </div>
-                                        <div class="modal-footer">        
-                                            <input onclick="window.location.href = 'listcourse'" type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                            <input type="submit" class="btn btn-success" value="Edit">
-                                        </div>
-                                    </form>
                                 </div>
                             </div>
                         </div>
                         <!-- Content Row -->
                         <!-- End of Main Content -->
 
-                        <%@include file = "adminfooter.jsp" %>
+                        
 
                     </div>
                     <!-- End of Content Wrapper -->
@@ -104,7 +89,7 @@
                 <!-- End of Page Wrapper -->
 
                 <!-- Scroll to Top Button-->
-                <%@include  file ="Logout.jsp" %>
+               
 
                 <!-- Bootstrap core JavaScript-->
                 <script src="vendor/jquery/jquery.min.js"></script>

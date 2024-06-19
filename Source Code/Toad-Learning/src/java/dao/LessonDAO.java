@@ -152,4 +152,37 @@ public class LessonDAO {
 
         return lessonList;
     }
+   public Lesson getLessonByLessonID(String lessonID) {
+        Lesson lesson = null;
+        String query = "SELECT LessonID, CourseID, Title, Content, Status " +
+                       "FROM dbo.Lessons " +
+                       "WHERE LessonID = ?";
+
+        try {
+            conn = new DBContext().getConnection(); // Mở kết nối với SQL
+            ps = conn.prepareStatement(query);
+            ps.setString(1, lessonID);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                lesson = new Lesson();
+                lesson.setLessonID(rs.getString("LessonID"));
+                lesson.setCourseID(rs.getString("CourseID"));
+                lesson.setTitle(rs.getString("Title"));
+                lesson.setContent(rs.getString("Content"));
+                lesson.setStatus(rs.getString("Status"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Đóng các kết nối
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return lesson;
+    }
 }

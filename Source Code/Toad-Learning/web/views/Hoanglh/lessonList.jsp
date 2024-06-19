@@ -55,6 +55,8 @@
                                         <th>Title</th>
                                         <th>Content</th>
                                         <th>Status</th>
+                                        <td>Edit</td>
+                                        <td>Delete</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -64,11 +66,12 @@
                                             <td>${p.title}</td>
                                             <td>${p.content}</td>
                                             <td>${p.status}</td>
+                                            
                                              <td>
-                                                <a href="loadcourse?course_ID=${c.courseID}"><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+                                                <a href="EditLesson?courseID=${p.courseID}"><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
                                             </td>
                                             <td>
-                                                <a href="deletecourse?course_ID=${c.courseID}" onclick="return confirm('Are you sure you want to delete ${c.courseID}?');">
+                                                <a href="deletecourse?course_ID=${p.courseID}" onclick="return confirm('Are you sure you want to delete ${c.courseID}?');">
                                                     <i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
                                             </td>
                                         </tr>
