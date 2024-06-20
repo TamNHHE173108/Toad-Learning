@@ -43,7 +43,9 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <a href="/Toad-Learning/AddNewCourse"  class="btn btn-success" data-toggle="modal"><i class="material-icons"></i> <span>Add New Course</span></a>					
+                            <a href="${pageContext.request.contextPath}/AddNewCourse" class="btn btn-success" data-toggle="modal">
+                                <i class="material-icons"></i> <span>Add New Course</span>
+                            </a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -68,7 +70,7 @@
                                         <tr> 
                                             <td><a href="coursedetail?course_ID=${c.courseID}">${c.courseID}</a></td>
                                             <td><img src="${c.thumbnail}" alt="Description of the image" width="100px"></td>
-                                            
+
                                             <td>${c.title}</td>
                                             <td>${c.topicID.topicName}</td>
                                             <td>${c.description}</td>
@@ -77,8 +79,8 @@
                                             <td>${c.price}$</td>
                                             <td>${c.salePrice}$</td>
                                             <td>${c.status}</td>
-                                            
-                                    </c:forEach>
+
+                                        </c:forEach>
                                 </tbody>
                             </table>
 
