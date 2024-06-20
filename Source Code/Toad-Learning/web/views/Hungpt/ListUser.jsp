@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-
+        <link rel="icon" href="/img/logo/logo.png" type="image/png">
         <title>Course - ListUser</title>
 
         <!-- Custom fonts for this template-->
@@ -19,8 +19,8 @@
             rel="stylesheet">
 
         <!-- Custom styles for this template-->
-        <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
+        <link href="css/sb-admin-2.css" rel="stylesheet">
+        <link rel="icon" href="./img/logo/logo2.png" type="image/png">
 
     </head>
 
@@ -76,8 +76,8 @@
                                                 <div class="form-group">
                                                     <select name="gender" id="gender" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
                                                         <option value="All">Gender</option>
-                                                        <option value="Male" ${txtG == 'Male' ? 'selected' : ''}>Male</option>
-                                                        <option value="Female" ${txtG == 'Female' ? 'selected' : ''}>Female</option>
+                                                        <option value="Male" >Male</option>
+                                                        <option value="Female">Female</option>
                                                     </select>
                                                 </div>
                                             </form>
@@ -87,9 +87,9 @@
                                                 <div class="form-group">
                                                     <select name="role" id="role" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
                                                         <option value="All">Role</option>
-                                                        <option value="Teacher" ${txtR == 'Teacher' ? 'selected' : ''}>Teacher</option>
-                                                        <option value="Student" ${txtR == 'Student' ? 'selected' : ''}>Student</option>
-                                                        <option value="Admin" ${txtR == 'Admin' ? 'selected' : ''}>Admin</option>
+                                                        <option value="Teacher">Teacher</option>
+                                                        <option value="Student">Student</option>
+                                                        <option value="Admin">Admin</option>
                                                     </select>
                                                 </div>
                                             </form>
@@ -114,8 +114,8 @@
                                                 <div class="form-group">
                                                     <select name="status" id="status" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
                                                         <option value="All">Status</option>
-                                                        <option value="Active" ${txtS == 'Active' ? 'selected' : ''}>Active</option>
-                                                        <option value="Inactive" ${txtS == 'Inactive' ? 'selected' : ''}>Inactive</option>
+                                                        <option value="Active">Active</option>
+                                                        <option value="Inactive">Inactive</option>
                                                     </select>
                                                 </div>
                                             </form>
@@ -224,27 +224,24 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Content Row -->
-            <!-- End of Main Content -->
-
-            <%@include file = "adminfooter.jsp" %>
-
         </div>
-        <!-- End of Content Wrapper -->
-    </div>
-    <!-- End of Page Wrapper -->
+    <!-- Content Row -->
+    <!-- End of Main Content -->
 
-    <!-- Scroll to Top Button-->
-    <%@include  file ="Logout.jsp" %>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <%@include file = "adminfooter.jsp" %>
 
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+
+<!-- Scroll to Top Button-->
+<%@include  file ="Logout.jsp" %>
+
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
 
 
 

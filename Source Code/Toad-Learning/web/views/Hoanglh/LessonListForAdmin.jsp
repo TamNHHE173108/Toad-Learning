@@ -1,3 +1,4 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +28,7 @@
     <body id="page-top">
         <!-- Page Wrapper -->
         <div id="wrapper">
-            <%@include file ="SideBar.jsp" %>
+            <%@include file ="adminNavbarSidebar.jsp" %>
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
@@ -66,18 +67,22 @@
                                             <td>${p.title}</td>
                                             <td>${p.content}</td>
                                             <td>${p.status}</td>
-                                            
-                                             <td>
-                                                <a href="EditLesson?courseID=${p.courseID}"><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
-                                            </td>
+
                                             <td>
-                                                <a href="deletecourse?course_ID=${p.courseID}" onclick="return confirm('Are you sure you want to delete ${c.courseID}?');">
+                                                <a href="EditLesson?lesson_ID=${p.lessonID}" data-toggle="tooltip" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                            </td>   
+
+                                            <td>
+                                                <a href="deletecourse?lesson_ID=${p.lessonID}" onclick="return confirm('Are you sure you want to delete ${c.courseID}?');">
                                                     <i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
                                             </td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
                             </table>
+
 
 
                         </div>
@@ -94,11 +99,11 @@
                             </div>
                             <div class="modal-body">	
                                 <div class="form-group">
-                                    
-                                        <label>Add new lesson:${courseID}</label>
-                                   
+
+                                    <label>Add new lesson:${courseID}</label>
+
                                 </div>
-                                        <input value="${courseID}" name="courseID" type="text" class="form-control" hidden>
+                                <input value="${courseID}" name="courseID" type="text" class="form-control" hidden>
                                 <div class="form-group">
                                     <label>LessonID</label>
                                     <input name="lessonID" type="text" class="form-control" required>
@@ -111,9 +116,9 @@
                                     <label>Content</label>
                                     <input name="content" type="text" class="form-control" required>
                                 </div>
-                            
-                                
-                                
+
+
+
                                 <div class="form-group">
                                     <label>Status</label>
                                     <select name="status" class="form-select" aria-label="Default select example">                              

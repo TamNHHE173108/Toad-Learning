@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-
+        <link rel="icon" href="./img/logo/logo2.png" type="image/png">
         <title>Course - EditCourse</title>
 
         <!-- Custom fonts for this template-->
@@ -19,7 +19,7 @@
             rel="stylesheet">
 
         <!-- Custom styles for this template-->
-        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+        <link href="css/sb-admin-2.css" rel="stylesheet">
 
     </head>
 
@@ -95,24 +95,27 @@
                         </div>
                         <!-- Content Row -->
                         <!-- End of Main Content -->
-
-                        <%@include file = "adminfooter.jsp" %>
-
                     </div>
                     <!-- End of Content Wrapper -->
                 </div>
-                <!-- End of Page Wrapper -->
+                <%@include file = "adminfooter.jsp" %>
 
-                <!-- Scroll to Top Button-->
-                <%@include  file ="Logout.jsp" %>
-
-                <!-- Bootstrap core JavaScript-->
-                <script src="vendor/jquery/jquery.min.js"></script>
-                <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            </div>
+        </div>
 
 
-                <!-- Custom scripts for all pages-->
-                <script src="js/sb-admin-2.min.js"></script>
-                </body>
+        <!-- End of Page Wrapper -->
 
-                </html>
+        <!-- Scroll to Top Button-->
+        <%@include  file ="Logout.jsp" %>
+
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
+    </body>
+
+</html>

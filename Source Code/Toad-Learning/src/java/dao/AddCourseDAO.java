@@ -69,8 +69,20 @@ public class AddCourseDAO {
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
+<<<<<<< HEAD
                 Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
                 return course;
+=======
+                    // Create Topic object from retrieved data
+//                    Topic topic = new Topic(topicID, topicName);
+//
+//                    // Create Course object with retrieved data
+//                    Course course = new Course(courseId, title, description, thumbnail, price, salePrice, createDate, updateDate, status);
+//                    course.setTopicID(topic); // Set Topic object
+
+//                    return course;
+                }
+>>>>>>> 4c04bc2156f5d53855bbcadf9d9396b16666e12d
             }
         } catch (Exception e) {
             // Xử lý các exception tại đây
