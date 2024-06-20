@@ -99,7 +99,7 @@
             <div id="addNewCourse" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="/Addcourses" method="post">
+                        <form action="/Toad-Learning/views/Dangph/addCourses.jsp" method="post">
                             <div class="modal-header">						
                                 <h4 class="modal-title">Add Course</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

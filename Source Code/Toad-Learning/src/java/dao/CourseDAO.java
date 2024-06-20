@@ -13,43 +13,43 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class CourseDAO {
-
-     Connection conn = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
+public class CourseDAO extends MyDAO {
 
     // Phương thức thêm mới khóa học vào cơ sở dữ liệu
     public void addCourse(String title, String topicID, String description,
-            String thumbnail, String price, String salePrice, String status, String courseID) {
-        String query = "INSERT INTO Courses (CourseID, Title, TopicID, Description, Thumbnail, CreatedDate, UpdatedDate, Price, SalePrice, Status) " +
-                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String thumbnail, String price, String salePrice, String status, String courseID, String createdDate, String updatedDate, String userID) {
+        xSql = "INSERT INTO Courses (CourseID, Title, TopicID, Description, Thumbnail, CreatedDate, UpdatedDate, Price, SalePrice, Status, UserID) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
-            conn = new DBContext().getConnection();//mo ket noi voi sql
-            ps = conn.prepareStatement(query);
-            ps.setString(1, title);
-            ps.setString(2, topicID);
-            ps.setString(3, description);
-            ps.setString(4, thumbnail);
-            ps.setString(5, price);
-            ps.setString(6, salePrice);
-            ps.setString(7, status);
-            ps.setString(8, courseID);
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, courseID);
+            ps.setString(2, title);
+            ps.setString(3, topicID);
+            ps.setString(4, description);
+            ps.setString(5, thumbnail);
+            ps.setString(6, createdDate);
+            ps.setString(7, updatedDate);
+            ps.setString(8, price);
+            ps.setString(9, salePrice);
+            ps.setString(10, status);
+            ps.setString(11, userID);
             ps.executeUpdate();
         } catch (Exception e) {
+            e.printStackTrace();
         }
-       
+
     }
+
     public List<Course> listCourses() {
         List<Course> list = new ArrayList<>();
         String sql = "SELECT CourseID, Title, Topics.TopicName, Courses.Description,Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status\n"
                 + "FROM Courses\n"
                 + "INNER JOIN Topics ON Courses.TopicID=Topics.TopicID";
         try {
-            conn = new DBContext().getConnection();
-            ps = conn.prepareStatement(sql);
+            ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 String courseID = rs.getString(1);
@@ -89,8 +89,7 @@ public class CourseDAO {
                 + "[Status] = ?\n"
                 + "WHERE CourseID = ?";
         try {
-            conn = new DBContext().getConnection();//mo ket noi voi sql
-            ps = conn.prepareStatement(query);
+            ps = con.prepareStatement(query);
             ps.setString(1, title);
             ps.setString(2, topicID);
             ps.setString(3, description);
@@ -110,8 +109,7 @@ public class CourseDAO {
                 + "INNER JOIN Topics ON Courses.TopicID=Topics.TopicID\n"
                 + "WHERE CourseID = ?";
         try {
-            conn = new DBContext().getConnection();//mo ket noi voi sql
-            ps = conn.prepareStatement(query);
+            ps = con.prepareStatement(query);
             ps.setString(1, course_ID);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -152,8 +150,7 @@ public class CourseDAO {
                 + "DELETE FROM Courses\n"
                 + "WHERE CourseID = ?";
         try {
-            conn = new DBContext().getConnection();//mo ket noi voi sql
-            ps = conn.prepareStatement(query);
+            ps = con.prepareStatement(query);
             ps.setString(1, course_ID);
             ps.setString(2, course_ID);
             ps.setString(3, course_ID);

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
 import dal.DBContext;
@@ -12,13 +8,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AddCourseDAO {
-    private final Connection conn;
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
 
     public AddCourseDAO() {
         conn = new DBContext().getConnection();
@@ -45,39 +39,41 @@ public class AddCourseDAO {
         }
     }
 
-    public Course getCourseByID(String courseID) {
-        String query = "SELECT CourseID, Title, Description, Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status, TopicID, TopicName "
+    public Course getCourseByID(String course_ID) {
+        String query = "SELECT CourseID, Title, Topics.TopicName, Courses.Description, Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status "
                 + "FROM Courses "
-                + "INNER JOIN Topics ON Courses.TopicID = Topics.TopicID "
+                + "INNER JOIN Topics ON Courses.TopicID=Topics.TopicID "
                 + "WHERE CourseID = ?";
-        try (PreparedStatement ps = conn.prepareStatement(query)) {
-            ps.setString(1, courseID);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    String courseId = rs.getString("CourseID");
-                    String title = rs.getString("Title");
-                    String description = rs.getString("Description");
-                    String thumbnail = rs.getString("Thumbnail");
-                    String price = rs.getString("Price");
-                    String salePrice = rs.getString("SalePrice");
-                    String createDate = rs.getString("CreatedDate");
-                    String updateDate = rs.getString("UpdatedDate");
-                    String status = rs.getString("Status");
-                    String topicID = rs.getString("TopicID");
-                    String topicName = rs.getString("TopicName");
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, course_ID);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                String courseID = rs.getString(1);
+                String title = rs.getString(2);
+                String topicName = rs.getString(3);
+                String description = rs.getString(4);
+                String thumbnail = rs.getString(5);
+                String price = rs.getString(6);
+                String salePrice = rs.getString(7);
+                String createDate = rs.getString(8);
+                String updateDate = rs.getString(9);
+                String status = rs.getString(10);
+                Topic topic = new Topic(topicName);
 
-                    // Create Topic object from retrieved data
-//                    Topic topic = new Topic(topicID, topicName);
-//
-//                    // Create Course object with retrieved data
-//                    Course course = new Course(courseId, title, description, thumbnail, price, salePrice, createDate, updateDate, status);
-//                    course.setTopicID(topic); // Set Topic object
-
-//                    return course;
-                }
+                Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                return course;
             }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }

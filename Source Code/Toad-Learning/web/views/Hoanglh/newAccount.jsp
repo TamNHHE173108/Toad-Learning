@@ -112,7 +112,7 @@
 
                                 <hr>
                                 <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                    <a class="small" href="ForgotPassword">Forgot Password?</a>
                                 </div>
                                 <div class="text-center">
                                     <a class="small" href="Login">Already have an account? Login!</a>

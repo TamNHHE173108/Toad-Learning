@@ -133,7 +133,7 @@
             <h1>Add Courses</h1>
             <div class="success" id="success">Add new course successful</div>
             <div class="error" id="error">Please fill out all required fields.</div>
-            <form id="newCourseForm" action="/AddNewCourse" method="post" enctype="multipart/form-data">
+            <form id="newCourseForm" action="AddNewCourse" method="post">
                 <label for="courseID">Course ID:</label>
                 <input type="text" id="courseID" name="courseID" required>
 
@@ -152,7 +152,7 @@
                 <textarea id="description" name="description" rows="4" required></textarea>
 
                 <label for="thumbnail">Thumbnail:</label>
-                <input type="file" id="thumbnail" name="thumbnail" accept="image/*" required>
+                <input type="text" id="thumbnail" name="thumbnail" required>
 
                 <label for="price">Price:</label>
                 <input type="number" id="price" name="price" required>
@@ -161,10 +161,10 @@
                 <input type="number" id="salePrice" name="salePrice">
 
                 <label for="createdDate">Created Date:</label>
-                <input type="datetime-local" id="createdDate" name="createdDate" required>
+                <input type="date" id="createdDate" name="createdDate" required>
 
                 <label for="updatedDate">Updated Date:</label>
-                <input type="datetime-local" id="updatedDate" name="updatedDate" required>
+                <input type="date" id="updatedDate" name="updatedDate" required>
 
                 <label for="status">Status:</label>
                 <select id="status" name="status" class="form-control" required>
@@ -174,7 +174,7 @@
 
                 <div class="buttons">
                     <input type="submit" value="Add Course" class="btn btn-primary">
-                    <a href="/Toad-Learning/listcourse" class="back-button btn btn-secondary">Return to List Course</a>
+                    <a href="/Toad-Learning/mycourse" class="back-button btn btn-secondary">Return to My Course</a>
                 </div>
             </form>
         </div>
@@ -188,26 +188,26 @@
     <script src="js/sb-admin-2.min.js"></script>
 
     <script>
-        document.getElementById('newCourseForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var isValid = true;
-            var requiredFields = document.querySelectorAll('#newCourseForm [required]');
-            requiredFields.forEach(function(field) {
-                if (!field.value) {
-                    isValid = false;
-                }
-            });
-
-            if (isValid) {
-                document.getElementById('error').style.display = 'none';
-                document.getElementById('success').style.display = 'block';
-                // Uncomment the following line to submit the form after validation
-                // this.submit();
-            } else {
-                document.getElementById('success').style.display = 'none';
-                document.getElementById('error').style.display = 'block';
-            }
-        });
+//        document.getElementById('newCourseForm').addEventListener('submit', function(event) {
+//            event.preventDefault();
+//            var isValid = true;
+//            var requiredFields = document.querySelectorAll('#newCourseForm [required]');
+//            requiredFields.forEach(function(field) {
+//                if (!field.value) {
+//                    isValid = false;
+//                }
+//            });
+//
+//            if (isValid) {
+//                document.getElementById('error').style.display = 'none';
+//                document.getElementById('success').style.display = 'block';
+//                // Uncomment the following line to submit the form after validation
+//                // this.submit();
+//            } else {
+//                document.getElementById('success').style.display = 'none';
+//                document.getElementById('error').style.display = 'block';
+//            }
+//        });
     </script>
 </body>
 </html>
