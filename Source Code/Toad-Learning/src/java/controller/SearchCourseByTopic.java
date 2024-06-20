@@ -39,11 +39,10 @@ public class SearchCourseByTopic extends HttpServlet {
         SearchCourseDAO dao = new SearchCourseDAO();
         CourseDAO dal = new CourseDAO();
         if ("All".equals(topicName)) {
-        // If "All" is selected or gender is not provided, retrieve all users
         listC = dal.listCourses(); // Implement a method to fetch all users
     } else {
-        // Otherwise, filter users based on the selected gender
-        listC = dao.searchCourseByTopic(topicName); // Implement a method to fetch users by gender
+       
+        listC = dao.searchCourseByTopic(topicName); // 
     }
         request.setAttribute("listCourse", listC);
         request.setAttribute("txtTo", topicName);
