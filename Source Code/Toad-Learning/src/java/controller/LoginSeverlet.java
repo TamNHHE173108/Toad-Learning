@@ -100,6 +100,10 @@ public class LoginSeverlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("user", u);
             response.sendRedirect("Dashboard");
+        }  else if (u.getRole().equals("Student")) {
+             HttpSession session = request.getSession();
+            session.setAttribute("user", u);
+            response.sendRedirect("homes");
         }
     }
 
