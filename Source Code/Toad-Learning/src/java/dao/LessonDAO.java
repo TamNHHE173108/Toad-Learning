@@ -124,22 +124,22 @@ public class LessonDAO {
     public void deleteLesson(String lessonID) {
         String sql = "DELETE FROM Media WHERE LessonID IN (SELECT LessonID FROM Lessons WHERE LessonID = ?);\n"
                 + "\n"
-                + "-- Xóa từ bảng Questions\n"
+                
                 + "DELETE FROM Questions WHERE QuizID IN (SELECT QuizID FROM Quizzes WHERE CourseID IN (SELECT CourseID FROM Courses WHERE CourseID = (SELECT CourseID FROM Lessons WHERE LessonID = ?)));\n"
                 + "\n"
-                + "-- Xóa từ bảng Quizzes\n"
+                
                 + "DELETE FROM Quizzes WHERE CourseID IN (SELECT CourseID FROM Courses WHERE CourseID = (SELECT CourseID FROM Lessons WHERE LessonID = ?));\n"
                 + "\n"
-                + "-- Xóa từ bảng Scores\n"
+                
                 + "DELETE FROM Scores WHERE QuizID IN (SELECT QuizID FROM Quizzes WHERE CourseID IN (SELECT CourseID FROM Courses WHERE CourseID = (SELECT CourseID FROM Lessons WHERE LessonID =?)));\n"
                 + "\n"
-                + "-- Xóa từ bảng Histories\n"
+                
                 + "DELETE FROM Histories WHERE CourseID IN (SELECT CourseID FROM Courses WHERE CourseID = (SELECT CourseID FROM Lessons WHERE LessonID = ?));\n"
                 + "\n"
-                + "-- Xóa từ bảng Registrations\n"
+                
                 + "DELETE FROM Registrations WHERE CourseID = (SELECT CourseID FROM Lessons WHERE LessonID = ?);\n"
                 + "\n"
-                + "-- Xóa từ bảng Lessons\n"
+               
                 + "DELETE FROM Lessons WHERE LessonID =?;";
         try {
             conn = new DBContext().getConnection();
