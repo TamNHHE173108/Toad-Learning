@@ -16,10 +16,10 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="topic" items="${list}">
+                <c:forEach var="topic" items="${listC}">
                     <tr>
-                        <td>${topics.topicID}</td>
-                        <td>${topics.categoryName}</td>
+                        <td>${topic.topicName}</td>
+                       
                     </tr>
                 </c:forEach>
             </tbody>
