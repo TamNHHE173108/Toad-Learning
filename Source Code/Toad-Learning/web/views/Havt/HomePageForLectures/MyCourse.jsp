@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addNewCourse"  class="btn btn-success" data-toggle="modal"><i class="material-icons"></i> <span>Add New Course</span></a>					
+                            <a href="/Toad-Learning/AddNewCourse"  class="btn btn-success" data-toggle="modal"><i class="material-icons"></i> <span>Add New Course</span></a>					
                         </div>
                     </div>
                     <div class="card-body">
