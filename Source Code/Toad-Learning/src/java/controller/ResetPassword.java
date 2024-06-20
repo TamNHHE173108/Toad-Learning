@@ -5,6 +5,7 @@
 package controller;
 
 import dao.UsersDAO;
+import entity.PasswordResetToken;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,14 +14,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 /**
  *
- * @author lehoa
+ * @author My Lap
  */
-@WebServlet(name = "LoginSeverlet", urlPatterns = {"/Login"})
-public class LoginSeverlet extends HttpServlet {
+@WebServlet(name = "ResetPassword", urlPatterns = {"/ResetPassword"})
+public class ResetPassword extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +39,10 @@ public class LoginSeverlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginSeverlet</title>");
+            out.println("<title>Servlet ResetPassword</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginSeverlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ResetPassword at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,64 +57,60 @@ public class LoginSeverlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private UsersDAO userDAO;
+
+    @Override
+    public void init() {
+        userDAO = new UsersDAO();
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/views/Hoanglh/Login.jsp").forward(request, response);
+        String token = request.getParameter("token");
+        if (token != null && !token.isEmpty()) {
+            PasswordResetToken resetToken = userDAO.getResetToken(token);
+            if (resetToken != null && !resetToken.isExpired()) {
+                request.setAttribute("token", token);
+                request.getRequestDispatcher("/reset-password.jsp").forward(request, response);
+                return;
+            }
+        }
+        response.sendRedirect("forgot-password.jsp?error=Invalid or expired token");
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // lay ra input email, password cua nguoi dung
-        String username = request.getParameter("username");
+        String token = request.getParameter("token");
         String password = request.getParameter("password");
+        String confirmPassword = request.getParameter("confirmPassword");
 
-        // dang nhap
-        UsersDAO ud = new UsersDAO();
-        User u = ud.Login(username, password);
-
-        // neu tai khoan chua ton tai
-        if (u == null) {
-            request.setAttribute("mess", "Wrong email or password!");
-            request.getRequestDispatcher("views/Hoanglh/Login.jsp").forward(request, response);
-        } else if(u.getStatus().equals("Inactive")){
-            request.setAttribute("mess", "Tai khoan ngung hoat dong!");
-            request.getRequestDispatcher("views/Hoanglh/Login.jsp").forward(request, response);
-            
-        } 
-        
-        else if (u.getRole().equals("Teacher")) { // neu tai khoan tont tai, tao session -> tra ve home (servlet)
-            HttpSession session = request.getSession();
-            session.setAttribute("user", u);
-            response.sendRedirect("dashboardlectures");
-        } else if (u.getRole().equals("Admin")) {
-            HttpSession session = request.getSession();
-            session.setAttribute("user", u);
-            response.sendRedirect("Dashboard");
-        }  else if (u.getRole().equals("Student")) {
-             HttpSession session = request.getSession();
-            session.setAttribute("user", u);
-            response.sendRedirect("homes");
+        if (password != null && password.equals(confirmPassword)) {
+            PasswordResetToken resetToken = userDAO.getResetToken(token);
+            if (resetToken != null && !resetToken.isExpired()) {
+                boolean isUpdated = userDAO.updatePassword(resetToken.getEmail(), password);
+                if (isUpdated) {
+                    userDAO.clearResetToken(token);
+                    request.setAttribute("message", "Password reset successfully");
+                    request.getRequestDispatcher("Login").forward(request, response);
+                } else {
+                    request.setAttribute("error", "Failed to reset password");
+                    request.getRequestDispatcher("ResetPassword").forward(request, response);
+                }
+            } else {
+                request.setAttribute("error", "Invalid or expired token");
+                request.getRequestDispatcher("ResetPassword").forward(request, response);
+            }
+        } else {
+            request.setAttribute("error", "Passwords do not match");
+            request.getRequestDispatcher("ResetPassword").forward(request, response);
         }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+
     @Override
     public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+        return "Handles resetting password based on token";
+    }
 }

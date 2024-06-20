@@ -68,7 +68,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Courses</h6>
                         <a class="collapse-item" href="mycourse">My Courses</a>
-                        <a class="collapse-item" href="Addcourses">Add Courses</a>
+                        <a class="collapse-item" href="/Toad-Learning/AddNewCourse">Add Courses</a>
                         <a class="collapse-item" href="#">Edit Courses</a>
                         <a class="collapse-item" href="#">About Courses </a>
                     </div>
@@ -292,7 +292,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="profile">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>

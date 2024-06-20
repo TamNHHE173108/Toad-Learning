@@ -106,12 +106,12 @@
                         </div>
                         <!-- Content Row -->
                         <!-- End of Main Content -->
-
-                        <%@include file = "adminfooter.jsp" %>
-
                     </div>
                     <!-- End of Content Wrapper -->
                 </div>
+                <%@include file = "adminfooter.jsp" %>
+
+
                 <!-- End of Page Wrapper -->
 
                 <!-- Scroll to Top Button-->
