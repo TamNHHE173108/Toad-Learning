@@ -5,6 +5,8 @@
 package controller;
 
 import dao.AddUserDAO;
+import dao.GetUserByID;
+import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -32,18 +35,27 @@ public class AddUser extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String name = request.getParameter("name");
-        String gender = request.getParameter("gender");
-        String role = request.getParameter("role");
-        String email = request.getParameter("email");
-        String mobile = request.getParameter("mobile");
-        String address = request.getParameter("address");
-        String status = request.getParameter("status");
-        AddUserDAO dao = new AddUserDAO();
-        dao.insertUser(username,password, name, gender, email, mobile,role,status, address );
-        response.sendRedirect("listuser");
+        HttpSession session = request.getSession();
+        User a = (User) session.getAttribute("user");
+        if (a != null) {
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            String name = request.getParameter("name");
+            String gender = request.getParameter("gender");
+            String role = request.getParameter("role");
+            String email = request.getParameter("email");
+            String mobile = request.getParameter("mobile");
+            String address = request.getParameter("address");
+            String status = request.getParameter("status");
+            AddUserDAO dao = new AddUserDAO();
+            dao.insertUser(username, password, name, gender, email, mobile, role, status, address);
+            response.sendRedirect("listuser");
+        } else {
+            // Xử lý trường hợp không có đối tượng User trong session
+            // Ví dụ: chuyển hướng hoặc hiển thị thông báo lỗi
+            response.sendRedirect("Login"); // Ví dụ chuyển hướng đến trang đăng nhập
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

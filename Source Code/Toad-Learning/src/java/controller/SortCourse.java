@@ -5,8 +5,10 @@
 package controller;
 
 import dao.CourseDAO;
+import dao.GetUserByID;
 import dao.SearchCourseDAO;
 import entity.Course;
+import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,6 +16,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -35,20 +38,29 @@ public class SortCourse extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String sortPrice = request.getParameter("sortPrice");
-        List<Course> listC;
-        CourseDAO dal = new CourseDAO();
-        SearchCourseDAO dao = new SearchCourseDAO();
-        if ("PriceASC".equals(sortPrice)) {
-            listC = dao.sortByPriceASC();
-        } else if ("PriceDESC".equals(sortPrice)) {
-            listC = dao.sortByPriceDESC();
+        HttpSession session = request.getSession();
+        User a = (User) session.getAttribute("user");
+        if (a != null) {
+            String sortPrice = request.getParameter("sortPrice");
+            List<Course> listC;
+            CourseDAO dal = new CourseDAO();
+            SearchCourseDAO dao = new SearchCourseDAO();
+            if ("PriceASC".equals(sortPrice)) {
+                listC = dao.sortByPriceASC();
+            } else if ("PriceDESC".equals(sortPrice)) {
+                listC = dao.sortByPriceDESC();
+            } else {
+                listC = dal.listCourses();
+            }
+            request.setAttribute("listCourse", listC);
+            request.setAttribute("txtSort", sortPrice);
+            request.getRequestDispatcher("/views/Hungpt/ListCourse.jsp").forward(request, response);
         } else {
-            listC = dal.listCourses();
+            // Xử lý trường hợp không có đối tượng User trong session
+            // Ví dụ: chuyển hướng hoặc hiển thị thông báo lỗi
+            response.sendRedirect("Login"); // Ví dụ chuyển hướng đến trang đăng nhập
         }
-        request.setAttribute("listCourse", listC);
-        request.setAttribute("txtSort", sortPrice);
-        request.getRequestDispatcher("/views/Hungpt/ListCourse.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
