@@ -45,11 +45,11 @@ public class SearchUserByStatus extends HttpServlet {
             SearchUserDAO dao = new SearchUserDAO();
             ListUserDAO dal = new ListUserDAO();
             if ("All".equals(status)) {
-                // If "All" is selected or gender is not provided, retrieve all users
+                // If "All" is selected or status is not provided, retrieve all users
                 list = dal.getUserList(); // Implement a method to fetch all users
             } else {
-                // Otherwise, filter users based on the selected gender
-                list = dao.searchUserByStatus(status); // Implement a method to fetch users by gender
+                // Otherwise, filter users based on the selected status
+                list = dao.searchUserByStatus(status); // Implement a method to fetch users by status
             }
             request.setAttribute("listU", list);
             request.setAttribute("txtS", status);

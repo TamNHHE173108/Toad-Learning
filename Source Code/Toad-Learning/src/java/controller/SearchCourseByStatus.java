@@ -46,10 +46,10 @@ public class SearchCourseByStatus extends HttpServlet {
             SearchCourseDAO dao = new SearchCourseDAO();
             CourseDAO dal = new CourseDAO();
             if ("All".equals(status)) {
-                // If "All" is selected or gender is not provided, retrieve all users
+                // If "All" is selected or status is not provided, retrieve all users
                 listC = dal.listCourses(); // Implement a method to fetch all users
             } else {
-                // Otherwise, filter users based on the selected gender
+                // Otherwise, filter users based on the selected status
                 listC = dao.searchCourseByStatus(status); // Implement a method to fetch users by gender
             }
             request.setAttribute("listCourse", listC);

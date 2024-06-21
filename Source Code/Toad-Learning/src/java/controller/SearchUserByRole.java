@@ -45,11 +45,11 @@ public class SearchUserByRole extends HttpServlet {
             SearchUserDAO dao = new SearchUserDAO();
             ListUserDAO dal = new ListUserDAO();
             if ("All".equals(role)) {
-                // If "All" is selected or gender is not provided, retrieve all users
+                // If "All" is selected or role is not provided, retrieve all users
                 list = dal.getUserList(); // Implement a method to fetch all users
             } else {
-                // Otherwise, filter users based on the selected gender
-                list = dao.searchUserByRole(role); // Implement a method to fetch users by gender
+                // Otherwise, filter users based on the selected role
+                list = dao.searchUserByRole(role); // Implement a method to fetch users by role
             }
             request.setAttribute("listU", list);
             request.setAttribute("txtR", role);
