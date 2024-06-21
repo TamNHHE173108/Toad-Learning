@@ -37,9 +37,19 @@
                 <div class="card shadow mb-4">
                     <div class="card-header py-3"> 
                         <div class="box">
-                            <div class="container-2">
-                                <span class="icon"><i class="fa fa-search"></i></span>
-                                <input type="search" id="search" style = "margin-bottom: 5px" placeholder="Search..." />
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <form action="searchcourse" method="post" class="form-inline">
+                                        <div class="input-group">
+                                            <input value="${txtC}" name="txtC" type="text" class="form-control bg-light border-2 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit">
+                                                    <i class="fas fa-search fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -62,7 +72,17 @@
                                         <th>UpdateDate</th>
                                         <th>Price</th>
                                         <th>SalePrice</th>
-                                        <th>Status</th>
+                                        <th>
+                                            <form action="searchcoursebystatus" method="post" class="form-inline">
+                                                <div class="form-group">
+                                                    <select name="statuss" id="statuss" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
+                                                        <option value="All">Status</option>
+                                                        <option value="Active">Active</option>
+                                                        <option value="Inactive">Inactive</option>
+                                                    </select>
+                                                </div>
+                                            </form>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>

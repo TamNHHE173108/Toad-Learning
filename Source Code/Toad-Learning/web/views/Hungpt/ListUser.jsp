@@ -39,23 +39,21 @@
                     <div class="card-header py-3"> 
                         <div class="box">
                             <div class="container-2">
-                                <div class="container">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-6">
-                                            <form action="search" method="post" class="form-inline">
-                                                <div class="input-group">
-                                                    <input value="${txtU}" name="txt" type="text" class="form-control bg-light border-2 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-primary" type="submit">
-                                                            <i class="fas fa-search fa-sm"></i>
-                                                        </button>
-                                                    </div>
+                                <div class="row align-items-center">
+                                    <div class="col-md-6">
+                                        <form action="search" method="post" class="form-inline">
+                                            <div class="input-group">
+                                                <input value="${txtU}" name="txt" type="text" class="form-control bg-light border-2 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="submit">
+                                                        <i class="fas fa-search fa-sm"></i>
+                                                    </button>
                                                 </div>
-                                            </form>
-                                        </div>         
-                                        <div class="col-md-6 text-right">
-                                            <a href="#addNewUser" class="btn btn-success" data-toggle="modal"><i class="material-icons"></i> <span>Add New User</span></a>
-                                        </div>
+                                            </div>
+                                        </form>
+                                    </div>         
+                                    <div class="col-md-6 text-right">
+                                        <a href="#addNewUser" class="btn btn-success" data-toggle="modal"><i class="material-icons"></i> <span>Add New User</span></a>
                                     </div>
                                 </div>
                             </div>
@@ -225,26 +223,26 @@
                 </div>
             </div>
         </div>
-    <!-- Content Row -->
-    <!-- End of Main Content -->
+        <!-- Content Row -->
+        <!-- End of Main Content -->
 
-    <%@include file = "adminfooter.jsp" %>
-
-
-
-<!-- Scroll to Top Button-->
-<%@include  file ="Logout.jsp" %>
-
-<!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
-<!-- Custom scripts for all pages-->
-<script src="js/sb-admin-2.min.js"></script>
+        <%@include file = "adminfooter.jsp" %>
 
 
 
-</body>
+        <!-- Scroll to Top Button-->
+        <%@include  file ="Logout.jsp" %>
+
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
+
+
+
+    </body>
 
 </html>

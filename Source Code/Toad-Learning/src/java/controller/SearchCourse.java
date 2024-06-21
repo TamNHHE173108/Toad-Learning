@@ -41,12 +41,22 @@ public class SearchCourse extends HttpServlet {
         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("user");
         if (a != null) {
+            String role = a.getRole();
+            String userid = a.getUser_id();
             String txtCourse = request.getParameter("txtC");
             SearchCourseDAO dao = new SearchCourseDAO();
-            List<Course> listC = dao.searchCourseByName(txtCourse);
-            request.setAttribute("listCourse", listC);
-            request.setAttribute("txtC", txtCourse);
-            request.getRequestDispatcher("/views/Hungpt/ListCourse.jsp").forward(request, response);
+            if (role.equals("Admin")) {
+                List<Course> listC = dao.searchCourseByName(txtCourse);
+                request.setAttribute("listCourse", listC);
+                request.setAttribute("txtC", txtCourse);
+                request.getRequestDispatcher("/views/Hungpt/ListCourse.jsp").forward(request, response);
+            } else if (role.equals("Teacher")) {
+                List<Course> listC = dao.searchCourseLecByName(txtCourse, userid);
+                request.setAttribute("listC", listC);
+                request.setAttribute("txtC", txtCourse);
+                request.getRequestDispatcher("/views/Havt/HomePageForLectures/MyCourse.jsp").forward(request, response);
+            }
+
         } else {
             // Xử lý trường hợp không có đối tượng User trong session
             // Ví dụ: chuyển hướng hoặc hiển thị thông báo lỗi
