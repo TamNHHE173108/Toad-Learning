@@ -41,7 +41,11 @@ public class DeleteCourse extends HttpServlet {
             String course_ID = request.getParameter("course_ID");
             CourseDAO dao = new CourseDAO();
             dao.deleteCourse(course_ID);
-            response.sendRedirect("listcourse");
+            if(a.getRole().equals("Admin")){
+                response.sendRedirect("listcourse");
+            } else if(a.getRole().equals("Teacher")){
+                response.sendRedirect("mycourse");
+            }
         } else {
             // Xử lý trường hợp không có đối tượng User trong session
             // Ví dụ: chuyển hướng hoặc hiển thị thông báo lỗi
