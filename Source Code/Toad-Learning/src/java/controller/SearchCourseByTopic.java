@@ -45,7 +45,8 @@ public class SearchCourseByTopic extends HttpServlet {
             List<Course> listC;
             SearchCourseDAO dao = new SearchCourseDAO();
             CourseDAO dal = new CourseDAO();
-            if ("All".equals(topicName)) {
+            if(a.getRole().equals("Admin")){
+                if ("All".equals(topicName)) {
                 listC = dal.listCourses(); // Implement a method to fetch all users
             } else {
 
@@ -54,6 +55,17 @@ public class SearchCourseByTopic extends HttpServlet {
             request.setAttribute("listCourse", listC);
             request.setAttribute("txtTo", topicName);
             request.getRequestDispatcher("/views/Hungpt/ListCourse.jsp").forward(request, response);
+            } else if(a.getRole().equals("Teacher")){
+                if ("All".equals(topicName)) {
+                listC = dal.listCourses(); // Implement a method to fetch all users
+            } else {
+
+                listC = dao.searchCourseByTopic(topicName); // 
+            }
+            request.setAttribute("listC", listC);
+            request.setAttribute("txtTo", topicName);
+            request.getRequestDispatcher("/views/Havt/HomePageForLectures/MyCourse.jsp").forward(request, response);
+            }
         } else {
             // Xử lý trường hợp không có đối tượng User trong session
             // Ví dụ: chuyển hướng hoặc hiển thị thông báo lỗi

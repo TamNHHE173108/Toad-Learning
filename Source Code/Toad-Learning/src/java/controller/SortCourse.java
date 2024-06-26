@@ -45,7 +45,8 @@ public class SortCourse extends HttpServlet {
             List<Course> listC;
             CourseDAO dal = new CourseDAO();
             SearchCourseDAO dao = new SearchCourseDAO();
-            if ("PriceASC".equals(sortPrice)) {
+            if(a.getRole().equals("Admin")){
+                if ("PriceASC".equals(sortPrice)) {
                 listC = dao.sortByPriceASC();
             } else if ("PriceDESC".equals(sortPrice)) {
                 listC = dao.sortByPriceDESC();
@@ -55,6 +56,18 @@ public class SortCourse extends HttpServlet {
             request.setAttribute("listCourse", listC);
             request.setAttribute("txtSort", sortPrice);
             request.getRequestDispatcher("/views/Hungpt/ListCourse.jsp").forward(request, response);
+            } else if (a.getRole().equals("Teacher")){
+                if ("PriceASC".equals(sortPrice)) {
+                listC = dao.sortByPriceASC();
+            } else if ("PriceDESC".equals(sortPrice)) {
+                listC = dao.sortByPriceDESC();
+            } else {
+                listC = dal.listCourses();
+            }
+            request.setAttribute("listC", listC);
+            request.setAttribute("txtSort", sortPrice);
+            request.getRequestDispatcher("/views/Havt/HomePageForLectures/MyCourse.jsp").forward(request, response);
+            }
         } else {
             // Xử lý trường hợp không có đối tượng User trong session
             // Ví dụ: chuyển hướng hoặc hiển thị thông báo lỗi
