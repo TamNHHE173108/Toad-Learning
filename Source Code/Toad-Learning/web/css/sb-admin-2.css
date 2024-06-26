@@ -67,6 +67,7 @@ body {
   color: #858796;
   text-align: left;
   background-color: #fff;
+  zoom: 75%;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -4523,7 +4524,6 @@ input[type="button"].btn-block {
 }
 
 .card-body {
-  flex: 1 1 auto;
   min-height: 1px;
   padding: 1.25rem;
 }
@@ -9812,8 +9812,6 @@ a:focus {
 .container-md,
 .container-lg,
 .container-xl {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
 }
 
 .scroll-to-top {

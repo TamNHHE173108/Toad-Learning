@@ -3,7 +3,7 @@
 <html lang="en">
 
     <head>
-
+        
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -133,7 +133,7 @@
                                 <tbody>
                                     <c:forEach items="${listU}" var ="o">
                                         <tr> 
-                                            <td>${o.name}</td>
+                                            <td><a href="detail?uid=${o.user_id}">${o.name}</td>
                                             <td>${o.gender}</td>
                                             <td>${o.role}</td>
                                             <td>${o.email}</td>
@@ -141,7 +141,7 @@
                                             <td>${o.address}</td>
                                             <td>${o.status}</td>
                                             <td>
-                                                <a href="load?uid=${o.user_id}""><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+                                                <a href="load?uid=${o.user_id}"><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
                                             </td>
                                             <td>
                                                 <a href="delete?uid=${o.user_id}" onclick="return confirm('Are you sure you want to delete ${o.name}');">

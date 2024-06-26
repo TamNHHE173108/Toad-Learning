@@ -360,7 +360,7 @@ public class SearchCourseDAO {
 
     public static void main(String[] args) {
         SearchCourseDAO dao = new SearchCourseDAO();
-        List<Course> list = dao.sortByPriceDESC();
+        List<Course> list = dao.searchCourseLecByName("ASU", "2");
         for (Course o : list) {
             System.out.println(o);
         }
