@@ -109,7 +109,8 @@ public class CourseDAO extends MyDAO {
         String sql = "SELECT TOP 5 CourseID, Title, Topics.TopicName, Courses.Description,Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Courses.Status, Users.UserID, Users.FullName\n"
                 + "FROM Courses\n"
                 + "INNER JOIN Topics ON Courses.TopicID=Topics.TopicID \n "
-                + "INNER JOIN Users ON Users.UserID=Courses.UserID";
+                + "INNER JOIN Users ON Users.UserID=Courses.UserID"
+                + " order by Courses.CreatedDate ASC";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
