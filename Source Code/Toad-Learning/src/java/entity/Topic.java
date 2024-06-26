@@ -9,8 +9,10 @@ package entity;
  * @author laptop lenovo
  */
 public class Topic {
+
     private String topicID;
     private String topicName;
+    private String description;
 
     public Topic() {
     }
@@ -23,7 +25,7 @@ public class Topic {
     public Topic(String topicName) {
         this.topicName = topicName;
     }
-    
+
     public String getTopicID() {
         return topicID;
     }
@@ -39,4 +41,13 @@ public class Topic {
     public void setTopicName(String topicName) {
         this.topicName = topicName;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 }

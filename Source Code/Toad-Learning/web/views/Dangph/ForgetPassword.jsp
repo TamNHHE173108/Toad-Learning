@@ -25,7 +25,7 @@
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">Forgot Your Password?</h1>
                         </div>
-                        <form class="user" action="ForgotPassword" method="post">
+                        <form class="user" action="ForgetPassword" method="post">
                             <%-- Display message or error --%>
                             <c:if test="${not empty requestScope.message}">
                                 <div class="alert alert-success" role="alert">

@@ -5,6 +5,7 @@
 
 package controller;
 
+import dao.UsersDAO;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,14 +14,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 /**
  *
- * @author laptop lenovo
+ * @author My Lap
  */
-@WebServlet(name="Profile", urlPatterns={"/profile"})
-public class Profile extends HttpServlet {
+@WebServlet(name="ChangePassword", urlPatterns={"/ChangePassword"})
+public class ChangePassword extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -37,14 +37,15 @@ public class Profile extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Profile</title>");  
+            out.println("<title>Servlet ChangePassword</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Profile at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet ChangePassword at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     } 
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -57,19 +58,8 @@ public class Profile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        User a = (User)session.getAttribute("user");
-        String role = a.getRole();
-        if(role.equals("Admin")){
-             request.getRequestDispatcher("/views/Hungpt/Profile.jsp").forward(request, response);
-            
-        } else if(role.equals("Teacher")){
-             request.getRequestDispatcher("/views/Hungpt/ProfileLecturer.jsp").forward(request, response);
-            
-        }else if(role.equals("Student")){
-             request.getRequestDispatcher("/views/Dangph/userProfile.jsp").forward(request, response);
-            
-        }
+        processRequest(request, response);
+
     } 
 
     /** 
@@ -80,10 +70,25 @@ public class Profile extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        processRequest(request, response);
+        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String newPassword = request.getParameter("newPassword");
+        String confirmPassword = request.getParameter("confirmPassword");
+        
+        if (newPassword != null && confirmPassword != null && newPassword.equals(confirmPassword)) {
+            // Thay đổi mật khẩu thành công
+            request.setAttribute("mess", "Password changed successfully!");
+            // Có thể thêm logic để lưu mật khẩu mới vào cơ sở dữ liệu ở đây
+            
+        } else {
+            // Xác nhận mật khẩu không khớp
+            request.setAttribute("mess", "Password confirmation does not match!");
+        }
+        
+        // Forward về trang JSP để hiển thị kết quả
+        request.getRequestDispatcher("/views/Dangph/ChangePassword.jsp").forward(request, response);
     }
+
+
 
     /** 
      * Returns a short description of the servlet.

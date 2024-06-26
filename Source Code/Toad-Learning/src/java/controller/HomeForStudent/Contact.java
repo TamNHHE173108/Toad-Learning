@@ -3,9 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller;
+package controller.HomeForStudent;
 
-import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,14 +12,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 /**
  *
- * @author laptop lenovo
+ * @author My Lap
  */
-@WebServlet(name="Profile", urlPatterns={"/profile"})
-public class Profile extends HttpServlet {
+@WebServlet(name="Contact", urlPatterns={"/ContactH"})
+public class Contact extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -37,10 +35,10 @@ public class Profile extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Profile</title>");  
+            out.println("<title>Servlet Contact</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Profile at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet Contact at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,19 +55,7 @@ public class Profile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        User a = (User)session.getAttribute("user");
-        String role = a.getRole();
-        if(role.equals("Admin")){
-             request.getRequestDispatcher("/views/Hungpt/Profile.jsp").forward(request, response);
-            
-        } else if(role.equals("Teacher")){
-             request.getRequestDispatcher("/views/Hungpt/ProfileLecturer.jsp").forward(request, response);
-            
-        }else if(role.equals("Student")){
-             request.getRequestDispatcher("/views/Dangph/userProfile.jsp").forward(request, response);
-            
-        }
+        request.getRequestDispatcher("views/Dangph/HomePageForStudent/contact.jsp").forward(request, response);
     } 
 
     /** 

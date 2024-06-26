@@ -280,5 +280,67 @@ public class UsersDAO extends MyDAO {
         }
         return resetToken;
     }
+        public User checkUserByUsernameAndPass(String username,String password) {
+        String query = "SELECT * FROM Users WHERE Username =? and Password=?";
+        User user = null;
+        try {
+            connection = new DBContext().getConnection();
+            ps = connection.prepareStatement(query);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                user = new User(
+                        rs.getString("UserID"),
+                        rs.getString("Username"),
+                        rs.getString("Password"),
+                        rs.getString("FullName"),
+                        rs.getString("Gender"),
+                        rs.getString("Email"),
+                        rs.getString("Mobile"),
+                        rs.getString("Role"),
+                        rs.getString("Status"),
+                        rs.getString("Address")
+                );
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+            public User ChangPassword(User u) {
+        String query = "Update [dbo].[Users]"
+                + "set Password = ? "
+                + "where Username = ?";
+        User user = null;
+        try {
+            connection = new DBContext().getConnection();
+            ps = connection.prepareStatement(query);
+            ps.setString(1, u.getPassword());
+            ps.setString(2, u.getUsername());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                user = new User(
+                        rs.getString("UserID"),
+                        rs.getString("Username"),
+                        rs.getString("Password"),
+                        rs.getString("FullName"),
+                        rs.getString("Gender"),
+                        rs.getString("Email"),
+                        rs.getString("Mobile"),
+                        rs.getString("Role"),
+                        rs.getString("Status"),
+                        rs.getString("Address")
+                );
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
 
 }

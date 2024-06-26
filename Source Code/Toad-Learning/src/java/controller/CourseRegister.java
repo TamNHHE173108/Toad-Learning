@@ -5,7 +5,11 @@
 
 package controller;
 
-import entity.User;
+import dao.CategoryDAO;
+import dao.CourseDAO;
+import dao.UsersDAO;
+import entity.Category;
+import entity.Course;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,14 +17,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  *
- * @author laptop lenovo
+ * @author My Lap
  */
-@WebServlet(name="Profile", urlPatterns={"/profile"})
-public class Profile extends HttpServlet {
+@WebServlet(name="CourseRegister", urlPatterns={"/CourseRegister"})
+public class CourseRegister extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -37,14 +41,26 @@ public class Profile extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Profile</title>");  
+            out.println("<title>Servlet CourseRegister</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Profile at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet CourseRegister at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     } 
+        private static final long serialVersionUID = 1L;
+    private CourseDAO courseDAO;
+    private UsersDAO userDAO;
+    private CategoryDAO caregoryDAO;
+    
+    public void init() {
+        courseDAO = new CourseDAO();
+        userDAO = new UsersDAO();
+        caregoryDAO = new CategoryDAO();
+    }
+
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -55,23 +71,19 @@ public class Profile extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        User a = (User)session.getAttribute("user");
-        String role = a.getRole();
-        if(role.equals("Admin")){
-             request.getRequestDispatcher("/views/Hungpt/Profile.jsp").forward(request, response);
-            
-        } else if(role.equals("Teacher")){
-             request.getRequestDispatcher("/views/Hungpt/ProfileLecturer.jsp").forward(request, response);
-            
-        }else if(role.equals("Student")){
-             request.getRequestDispatcher("/views/Dangph/userProfile.jsp").forward(request, response);
-            
-        }
-    } 
 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try{
+        List<Category> listCategories = caregoryDAO.listCategories();
+        List<Course> listCourses = courseDAO.listCourses();
+        request.setAttribute("listCategories", listCategories);
+        request.setAttribute("listCourses", listCourses);
+         request.getRequestDispatcher("/views/Dangph/CourseRegister.jsp").forward(request, response);
+        }catch (Exception e){
+            throw new ServletException (e);
+        }
+    }
     /** 
      * Handles the HTTP <code>POST</code> method.
      * @param request servlet request

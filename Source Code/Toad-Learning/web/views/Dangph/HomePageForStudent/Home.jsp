@@ -67,6 +67,39 @@
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
+                        <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                    Categories
+                </button>
+                <ul class="dropdown-menu p-3" aria-labelledby="dropdownMenu2">
+                    <!-- AI Section -->
+                    <h5 class="dropdown-header text-info">Artificial Intelligence (AI)</h5>
+                    <li><button class="dropdown-item btn btn-primary mb-2 text-black-50 text-black-50">Academic Skills for University Success</button></li>
+                    <li><button class="dropdown-item btn btn-primary mb-2 text-black-50">Create and Lead an Ethical Data-Driven Organization</button></li>
+                    <li><button class="dropdown-item btn btn-primary mb-2 text-black-50">Ethics of Artificial Intelligence</button></li>
+                    <li><button class="dropdown-item btn btn-primary mb-2 text-black-50">Python for Everybody</button></li>
+                    <li><button class="dropdown-item btn btn-primary mb-2 text-black-50">Using Databases with Python</button></li>
+                    <!-- CS Section -->
+                    <h5 class="dropdown-header text-info">Computer Science (CS)</h5>
+                    <li><button class="dropdown-item btn btn-primary mb-2 text-black-50">Academic Skills for University Success</button></li>
+                    <li><button class="dropdown-item btn btn-primary mb-2 text-black-50">Computer Communications</button></li>
+                    <li><button class="dropdown-item btn btn-primary mb-2 text-black-50">Python for Everybody</button></li>
+                    <li><button class="dropdown-item btn btn-primary mb-2 text-black-50">Using Databases with Python</button></li>
+                    <!-- IB Section -->
+                    <h5 class="dropdown-header text-info">International Business (IB)</h5>
+                    <li><button class="dropdown-item btn btn-primary mb-2 text-black-50">Academic Skills for University Success</button></li>
+                    <li><button class="dropdown-item btn btn-primary mb-2 text-black-50">Human Resource Management</button></li>
+                    <li><button class="dropdown-item btn btn-primary mb-2 text-black-50">Management Information Systems</button></li>
+                    <li><button class="dropdown-item btn btn-primary mb-2 text-black-50">Social Media Marketing</button></li>
+                    <!-- SE Section -->
+                    <h5 class="dropdown-header text-info">Software Engineering (SE)</h5>
+                    <li><button class="dropdown-item btn btn-primary mb-2 text-black-50">Academic Skills for University Success</button></li>
+                    <li><button class="dropdown-item btn btn-primary mb-2 text-black-50">Software Development Lifecycle</button></li>
+                    <li><button class="dropdown-item btn btn-primary mb-2 text-black-50">Using Databases with Python</button></li>
+                    <li><button class="dropdown-item btn btn-primary mb-2 text-black-50">Using Python to Access Web Data</button></li>
+                    <li><button class="dropdown-item btn btn-primary mb-2 text-black-50">Web Design</button></li>
+                </ul>
+            </div>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav col-lg-12">
                     <form class="d-flex col-lg-6 p-4 search-items" role="search">
@@ -74,10 +107,10 @@
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                     <div class="d-flex col-lg-4 mx-auto align-items-center">
-                        <a href="Home" class="nav-item nav-link active">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="courses.html" class="nav-item nav-link">Courses</a>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="homes" class="nav-item nav-link active">Home</a>
+                        <a href="about" class="nav-item nav-link">About</a>
+                        <a href="cHome" class="nav-item nav-link">Courses</a>
+                        <a href="contact" class="nav-item nav-link">Contact</a>
                         <a href="myCourseStudent" class="nav-item nav-link">My Courses</a>
                     </div>
                     <div class="d-flex align-items-center">
@@ -85,13 +118,13 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${sessionScope.user.username}</span>
+                                <img width="10px"  height="10px" class="img-profile rounded-circle" src="https://e7.pngegg.com/pngimages/84/165/png-clipart-united-states-avatar-organization-information-user-avatar-service-computer-wallpaper-thumbnail.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="profile">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
@@ -268,8 +301,8 @@
                                 <a class="position-relative d-block overflow-hidden" href="">
                                     <img class="img-fluid" src="img/cat-1.jpg" alt="">
                                     <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                        <h5 class="m-0">Web Design</h5>
-                                        <small class="text-primary">49 Courses</small>
+                                        <h5 class="m-0">${topics.get(0).topicID}</h5>
+                                        <small class="text-primary">${topics.get(0).topicName}</small>
                                     </div>
                                 </a>
                             </div>
@@ -277,8 +310,8 @@
                                 <a class="position-relative d-block overflow-hidden" href="">
                                     <img class="img-fluid" src="img/cat-2.jpg" alt="">
                                     <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                        <h5 class="m-0">Graphic Design</h5>
-                                        <small class="text-primary">49 Courses</small>
+                                        <h5 class="m-0">${topics.get(1).topicID}</h5>
+                                        <small class="text-primary">${topics.get(1).topicName}</small>
                                     </div>
                                 </a>
                             </div>
@@ -286,8 +319,8 @@
                                 <a class="position-relative d-block overflow-hidden" href="">
                                     <img class="img-fluid" src="img/cat-3.jpg" alt="">
                                     <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                        <h5 class="m-0">Video Editing</h5>
-                                        <small class="text-primary">49 Courses</small>
+                                        <h5 class="m-0">${topics.get(2).topicID}</h5>
+                                        <small class="text-primary">${topics.get(2).topicName}</small>
                                     </div>
                                 </a>
                             </div>
@@ -297,8 +330,8 @@
                         <a class="position-relative d-block h-100 overflow-hidden" href="">
                             <img class="img-fluid position-absolute w-100 h-100" src="img/cat-4.jpg" alt="" style="object-fit: cover;">
                             <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin:  1px;">
-                                <h5 class="m-0">Online Marketing</h5>
-                                <small class="text-primary">49 Courses</small>
+                                <h5 class="m-0">${topics.get(3).topicID}</h5>
+                                <small class="text-primary">${topics.get(3).topicName}</small>
                             </div>
                         </a>
                     </div>
@@ -323,12 +356,12 @@
                     <div class="position-relative overflow-hidden">
                         <img class="img-fluid" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkU37bC3aUEAg0qYSGMVI6OJoxVxy2r-KrSw&s" alt="">
                         <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                            <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
+                            <a href="coursedetail?course_ID=${courses.get(0).courseID}" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
                             <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
                         </div>
                     </div>
                     <div class="text-center p-4 pb-0">
-                        <h3 class="mb-0">$149.00</h3>
+                        <h3 class="mb-0">$${courses.get(0).salePrice}</h3>
                         <div class="mb-3">
                             <small class="fa fa-star text-primary"></small>
                             <small class="fa fa-star text-primary"></small>
@@ -337,10 +370,10 @@
                             <small class="fa fa-star text-primary"></small>
                             <small>(123)</small>
                         </div>
-                        <h5 class="mb-4">Academic Skills for University Success</h5>
+                        <h5 class="mb-4">${courses.get(0).title}</h5>
                     </div>
                     <div class="d-flex border-top">
-                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>John Doe</small>
+                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>${courses.get(0).userID.name}</small>
                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
                         <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30 Students</small>
                     </div>
@@ -353,12 +386,12 @@
                     <div class="position-relative overflow-hidden">
                         <img class="img-fluid" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA4SglSeDo3oHtNtHmXf07Qtr-EMDKR3PTjA&s" alt="">
                         <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                            <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
+                            <a href="coursedetail?course_ID=${courses.get(1).courseID}" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
                             <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
                         </div>
                     </div>
                     <div class="text-center p-4 pb-0">
-                        <h3 class="mb-0">$299.00</h3>
+                        <h3 class="mb-0">$${courses.get(1).salePrice}</h3>
                         <div class="mb-3">
                             <small class="fa fa-star text-primary"></small>
                             <small class="fa fa-star text-primary"></small>
@@ -367,10 +400,10 @@
                             <small class="fa fa-star text-primary"></small>
                             <small>(123)</small>
                         </div>
-                        <h5 class="mb-4">Create and Lead an Ethical Data-Driven Organization</h5>
+                        <h5 class="mb-4">${courses.get(1).title}</h5>
                     </div>
                     <div class="d-flex border-top">
-                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>John Doe</small>
+                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>${courses.get(1).userID.name}</small>
                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
                         <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30 Students</small>
                     </div>
@@ -383,12 +416,12 @@
                     <div class="position-relative overflow-hidden">
                         <img class="img-fluid" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThzOpcL1mBQPISd179IhKgraSOSGsr8SA8Ig&s" alt="">
                         <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                            <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
+                            <a href="coursedetail?course_ID=${courses.get(2).courseID}" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
                             <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
                         </div>
                     </div>
                     <div class="text-center p-4 pb-0">
-                        <h3 class="mb-0">$399.00</h3>
+                        <h3 class="mb-0">$${courses.get(2).salePrice}</h3>
                         <div class="mb-3">
                             <small class="fa fa-star text-primary"></small>
                             <small class="fa fa-star text-primary"></small>
@@ -397,10 +430,10 @@
                             <small class="fa fa-star text-primary"></small>
                             <small>(123)</small>
                         </div>
-                        <h5 class="mb-4">Ethics of Artificial Intelligence</h5>
+                        <h5 class="mb-4">${courses.get(2).title}</h5>
                     </div>
                     <div class="d-flex border-top">
-                        <small class="flex-fill text-center border-end py-2"><i class="fa fauser-tie text-primary me-2"></i>John Doe</small>
+                        <small class="flex-fill text-center border-end py-2"><i class="fa fauser-tie text-primary me-2"></i>${courses.get(2).userID.name}</small>
 <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
 <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30 Students</small>
 </div>
@@ -412,12 +445,12 @@
                 <div class="position-relative overflow-hidden">
                     <img class="img-fluid" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3BhyRolVBEFVjaFpWrPCdhVu6JD4eazWEYQ&s" alt="">
                     <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                        <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
+                        <a href="coursedetail?course_ID=${courses.get(3).courseID}" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
                         <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
                     </div>
                 </div>
                 <div class="text-center p-4 pb-0">
-                    <h3 class="mb-0">$199.00</h3>
+                    <h3 class="mb-0">$${courses.get(3).salePrice}</h3>
                     <div class="mb-3">
                         <small class="fa fa-star text-primary"></small>
                         <small class="fa fa-star text-primary"></small>
@@ -426,10 +459,10 @@
                         <small class="fa fa-star text-primary"></small>
                         <small>(123)</small>
                     </div>
-                    <h5 class="mb-4">Using Databases with Python</h5>
+                    <h5 class="mb-4">${courses.get(3).title}</h5>
                 </div>
                 <div class="d-flex border-top">
-                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>John Doe</small>
+                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>${courses.get(3).userID.name}</small>
                     <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
                     <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30 Students</small>
                 </div>
@@ -442,12 +475,12 @@
                 <div class="position-relative overflow-hidden">
                     <img class="img-fluid" src="https://m.media-amazon.com/images/I/81ijZGY8ZOL._AC_UF1000,1000_QL80_.jpg" alt="">
                     <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                        <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
+                        <a href="coursedetail?course_ID=${courses.get(4).courseID}" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
                         <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
                     </div>
                 </div>
                 <div class="text-center p-4 pb-0">
-                    <h3 class="mb-0">$399.00</h3>
+                    <h3 class="mb-0">$${courses.get(4).salePrice}</h3>
                     <div class="mb-3">
                         <small class="fa fa-star text-primary"></small>
                         <small class="fa fa-star text-primary"></small>
@@ -456,10 +489,10 @@
                         <small class="fa fa-star text-primary"></small>
                         <small>(123)</small>
                     </div>
-                    <h5 class="mb-4">Python for Everybody</h5>
+                    <h5 class="mb-4">${courses.get(4).title}</h5>
                 </div>
                 <div class="d-flex border-top">
-                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>John Doe</small>
+                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>${courses.get(4).userID.name}</small>
                     <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
                     <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30 Students</small>
                 </div>
@@ -706,3 +739,5 @@
     </body>
 
 </html>
+
+
