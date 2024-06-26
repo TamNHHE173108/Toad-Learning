@@ -5,13 +5,16 @@
 package controller;
 
 import dao.CourseDAO;
+import dao.GetUserByID;
 import entity.Course;
+import entity.User;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -33,10 +36,19 @@ public class ListCourse extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        CourseDAO dao = new CourseDAO();
-        List<Course> listC = dao.listCourses();
-        request.setAttribute("listCourse", listC);
-        request.getRequestDispatcher("/views/Hungpt/ListCourse.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        User a = (User) session.getAttribute("user");
+        if (a != null) {
+            CourseDAO dal = new CourseDAO();
+            List<Course> listC = dal.listCourses();
+            request.setAttribute("listCourse", listC);
+            request.getRequestDispatcher("/views/Hungpt/ListCourse.jsp").forward(request, response);
+        } else {
+            // Xử lý trường hợp không có đối tượng User trong session
+            // Ví dụ: chuyển hướng hoặc hiển thị thông báo lỗi
+            response.sendRedirect("Login"); // Ví dụ chuyển hướng đến trang đăng nhập
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

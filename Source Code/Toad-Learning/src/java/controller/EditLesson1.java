@@ -4,30 +4,21 @@
  */
 package controller;
 
-import dao.AddCourseDAO;
-import dao.CourseDAO;
-import dao.GetCourseByUID;
-import dao.ListCourseDAO;
-import entity.Course;
-import entity.User;
+import dao.LessonDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.List;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 /**
  *
- * @author Admin
+ * @author lehoa
  */
-@WebServlet(name = "MyCourse", urlPatterns = {"/mycourse"})
-public class MyCourse extends HttpServlet {
+@WebServlet(name = "EditLesson1", urlPatterns = {"/EditLesson1"})
+public class EditLesson1 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,25 +31,18 @@ public class MyCourse extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        User a = (User)session.getAttribute("user");
-        String CID = request.getParameter("id");
-        if (a != null) {
-            String id = a.getUser_id();
-            ListCourseDAO dao = new ListCourseDAO();
-            AddCourseDAO add = new AddCourseDAO();
-            
-            List<Course> list = dao.listCoursesLecture(id);
-            Course course = add.getCourseByID(CID);
-            
-            request.setAttribute("course", course);
-            request.setAttribute("listC", list);
-            
-            request.getRequestDispatcher("/views/Havt/HomePageForLectures/MyCourse.jsp").forward(request, response);
-        } else {
-            // Xử lý trường hợp không có đối tượng User trong session
-            // Ví dụ: chuyển hướng hoặc hiển thị thông báo lỗi
-            response.sendRedirect("Login"); // Ví dụ chuyển hướng đến trang đăng nhập
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet EditLesson1</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet EditLesson1 at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -74,7 +58,20 @@ public class MyCourse extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String lessonID = request.getParameter("lessonID");
+        String courseID = request.getParameter("courseID");
+        String title = request.getParameter("title");
+        String content = request.getParameter("content");
+        String status = request.getParameter("status");
+
+// Creating an instance of LessonDAO
+        LessonDAO dao = new LessonDAO();
+
+// Calling the editLesson method to update the lesson details
+        dao.editLesson(lessonID, courseID, title, content, status);
+
+// Redirecting to the appropriate page after updating the lesson
+        response.sendRedirect("ListLesson?courseID=" + courseID);  // Assuming "listlessons" is the correct redirect path
     }
 
     /**

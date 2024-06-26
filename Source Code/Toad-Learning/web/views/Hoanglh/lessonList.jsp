@@ -19,7 +19,7 @@
             rel="stylesheet">
 
         <!-- Custom styles for this template-->
-        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+        <link href="css/sb-admin-2.css" rel="stylesheet">
 
     </head>
 
@@ -71,7 +71,7 @@
                                                 <a href="EditLesson?courseID=${p.courseID}"><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
                                             </td>
                                             <td>
-                                                <a href="deletecourse?course_ID=${p.courseID}" onclick="return confirm('Are you sure you want to delete ${c.courseID}?');">
+                                                <a href="deleteLesson?lessonID=${p.lessonID}?courseID=${p.courseID}" onclick="return confirm('Are you sure you want to delete ${c.lessonID}?');">
                                                     <i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
                                             </td>
                                         </tr>

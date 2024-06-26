@@ -39,7 +39,7 @@
                         <div id="editNewCourse">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <form action="editcourse" method="post">
+                                    <form action="EditLesson1" method="get">
     <div class="modal-header">						
         <h4 class="modal-title">Edit Lesson</h4>
         <button onclick="window.location.href = 'ListLesson?courseID=${detaillesson.courseID}'" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

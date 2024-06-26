@@ -61,7 +61,7 @@ public class SearchCourseDAO {
         }
         return list;
     }
-    
+
     public List<Course> searchCourseByTopic(String topicname) {
         List<Course> list = new ArrayList<>();
         String sql = "SELECT CourseID, Title, Topics.TopicName, Courses.Description,Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status\n"
@@ -71,7 +71,7 @@ public class SearchCourseDAO {
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1,topicname);
+            ps.setString(1, topicname);
             rs = ps.executeQuery();
             while (rs.next()) {
                 String courseID = rs.getString(1);
@@ -98,7 +98,7 @@ public class SearchCourseDAO {
         }
         return list;
     }
-    
+
     public List<Course> searchCourseByStatus(String statuss) {
         List<Course> list = new ArrayList<>();
         String sql = "SELECT CourseID, Title, Topics.TopicName, Courses.Description,Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status\n"
@@ -108,7 +108,7 @@ public class SearchCourseDAO {
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1,statuss);
+            ps.setString(1, statuss);
             rs = ps.executeQuery();
             while (rs.next()) {
                 String courseID = rs.getString(1);
@@ -135,7 +135,7 @@ public class SearchCourseDAO {
         }
         return list;
     }
-    
+
     public List<Course> sortByPriceASC() {
         List<Course> list = new ArrayList<>();
         String sql = "SELECT CourseID, Title, Topics.TopicName, Courses.Description,Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status\n"
@@ -171,7 +171,7 @@ public class SearchCourseDAO {
         }
         return list;
     }
-    
+
     public List<Course> sortByPriceDESC() {
         List<Course> list = new ArrayList<>();
         String sql = "SELECT CourseID, Title, Topics.TopicName, Courses.Description,Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status\n"
@@ -207,7 +207,7 @@ public class SearchCourseDAO {
         }
         return list;
     }
-    
+
     public List<Course> sortBySalePriceASC() {
         List<Course> list = new ArrayList<>();
         String sql = "SELECT CourseID, Title, Topics.TopicName, Courses.Description,Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status\n"
@@ -243,6 +243,7 @@ public class SearchCourseDAO {
         }
         return list;
     }
+
     public List<Course> sortBySalePriceDESC() {
         List<Course> list = new ArrayList<>();
         String sql = "SELECT CourseID, Title, Topics.TopicName, Courses.Description,Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status\n"
@@ -278,9 +279,88 @@ public class SearchCourseDAO {
         }
         return list;
     }
+
+    public List<Course> searchCourseLecByStatus(String statuss, String userID) {
+        List<Course> list = new ArrayList<>();
+        String sql = "SELECT CourseID, Title, Topics.TopicName, Courses.Description,Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status\n"
+                + "FROM Courses\n"
+                + "INNER JOIN Topics ON Courses.TopicID=Topics.TopicID\n"
+                + "WHERE Status = ? AND UserID= ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, statuss);
+            ps.setString(2, userID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String courseID = rs.getString(1);
+                String title = rs.getString(2);
+                String topicName = rs.getString(3);
+                String description = rs.getString(4);
+                String thumbnail = rs.getString(5);
+                String price = rs.getString(6);
+                String salePrice = rs.getString(7);
+                String createDate = rs.getString(8);
+                String updateDate = rs.getString(9);
+                String status = rs.getString(10);
+                Topic topic = new Topic(topicName);
+
+                Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                list.add(course);
+            }
+        } catch (SQLException e) {
+//            throw e;
+//        } finally {
+//            if (rs != null) rs.close();
+//            if (ps != null) ps.close();
+//            if (conn != null) conn.close();
+        }
+        return list;
+    }
+
+    public List<Course> searchCourseLecByName(String txtC, String userid) {
+        List<Course> list = new ArrayList<>();
+        String sql = "  SELECT CourseID, Title, Topics.TopicName, Courses.Description,Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Status\n"
+                + "                FROM Courses\n"
+                + "                INNER JOIN Topics ON Courses.TopicID=Topics.TopicID\n"
+                + "                WHERE ([CourseID] like ? or [Title] like ?)\n"
+                + "				AND [UserID] = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "%" + txtC + "%");
+            ps.setString(2, "%" + txtC + "%");
+            ps.setString(3, userid);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String courseID = rs.getString(1);
+                String title = rs.getString(2);
+                String topicName = rs.getString(3);
+                String description = rs.getString(4);
+                String thumbnail = rs.getString(5);
+                String price = rs.getString(6);
+                String salePrice = rs.getString(7);
+                String createDate = rs.getString(8);
+                String updateDate = rs.getString(9);
+                String status = rs.getString(10);
+                Topic topic = new Topic(topicName);
+
+                Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                list.add(course);
+            }
+        } catch (SQLException e) {
+//            throw e;
+//        } finally {
+//            if (rs != null) rs.close();
+//            if (ps != null) ps.close();
+//            if (conn != null) conn.close();
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         SearchCourseDAO dao = new SearchCourseDAO();
-        List<Course> list = dao.sortByPriceDESC();
+        List<Course> list = dao.searchCourseLecByName("ASU", "2");
         for (Course o : list) {
             System.out.println(o);
         }

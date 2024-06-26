@@ -5,6 +5,8 @@
 
 package controller;
 
+import dao.GetUserByID;
+import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -30,17 +33,18 @@ public class DashboardLectures extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet DashboardLectures</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet DashboardLectures at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        HttpSession session = request.getSession();
+        User a = (User)session.getAttribute("user");
+        if (a != null) {
+            String id = a.getUser_id();
+            GetUserByID dao = new GetUserByID();
+            User user = dao.getUserByID(id);
+            request.setAttribute("user", user);
+            request.getRequestDispatcher("/views/Havt/HomePageForLectures/Dashboard.jsp").forward(request, response);
+        } else {
+            // Xử lý trường hợp không có đối tượng User trong session
+            // Ví dụ: chuyển hướng hoặc hiển thị thông báo lỗi
+            response.sendRedirect("Login"); // Ví dụ chuyển hướng đến trang đăng nhập
         }
     } 
 
@@ -55,7 +59,7 @@ public class DashboardLectures extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("/views/Havt/HomePageForLectures/Dashboard.jsp").forward(request, response);
+        processRequest(request, response);
     } 
 
     /** 
