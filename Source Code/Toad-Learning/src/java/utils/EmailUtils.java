@@ -23,6 +23,8 @@ public class EmailUtils {
 
     private static final String EMAIL_USERNAME = "dangphhe172554@fpt.edu.vn";
     private static final String EMAIL_PASSWORD = "eqla ccgx tfgm lmuk";
+    
+    public static final String SUBJECT = "TOAD - LEARNING";
 
     public static void sendEmail(String recipientEmail, String subject, String body) {
         // Set up mail server properties

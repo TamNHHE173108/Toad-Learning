@@ -43,4 +43,30 @@ public class MediaDAO extends MyDAO {
         }
         return list;
     }
+
+    public List<Media> findForStudentId(String studentId) {
+        List<Media> list = new ArrayList<>();
+        xSql = """
+               select * from Media m
+               inner join Lessons l on m.LessonID = l.LessonID
+               inner join Courses c on c.CourseID = l.CourseID
+               inner join Histories h on h.CourseID = c.CourseID
+               where h.UserID = ?""";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, studentId);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String MediaID = rs.getString(1);
+                String LessonID = rs.getString(2);
+                String MediaType = rs.getString(3);
+                String MediaPath = rs.getString(4);
+                Media media = new Media(MediaID, LessonID, MediaType, MediaPath);
+                list.add(media);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

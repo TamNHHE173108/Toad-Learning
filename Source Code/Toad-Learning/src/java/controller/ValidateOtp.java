@@ -4,6 +4,8 @@
  */
 package controller;
 
+import dao.UsersDAO;
+import entity.User;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,38 +23,33 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet(name = "ValidateOtp", urlPatterns = {"/ValidateOtp"})
 public class ValidateOtp extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
-
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String value = request.getParameter("otp");
-        HttpSession session = request.getSession();
-        String otp = (String) session.getAttribute("otp");
-
-        RequestDispatcher dispatcher = null;
-
-        if (value.equals(otp)) {
-            request.setAttribute("status", "success");
-            dispatcher = request.getRequestDispatcher("views/Dangph/newPassword.jsp");
-            dispatcher.forward(request, response);
-
-        } else {
-            request.setAttribute("message", "wrong otp");
-
-            dispatcher = request.getRequestDispatcher("views/Dangph/EnterOtp.jsp");
-            dispatcher.forward(request, response);
-
-        }
-
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        UsersDAO dbUser = new UsersDAO();
+        String value = request.getParameter("otp");
+        String email = request.getParameter("email");
+        User user = dbUser.checkUserByEmail(email);
+
+        if (user != null) {
+            if (user.getOtp().equals(value)) {
+                request.setAttribute("email", email);
+                request.getRequestDispatcher("views/Dangph/resetPassword.jsp").forward(request, response);
+            } else {
+                request.setAttribute("message", "Wrong OTP");
+                request.setAttribute("email", email);
+                request.getRequestDispatcher("views/Dangph/EnterOtp.jsp").forward(request, response);
+            }
+        } else {
+            request.setAttribute("message", "Please send forget password again");
+            request.getRequestDispatcher("views/Dangph/EnterOtp.jsp").forward(request, response);
+        }
     }
 
 }

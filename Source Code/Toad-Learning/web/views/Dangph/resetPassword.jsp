@@ -40,7 +40,7 @@
                         </c:if>
 
                         <form class="user" action="ResetPassword" method="post">
-                            <input type="hidden" name="token" value="${param.token}">
+                            <input type="hidden" name="email" value="${email}">
 
                             <div class="form-group">
                                 <input type="password" class="form-control form-control-user"

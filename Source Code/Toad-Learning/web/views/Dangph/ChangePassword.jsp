@@ -26,12 +26,12 @@
                             <h1 class="h4 text-gray-900 mb-4">Change Password</h1>
                         </div>
                         <h3 style="color: red">${requestScope.mess}</h3>
-                        <form class="user" action="ChangePassword">
+                        <form class="user" action="ChangePassword" method="post">
 
                             </c:if>
 
                             <div class="form-group">
-                                <input type="oldpassword" class="form-control form-control-user"
+                                <input type="password" class="form-control form-control-user"
                                        id="oldPassword" name="oldPassword" placeholder="Enter Old Password" required>
                                 <input type="hidden" name ="user" value="${sessionScope.User.username}">
                             </div>

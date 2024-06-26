@@ -134,7 +134,7 @@ public class UsersDAO extends MyDAO {
     // Save reset token
     public void saveResetToken(String email, String token, LocalDateTime expiryDate) {
         String query = "INSERT INTO PasswordResetToken (Email, Token, ExpiryDate) VALUES (?, ?, ?)";
-        try  {
+        try {
             ps = connection.prepareStatement(query);
             ps.setString(1, email);
             ps.setString(2, token);
@@ -252,6 +252,7 @@ public class UsersDAO extends MyDAO {
                         rs.getString("Status"),
                         rs.getString("Address")
                 );
+                user.setOtp(rs.getString("otp"));
             }
             rs.close();
             ps.close();
@@ -259,6 +260,20 @@ public class UsersDAO extends MyDAO {
             e.printStackTrace();
         }
         return user;
+    }
+
+    public boolean updateOTP(String email, String otp) {
+        String query = "UPDATE Users SET otp = ? WHERE Email = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, otp);
+            ps.setString(2, email);
+            int updated = ps.executeUpdate();
+            return updated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public PasswordResetToken getResetToken(String token) {
@@ -280,7 +295,8 @@ public class UsersDAO extends MyDAO {
         }
         return resetToken;
     }
-        public User checkUserByUsernameAndPass(String username,String password) {
+
+    public User checkUserByUsernameAndPass(String username, String password) {
         String query = "SELECT * FROM Users WHERE Username =? and Password=?";
         User user = null;
         try {
@@ -310,7 +326,8 @@ public class UsersDAO extends MyDAO {
         }
         return user;
     }
-            public User ChangPassword(User u) {
+
+    public User ChangPassword(User u) {
         String query = "Update [dbo].[Users]"
                 + "set Password = ? "
                 + "where Username = ?";

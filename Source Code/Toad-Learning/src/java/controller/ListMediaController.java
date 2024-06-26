@@ -6,6 +6,7 @@ package controller;
 
 import dao.MediaDAO;
 import entity.Media;
+import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -26,10 +27,15 @@ public class ListMediaController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         MediaDAO dbMedia = new MediaDAO();
-        List<Media> medias = dbMedia.findAll();
-        
-        request.setAttribute("medias", medias);
-        request.getRequestDispatcher("/views/Dangph/listMedia").forward(request, response);
+        User user = (User) request.getSession().getAttribute("user");
+        if (user == null) {
+            response.sendRedirect("Login");
+        } else {
+            List<Media> medias = dbMedia.findForStudentId(user.getUser_id());
+
+            request.setAttribute("medias", medias);
+            request.getRequestDispatcher("/views/Dangph/listMedia.jsp").forward(request, response);
+        }
     }
 
     @Override

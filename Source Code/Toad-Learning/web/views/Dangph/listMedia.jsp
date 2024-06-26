@@ -27,7 +27,7 @@
     <body id="page-top">
         <!-- Page Wrapper -->
         <div id="wrapper">
-            <%@include file ="../Hoanglh/SideBar.jsp" %>
+            <%@include file ="SideBarStudent.jsp" %>
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
@@ -58,14 +58,11 @@
                                 <tbody>
                                     <c:forEach items="${medias}" var="m">
                                         <tr>
-                                            <td>${p.mediaID}</td>
-                                            <td>${p.lessonID}</td>
-                                            <td>${p.mediaType}</td>
-                                            <td>${p.mediaPath}</td>
+                                            <td>${m.mediaID}</td>
+                                            <td>${m.lessonID}</td>
+                                            <td>${m.mediaType}</td>
                                             <td>
-                                                <a href="#"><button class="btn btn-primary">Join</button></a>
-                                                <a href="#"><button class="btn btn-primary">Update</button></a>
-                                                <a href="#"><button class="btn btn-primary">Delete</button></a>
+                                                <a href="${m.mediaPath}"><button class="btn btn-primary">Join</button></a>
                                             </td>
                                         </tr>
                                     </c:forEach>
