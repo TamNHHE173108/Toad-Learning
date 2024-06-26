@@ -4,22 +4,23 @@
  */
 package controller;
 
-import dao.CourseDAO;
-import entity.Course;
+import dao.AddCourseDAO;
+import dao.AddUserDAO;
+import dao.ListCourseDAO;
+import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class CourseDetail extends HttpServlet {
+public class AddCourse extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,12 +34,30 @@ public class CourseDetail extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String courseID = request.getParameter("courseID");
-        CourseDAO dao = new CourseDAO();
-        Course course = dao.getCourseByID(courseID);   
-        request.setAttribute("detailcourse", course);
-        request.getRequestDispatcher("/views/Havt/HomePageForLectures/CourseDetail.jsp").forward(request, response);
-
+        HttpSession session = request.getSession();
+        User a = (User) session.getAttribute("user");
+        if (a != null) {
+            String courseID = request.getParameter("id");
+            String courseName = request.getParameter("name");
+            String thumbnail = request.getParameter("thumb");
+            String topicID = request.getParameter("topic name");
+            String description = request.getParameter("description");
+            String createdDate = request.getParameter("create");
+            String updatedDate = request.getParameter("update");
+            String price = request.getParameter("price");
+            String salePrice = request.getParameter("sale price");
+            String status = request.getParameter("status");
+            
+            
+            ListCourseDAO dao = new ListCourseDAO();
+            dao.addCourse(courseID, courseName, thumbnail, topicID, description, createdDate, updatedDate, price, salePrice, status, a.getUser_id());
+            
+            response.sendRedirect("mycourse");
+        } else {
+            // Xử lý trường hợp không có đối tượng User trong session
+            // Ví dụ: chuyển hướng hoặc hiển thị thông báo lỗi
+            response.sendRedirect("Login"); // Ví dụ chuyển hướng đến trang đăng nhập
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
