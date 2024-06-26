@@ -63,18 +63,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
     User user = (User) session.getAttribute("user");
     
     if (user != null) {
-        String role = user.getRole();
-        
-        if (role.equals("Admin")) {
             request.getRequestDispatcher("/views/Hungpt/Profile.jsp").forward(request, response);
-        } else if (role.equals("Teacher")) {
-            request.getRequestDispatcher("/views/Hungpt/ProfileLecturer.jsp").forward(request, response);
-        } else if (role.equals("Student")) {
-            request.getRequestDispatcher("/views/Dangph/userProfile.jsp").forward(request, response);
-        } else {
-            // Handle unexpected role if needed
-            response.sendRedirect("Login"); // Redirect to login if role is not recognized
-        }
     } else {
         // Handle case where user object is not found in session
         response.sendRedirect("Login"); // Redirect to login if user is not logged in
