@@ -65,7 +65,7 @@
                                             <td>${p.status}</td>
 
                                             <td>
-                                                <a href="#"><button class="btn btn-primary">Join</button></a>
+                                                <a href="listMedia"><button class="btn btn-primary">Join</button></a>
                                             </td>
                                         </tr>
                                     </c:forEach>
