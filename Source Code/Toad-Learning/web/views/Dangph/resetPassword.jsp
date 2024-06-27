@@ -54,7 +54,7 @@
                         </form>
                         <hr>
                         <div class="text-center">
-                            <a class="small" href="login.jsp">Back to Login</a>
+                            <a class="small" href="Login">Back to Login</a>
                         </div>
                     </div>
                 </div>
