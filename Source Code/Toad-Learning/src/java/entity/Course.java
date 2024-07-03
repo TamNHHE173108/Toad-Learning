@@ -5,6 +5,7 @@
 package entity;
 
 public class Course {
+
     private String courseID;
     private String title;
     private Topic topicID;
@@ -15,11 +16,12 @@ public class Course {
     private String price;
     private String salePrice;
     private String status;
+    private User userID;
 
     public Course() {
     }
 
-    public Course(String courseID, String title, Topic topicID, String description, String thumbnail,String price,String salePrice, String createDate, String updateDate, String status) {
+    public Course(String courseID, String title, Topic topicID, String description, String thumbnail, String price, String salePrice, String createDate, String updateDate, String status) {
         this.courseID = courseID;
         this.title = title;
         this.topicID = topicID;
@@ -32,7 +34,6 @@ public class Course {
         this.status = status;
     }
 
-    
     public String getCourseID() {
         return courseID;
     }
@@ -72,7 +73,6 @@ public class Course {
     public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
     }
-
 
     public String getStatus() {
         return status;
@@ -118,8 +118,13 @@ public class Course {
     public String toString() {
         return "Course{" + "courseID=" + courseID + ", title=" + title + ", topicID=" + topicID + ", description=" + description + ", createDate=" + createDate + ", updateDate=" + updateDate + ", thumbnail=" + thumbnail + ", price=" + price + ", salePrice=" + salePrice + ", status=" + status + '}';
     }
-    
-    
-    
-}
 
+    public User getUserID() {
+        return userID;
+    }
+
+    public void setUserID(User UserID) {
+        this.userID = UserID;
+    }
+
+}

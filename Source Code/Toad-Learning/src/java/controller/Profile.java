@@ -56,26 +56,19 @@ public class Profile extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        User a = (User) session.getAttribute("user");
-        if (a != null) {
-            String role = a.getRole();
-            if (role.equals("Admin")) {
-                request.getRequestDispatcher("/views/Hungpt/Profile.jsp").forward(request, response);
-
-            } else if (role.equals("Teacher")) {
-                request.getRequestDispatcher("/views/Hungpt/ProfileLecturer.jsp").forward(request, response);
-
-            }
-        } else {
-            // Xử lý trường hợp không có đối tượng User trong session
-            // Ví dụ: chuyển hướng hoặc hiển thị thông báo lỗi
-            response.sendRedirect("Login"); // Ví dụ chuyển hướng đến trang đăng nhập
-        }
+   @Override
+protected void doGet(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    HttpSession session = request.getSession();
+    User user = (User) session.getAttribute("user");
+    
+    if (user != null) {
+            request.getRequestDispatcher("/views/Hungpt/Profile.jsp").forward(request, response);
+    } else {
+        // Handle case where user object is not found in session
+        response.sendRedirect("Login"); // Redirect to login if user is not logged in
     }
+}
 
     /**
      * Handles the HTTP <code>POST</code> method.

@@ -28,7 +28,7 @@ public class AddNewCourse extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
@@ -50,15 +50,10 @@ public class AddNewCourse extends HttpServlet {
                 // Convert necessary fields
                 double price = Double.parseDouble(priceStr);
                 double salePrice = (salePriceStr != null && !salePriceStr.isEmpty()) ? Double.parseDouble(salePriceStr) : 0.0;
-                
-                // Parse dates
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
-                LocalDateTime createdDate = LocalDateTime.parse(createdDateStr, formatter);
-                LocalDateTime updatedDate = LocalDateTime.parse(updatedDateStr, formatter);
 
                 // Perform business logic (e.g., database operations)
                 CourseDAO dbCourse = new CourseDAO();
-                dbCourse.addCourse(courseName, topicID, description, thumbnailStr, priceStr, salePriceStr, status, courseID, createdDate.toString(), updatedDate.toString(), user.getUser_id());
+                dbCourse.addCourse(courseName, topicID, description, thumbnailStr, priceStr, salePriceStr, status, courseID, createdDateStr, updatedDateStr, user.getUser_id());
 
                 response.setContentType("text/html;charset=UTF-8");
                 try (PrintWriter out = response.getWriter()) {
@@ -86,14 +81,17 @@ public class AddNewCourse extends HttpServlet {
                 }
 
             } catch (NumberFormatException e) {
+
+                e.printStackTrace();
                 request.setAttribute("error", "Invalid number format.");
                 request.getRequestDispatcher("/Toad-Learning/views/Dangph/addCourses.jsp").forward(request, response);
             } catch (Exception e) {
+                e.printStackTrace();
                 request.setAttribute("error", "An error occurred while adding the course.");
                 request.getRequestDispatcher("/Toad-Learning/views/Dangph/addCourses.jsp").forward(request, response);
             }
         } else {
-            response.sendRedirect("login");
+            response.sendRedirect("Login");
         }
     }
 

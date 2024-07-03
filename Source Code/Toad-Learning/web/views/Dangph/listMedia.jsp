@@ -10,7 +10,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title> List Lesson</title>
+        <title> List Media</title>
 
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,7 +19,7 @@
             rel="stylesheet">
 
         <!-- Custom styles for this template-->
-        <link href="css/sb-admin-2.css" rel="stylesheet">
+        <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
     </head>
 
@@ -27,11 +27,11 @@
     <body id="page-top">
         <!-- Page Wrapper -->
         <div id="wrapper">
-            <%@include file ="SideBar.jsp" %>
+            <%@include file ="SideBarStudent.jsp" %>
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">List Course</h1> 
+                <h1 class="h3 mb-2 text-gray-800">List Media</h1> 
 
                 <!-- DataTales -->
                 <div class="card shadow mb-4">
@@ -39,47 +39,35 @@
                         <div class="box">
                             <div class="container-2">
                                 <span class="icon"><i class="fa fa-search"></i></span>
-                                <input type="search" id="search" style = "margin-bottom: 5px" placeholder="Search..." />
+                                <input id="searchInput" name="txtC" type="text" style = "margin-bottom: 5px" placeholder="Search..." onkeyup="searchTable()"/>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <a href="#addNewLesson"  class="btn btn-success" data-toggle="modal"><i class="material-icons"></i> <span>Add New Lesson</span></a>					
-                        </div>
+
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>LessonID</th>
-                                        <th>Title</th>
-                                        <th>Content</th>
-                                        <th>Status</th>
-                                        <td>Edit</td>
-                                        <td>Delete</td>
+                                        <th>Media ID</th>
+                                        <th>Lesson ID</th>
+                                        <th>Media Type</th>
+                                        <td>Action</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${listP}" var="p">
+                                    <c:forEach items="${medias}" var="m">
                                         <tr>
-                                            <td>${p.lessonID}</td>
-                                            <td>${p.title}</td>
-                                            <td>${p.content}</td>
-                                            <td>${p.status}</td>
-
+                                            <td>${m.mediaID}</td>
+                                            <td>${m.lessonID}</td>
+                                            <td>${m.mediaType}</td>
                                             <td>
-                                                <a href="EditLesson?courseID=${p.courseID}"><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
-                                            </td>
-                                            <td>
-                                                <a href="deleteLesson?lessonID=${p.lessonID}?courseID=${p.courseID}" onclick="return confirm('Are you sure you want to delete ${c.lessonID}?');">
-                                                    <i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                                                <a href="${m.mediaPath}"><button class="btn btn-primary">Join</button></a>
                                             </td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
                             </table>
-
-
                         </div>
                     </div>
                 </div>
@@ -89,13 +77,13 @@
                     <div class="modal-content">
                         <form action="AddLesson" method="post">
                             <div class="modal-header">						
-                                <h4 class="modal-title">Add Lesson</h4>
+                                <h4 class="modal-title">Add Media</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             </div>
                             <div class="modal-body">	
                                 <div class="form-group">
 
-                                    <label>Add new lesson:${courseID}</label>
+                                    <label>Add new media: ${courseID}</label>
 
                                 </div>
                                 <input value="${courseID}" name="courseID" type="text" class="form-control" hidden>
@@ -173,7 +161,29 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
+    <script>
+                                    function searchTable() {
+                                        var input, filter, table, tr, td, i, txtValue;
+                                        input = document.getElementById("searchInput");
+                                        filter = input.value.toLowerCase();
+                                        table = document.getElementById("dataTable");
+                                        tr = table.getElementsByTagName("tr");
 
+                                        for (i = 1; i < tr.length; i++) {
+                                            tr[i].style.display = "none";
+                                            td = tr[i].getElementsByTagName("td");
+                                            for (var j = 0; j < td.length; j++) {
+                                                if (td[j]) {
+                                                    txtValue = td[j].textContent || td[j].innerText;
+                                                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                                                        tr[i].style.display = "";
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+    </script>
 
 </body>
 

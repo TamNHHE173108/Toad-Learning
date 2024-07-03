@@ -7,6 +7,7 @@ package dao;
 import dal.DBContext;
 import entity.Course;
 import entity.Topic;
+import entity.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -101,6 +102,46 @@ public class CourseDAO extends MyDAO {
             ps.executeUpdate();
         } catch (Exception e) {
         }
+    }
+
+    public List<Course> listTop5Courses() {
+        List<Course> list = new ArrayList<>();
+        String sql = "SELECT TOP 5 CourseID, Title, Topics.TopicName, Courses.Description,Thumbnail, Price, SalePrice, CreatedDate, UpdatedDate, Courses.Status, Users.UserID, Users.FullName\n"
+                + "FROM Courses\n"
+                + "INNER JOIN Topics ON Courses.TopicID=Topics.TopicID \n "
+                + "INNER JOIN Users ON Users.UserID=Courses.UserID"
+                + " order by Courses.CreatedDate ASC";
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String courseID = rs.getString(1);
+                String title = rs.getString(2);
+                String topicName = rs.getString(3);
+                String description = rs.getString(4);
+                String thumbnail = rs.getString(5);
+                String price = rs.getString(6);
+                String salePrice = rs.getString(7);
+                String createDate = rs.getString(8);
+                String updateDate = rs.getString(9);
+                String status = rs.getString(10);
+                User userID = new User();
+                userID.setUser_id(rs.getString("UserID"));
+                userID.setName(rs.getString("FullName"));
+                Topic topic = new Topic(topicName);
+
+                Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                course.setUserID(userID);
+                list.add(course);
+            }
+        } catch (SQLException e) {
+//            throw e;
+//        } finally {
+//            if (rs != null) rs.close();
+//            if (ps != null) ps.close();
+//            if (conn != null) conn.close();
+        }
+        return list;
     }
 
     public Course getCourseByID(String course_ID) {

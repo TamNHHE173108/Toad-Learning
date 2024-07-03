@@ -1,9 +1,8 @@
 <%-- 
-    Document   : resetPassword
-    Created on : Jun 18, 2024, 10:33:31 PM
+    Document   : ChangePassword
+    Created on : Jun 23, 2024, 1:24:26 PM
     Author     : My Lap
 --%>
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,13 +10,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reset Password</title>
+    <title>Change Password</title>
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 </head>
-<body>
-
+<body class="bg-gradient-primary">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-6">
@@ -25,44 +23,38 @@
                 <div class="card-body p-0">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Reset Your Password</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Change Password</h1>
                         </div>
-                        <%-- Display message or error --%>
-                        <c:if test="${not empty requestScope.message}">
-                            <div class="alert alert-success" role="alert">
-                                ${requestScope.message}
-                            </div>
-                        </c:if>
-                        <c:if test="${not empty requestScope.error}">
-                            <div class="alert alert-danger" role="alert">
-                                ${requestScope.error}
-                            </div>
-                        </c:if>
+                        <h3 style="color: red">${requestScope.mess}</h3>
+                        <form class="user" action="ChangePassword" method="post">
 
-                        <form class="user" action="ResetPassword" method="post">
-                            <input type="hidden" name="email" value="${email}">
+                            </c:if>
 
                             <div class="form-group">
                                 <input type="password" class="form-control form-control-user"
-                                       id="password" name="password" placeholder="New Password" required>
+                                       id="oldPassword" name="oldPassword" placeholder="Enter Old Password" required>
+                                <input type="hidden" name ="user" value="${sessionScope.User.username}">
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control form-control-user"
-                                       id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+                                       id="newPassword" name="newPassword" placeholder="Enter New Password" required>
                             </div>
-                            <input type="submit" value="Reset Password" class="btn btn-primary btn-user btn-block">
+                            <div class="form-group">
+                                <input type="password" class="form-control form-control-user"
+                                       id="confirmPassword" name="confirmPassword" placeholder="Confirm New Password" required>
+                            </div>
+                            <input type="submit" value="Change Password" class="btn btn-primary btn-user btn-block">
                         </form>
                         <hr>
                         <div class="text-center">
-                            <a class="small" href="Login">Back to Login</a>
+                            <a class="small" href="homes">Home</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
+</div>       
 
 </body>
 </html>

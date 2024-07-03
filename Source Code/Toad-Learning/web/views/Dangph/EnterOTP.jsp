@@ -55,8 +55,8 @@
 											value="Reset Password" type="submit">
 									</div>
 
-									<input type="hidden" class="hide" name="token" id="token"
-										value="">
+									<input type="hidden" class="hide" name="email" id="token"
+										value="${email}">
 								</form>
 
 							</div>
