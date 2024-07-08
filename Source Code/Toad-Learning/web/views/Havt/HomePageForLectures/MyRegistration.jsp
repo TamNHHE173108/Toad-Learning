@@ -69,21 +69,61 @@
                                             </div>
                                         </th>
                                         <th><div class="form-control border-0 font-weight-bold">course ID</div></th>
-                                        <th><div class="form-control border-0 font-weight-bold">Total Cost</div></th>
-                                        <th><div class="form-control border-0 font-weight-bold">Status</div></th>
+                                        <th>
+                                            <form action="sortregister" method="post" class="form-inline">
+                                                <div class="form-group">
+                                                    <select name="sortPrice" id="sortPrice" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
+                                                        <option value="All">Total Cost</option>
+                                                        <option value="PriceASC">ASC</option>
+                                                        <option value="PriceDESC">DESC</option>
+                                                    </select>
+                                                </div>      
+                                            </form>
+                                        </th>
+                                        <th>
+                                            <form action="searchregisterstatus" method="post" class="form-inline">
+
+                                                <select name="status" id="status" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
+                                                    <option value="All">Status</option>
+                                                    <option value="Confirmed" >Confirmed</option>
+                                                    <option value="Pending" >Pending</option>
+                                                </select>
+
+                                            </form>
+                                        </th>
                                         <th><div class="form-control border-0 font-weight-bold">Valid From</div></th>
                                         <th><div class="form-control border-0 font-weight-bold">Valid To</div></th>
                                         <th><div class="form-control border-0 font-weight-bold">Update By</div></th>
                                         <th><div class="form-control border-0 font-weight-bold">Registration Time</div></th>
                                         <th><div class="form-control border-0 font-weight-bold">Score ID</div></th>
-                                        <th><div class="form-control border-0 font-weight-bold">Score</div></th>
-                                        <th><div class="form-control border-0 font-weight-bold">Quiz Status</div></th>
+                                        <th>
+                                            <form action="sortscore" method="post" class="form-inline">
+                                                <div class="form-group">
+                                                    <select name="sortScore" id="sortScore" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
+                                                        <option value="All">Score</option>
+                                                        <option value="ScoreASC">ASC</option>
+                                                        <option value="ScoreDESC">DESC</option>
+                                                    </select>
+                                                </div>      
+                                            </form>
+                                        </th>
+                                        <th>
+                                            <form action="searchregisterquizstatus" method="post" class="form-inline">
+
+                                                <select name="quizStatus" id="quizStatus" class="form-control border-0 font-weight-bold" onchange="this.form.submit()">
+                                                    <option value="All">Quiz Status</option>
+                                                    <option value="Passed" >Passed</option>
+                                                    <option value="NotPassed" >Not Passed</option>
+                                                </select>
+
+                                            </form>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <c:forEach items="${listR}" var ="c">
                                         <tr> 
-                                            <td>${c.userID.username}</td>
+                                            <td><a href="registerdetail?userID=${c.userID.username}">${c.userID.username}</a></td>
                                             <td>${c.courseID}</td>
                                             <td>${c.totalCost}</td>
                                             <td>${c.status}</td>
