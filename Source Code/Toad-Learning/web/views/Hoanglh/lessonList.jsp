@@ -66,9 +66,15 @@
                                             <td>${p.title}</td>
                                             <td>${p.content}</td>
                                             <td>${p.status}</td>
+<<<<<<< HEAD
+                                            
+                                             <td>
+                                                <a href="EditLesson?lesson_ID=${p.lessonID}"><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+=======
 
                                             <td>
                                                 <a href="EditLesson?courseID=${p.courseID}"><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+>>>>>>> a4c3615bcdac81c2bc4d7bd12e7b97f11593ccee
                                             </td>
                                             <td>
                                                 <a href="deleteLesson?lessonID=${p.lessonID}?courseID=${p.courseID}" onclick="return confirm('Are you sure you want to delete ${c.lessonID}?');">

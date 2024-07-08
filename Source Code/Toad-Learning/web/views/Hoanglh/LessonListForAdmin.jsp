@@ -43,9 +43,7 @@
                                 <input type="search" id="search" style = "margin-bottom: 5px" placeholder="Search..." />
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <a href="#addNewLesson"  class="btn btn-success" data-toggle="modal"><i class="material-icons"></i> <span>Add New Lesson</span></a>					
-                        </div>
+                       
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -56,7 +54,7 @@
                                         <th>Title</th>
                                         <th>Content</th>
                                         <th>Status</th>
-                                        <td>Edit</td>
+                                        
                                         <td>Delete</td>
                                     </tr>
                                 </thead>
@@ -68,9 +66,7 @@
                                             <td>${p.content}</td>
                                             <td>${p.status}</td>
 
-                                             <td>
-                                                <a href="EditLesson?courseID=${p.courseID}"><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
-                                            </td>
+                                             
                                             <td>
                                                 <a href="deleteLesson?lessonID=${p.lessonID}&courseID=${p.courseID}" onclick="return confirm('Are you sure you want to delete ${c.lessonID}?');">
                                                     <i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
@@ -86,53 +82,7 @@
                     </div>
                 </div>
             </div>
-            <div id="addNewLesson" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <form action="AddLesson" method="post">
-                            <div class="modal-header">						
-                                <h4 class="modal-title">Add Lesson</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            </div>
-                            <div class="modal-body">	
-                                <div class="form-group">
-
-                                    <label>Add new lesson:${courseID}</label>
-
-                                </div>
-                                <input value="${courseID}" name="courseID" type="text" class="form-control" hidden>
-                                <div class="form-group">
-                                    <label>LessonID</label>
-                                    <input name="lessonID" type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Tittle</label>
-                                    <input name="title" type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Content</label>
-                                    <input name="content" type="text" class="form-control" required>
-                                </div>
-
-
-
-                                <div class="form-group">
-                                    <label>Status</label>
-                                    <select name="status" class="form-select" aria-label="Default select example">                              
-                                        <option value="Active">Active</option>
-                                        <option value="Inactive">Inactive</option>
-                                    </select>
-                                </div>
-
-                            </div>
-                            <div class="modal-footer">
-                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                <input type="submit" class="btn btn-success" value="Add">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            
 
             <!-- Content Row -->
             <!-- End of Main Content -->
