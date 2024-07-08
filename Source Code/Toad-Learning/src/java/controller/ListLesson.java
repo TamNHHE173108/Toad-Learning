@@ -65,6 +65,12 @@ public class ListLesson extends HttpServlet {
         String stringcourseID = request.getParameter("courseID");
         HttpSession session = request.getSession();
         User a = (User)session.getAttribute("user");
+                // Check if the user is null
+        if (a == null) {
+            // Redirect to login page or show an error message
+            response.sendRedirect("Login"); // Assuming login.jsp is the login page
+            return;
+        }
          
         LessonDAO ls = new LessonDAO();
 
@@ -79,6 +85,9 @@ public class ListLesson extends HttpServlet {
             
         } else if(role.equals("Teacher")){
              request.getRequestDispatcher("/views/Hoanglh/lessonList.jsp").forward(request, response);
+            
+        }else if(role.equals("Student")){
+             request.getRequestDispatcher("/views/Dangph/lessonList.jsp").forward(request, response);
             
         }
 

@@ -51,7 +51,7 @@
                 <div id="collapseStu" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Registors</h6>
-                        <a class="collapse-item" href="myregistor">My Registors</a>
+                        <a class="collapse-item" href="listregistration">My Registors</a>
                         <a class="collapse-item" href="#">Registors Profile </a>
                     </div>
                 </div>
@@ -285,9 +285,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Welcome ${user.name}</span>
                                 <img class="img-profile rounded-circle"
-                                     src="img/undraw_profile.svg">
+                                     src="img/course-3.jpg" alt="avatar">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

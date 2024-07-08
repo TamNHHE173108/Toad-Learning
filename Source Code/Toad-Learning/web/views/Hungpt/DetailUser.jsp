@@ -10,7 +10,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="./img/logo/logo2.png" type="image/png">
-        <title>Course - MyProfile</title>
+        <title>Course - DetailUser</title>
 
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -26,11 +26,10 @@
     <body id="page-top">
         <!-- Page Wrapper -->
         <div id="wrapper">
-            <%@include file ="/views/Havt/HomePageForLectures/SideBar.jsp" %>
+            <%@include file ="adminNavbarSidebar.jsp" %>
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <h1 class="h3 mb-2 text-gray-800">My Profile</h1> 
-
+                <h1 class="h3 mb-2 text-gray-800">Detail User</h1> 
                 <!-- DataTales -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
@@ -39,11 +38,11 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex flex-column align-items-center text-center">
-                                            <img src="img/admin.jpg" alt="Admin" class="rounded-circle" width="200">
+                                            <img src="img/admin.jpg" alt="Admin" class="rounded-circle" width="260">
                                             <div class="mt-3">
-                                                <h4>${user.name}</h4>
-                                                <p class="text-secondary mb-1">${user.role}</p>
-                                                <p class="text-muted font-size-sm">${user.address}</p>
+                                                <h4>${detail.name}</h4>
+                                                <p class="text-secondary mb-1">${detail.role}</p>
+                                                <p class="text-muted font-size-sm">${detail.address}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -58,7 +57,7 @@
                                                 <h6 class="mb-0">Full Name</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                ${user.name}
+                                                ${detail.name}
                                             </div>
                                         </div>
                                         <hr>
@@ -67,7 +66,7 @@
                                                 <h6 class="mb-0">Gender</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                ${user.gender}
+                                                ${detail.gender}
                                             </div>
                                         </div>
                                         <hr>
@@ -76,7 +75,7 @@
                                                 <h6 class="mb-0">Email</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                ${user.email}
+                                                ${detail.email}
                                             </div>
                                         </div>
                                         <hr>
@@ -85,7 +84,7 @@
                                                 <h6 class="mb-0">Phone</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                ${user.mobile}
+                                                ${detail.mobile}
                                             </div>
                                         </div>
                                         <hr>
@@ -94,15 +93,24 @@
                                                 <h6 class="mb-0">Address</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                ${user.address}
+                                                ${detail.address}
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="row">
-                                            <div class="col-sm-12">
-                                                <a class="btn btn-info " target="__blank" href="editprofile">Edit</a>
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Status</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                ${detail.status}
                                             </div>
                                         </div>
+                                        <hr>
+                                        <div class="row">
+                                                <input onclick="window.location.href = 'listuser'" type="button" class="btn btn-default"  value="Back">
+                                                <a class="btn btn-success " href="load?uid=${detail.user_id}">Edit</a>
+                                        </div>
+
                                     </div>
                                 </div>
                                 <!-- End of Content Wrapper -->

@@ -26,7 +26,17 @@
     <body id="page-top">
         <!-- Page Wrapper -->
         <div id="wrapper">
-            <%@include file ="adminNavbarSidebar.jsp" %>
+            <c:choose>
+                <c:when test="${sessionScope.user.role == 'Admin'}">
+                    <%@ include file="adminNavbarSidebar.jsp" %>
+                </c:when>
+                <c:when test="${sessionScope.user.role == 'Teacher'}">
+                    <%@ include file="/views/Havt/HomePageForLectures/SideBar.jsp" %>
+                </c:when>
+                <c:when test="${sessionScope.user.role == 'Student'}">
+                    <%@ include file="/views/Dangph/SideBarStudent.jsp" %>
+                </c:when>
+            </c:choose>
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <h1 class="h3 mb-2 text-gray-800">My Profile</h1> 

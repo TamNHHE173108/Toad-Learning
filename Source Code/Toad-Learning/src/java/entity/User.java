@@ -9,6 +9,7 @@ package entity;
  * @author laptop lenovo
  */
 public class User {
+
     private String user_id;
     private String username;
     private String password;
@@ -19,7 +20,13 @@ public class User {
     private String role;
     private String status;
     private String address;
+    private String otp;
+
     public User() {
+    }
+    
+    public User(String username){
+        this.username = username;
     }
 
     public User(String user_id, String username, String password, String name, String gender, String email, String mobile, String role, String status, String address) {
@@ -114,5 +121,13 @@ public class User {
     public void setAddress(String address) {
         this.address = address;
     }
-    
+
+    public String getOtp() {
+        return otp;
+    }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
+    }
+
 }

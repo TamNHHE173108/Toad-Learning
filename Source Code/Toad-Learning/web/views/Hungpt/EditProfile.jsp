@@ -25,8 +25,18 @@
     <body>
     <body id="page-top">
         <!-- Page Wrapper -->
-        <div id="wrapper">
-            <%@include file ="adminNavbarSidebar.jsp" %>
+        <div id="wrapper">   
+            <c:choose>
+                <c:when test="${sessionScope.user.role == 'Admin'}">
+                    <%@ include file="adminNavbarSidebar.jsp" %>
+                </c:when>
+                <c:when test="${sessionScope.user.role == 'Teacher'}">
+                    <%@ include file="/views/Havt/HomePageForLectures/SideBar.jsp" %>
+                </c:when>
+                <c:when test="${sessionScope.user.role == 'Student'}">
+                    <%@ include file="/views/Dangph/SideBarStudent.jsp" %>
+                </c:when>
+            </c:choose>
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <h1 class="h3 mb-2 text-gray-800">Edit Profile</h1> 
@@ -63,23 +73,24 @@
                                                     <input value="${user.name}" name="name" type="text" class="form-control" >
                                                 </div>
                                             </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col-sm-3">
+                                                    <h6 class="mb-0">Gender</h6>
+                                                </div>
+                                                <div class="col-sm-9 text-secondary ">
+                                                    <select name="gender" class="form-control">                              
+                                                        <option value="Male" ${user.gender == 'Male' ? 'selected' : ''}>Male</option>
+                                                        <option value="Female" ${user.gender == 'Female' ? 'selected' : ''}>Female</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                             <div class="row mb-3">
                                                 <div class="col-sm-3">
                                                     <h6 class="mb-0">Email</h6>
                                                 </div>
                                                 <div class="col-sm-9 text-secondary">
                                                     <input value="${user.email}" name="email" type="text" class="form-control" >
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <div class="col-sm-3">
-                                                    <h6 class="mb-0">Gender</h6>
-                                                </div>
-                                                <div class="col-sm-9 text-secondary">
-                                                    <select name="gender" class="form-select">                              
-                                                        <option value="Male" ${user.gender == 'Male' ? 'selected' : ''}>Male</option>
-                                                        <option value="Female" ${user.gender == 'Female' ? 'selected' : ''}>Female</option>
-                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
@@ -116,22 +127,22 @@
                 </div>
             </div>
         </div>
-    <%@include file = "adminfooter.jsp" %>
+        <%@include file = "adminfooter.jsp" %>
 
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-    <!-- End of Page Wrapper -->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+        <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <%@include  file ="Logout.jsp" %>
+        <!-- Scroll to Top Button-->
+        <%@include  file ="Logout.jsp" %>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-</body>
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
+    </body>
 </html>

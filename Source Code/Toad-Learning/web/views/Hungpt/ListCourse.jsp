@@ -38,28 +38,26 @@
                     <div class="card-header py-3"> 
                         <div class="box">
                             <div class="container-2">
-                                <div class="container">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-4">
-                                            <form action="searchcourse" method="post" class="form-inline">
-                                                <div class="input-group">
-                                                    <input value="${txtC}" name="txtC" type="text" class="form-control bg-light border-2 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-primary" type="submit">
-                                                            <i class="fas fa-search fa-sm"></i>
-                                                        </button>
-                                                    </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <form action="searchcourse" method="post" class="form-inline">
+                                            <div class="input-group">
+                                                <input value="${txtC}" name="txtC" type="text" class="form-control bg-light border-2 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="submit">
+                                                        <i class="fas fa-search fa-sm"></i>
+                                                    </button>
                                                 </div>
-                                            </form>
-                                        </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>  
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <div class="table-responsives">
+                            <table class="tables table-bordered" id="dataTable" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>
@@ -81,7 +79,10 @@
                                                 </select>
 
                                             </form>
-                                        </th>                
+                                        </th>
+                                        <th><div class="form-control border-0 font-weight-bold">Description</div></th>
+                                        <th><div class="form-control border-0 font-weight-bold">CreateDate</div></th>
+                                        <th><div class="form-control border-0 font-weight-bold">UpdateDate</div></th>
                                         <th>
                                             <form action="sortcourse" method="post" class="form-inline">
                                                 <div class="form-group">
@@ -124,6 +125,9 @@
                                             <td><img src="${c.thumbnail}" alt="Description of the image" width="100px"></td>
                                             <td><a href="ListLesson?courseID=${c.courseID}">${c.title}</a></td>
                                             <td>${c.topicID.topicName}</td>
+                                            <td>${c.description}</td>
+                                            <td>${c.createDate}</td>
+                                            <td>${c.updateDate}</td>
                                             <td>${c.price}$</td>
                                             <td>${c.salePrice}$</td>
                                             <td>${c.status}</td>

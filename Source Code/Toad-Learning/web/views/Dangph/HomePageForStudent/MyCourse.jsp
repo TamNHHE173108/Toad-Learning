@@ -26,6 +26,7 @@
     <body id="page-top">
         <!-- Page Wrapper -->
         <div id="wrapper">
+            <%@include file ="../SideBarStudent.jsp" %>
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
@@ -53,6 +54,7 @@
                                                 <th>Title</th>
                                                 <th>TopicName</th>
                                                 <th>Description</th>
+
                                                 <th>CreateDate</th>
                                                 <th>UpdateDate</th>
                                                 <th>Price</th>
@@ -69,12 +71,15 @@
                                                     <td>${h.courseID.title}</td>
                                                     <td>${h.courseID.topicID.topicName}</td>
                                                     <td>${h.courseID.description}</td>
+
                                                     <td>${h.courseID.createDate}</td>
                                                     <td>${h.courseID.updateDate}</td>
                                                     <td>${h.courseID.price}$</td>
                                                     <td>${h.courseID.salePrice}$</td>
                                                     <td>${h.status}</td>
-                                                    <td><button class="btn btn-primary" onclick="location.href='ListLesson'">List Lesson</button></td>
+                                                    <td><a class="btn btn-primary" style="margin-bottom: 10px;" href="ListLesson?courseID=${h.courseID.courseID}">List Lesson</a>
+
+                                                    </td>
                                                 </tr>
                                             </c:forEach>
                                         </tbody>
@@ -187,6 +192,28 @@
                 </div>
             </div>
 
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-primary" href="login.html">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            
             <!-- Bootstrap core JavaScript-->
             <script src="vendor/jquery/jquery.min.js"></script>
             <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -196,27 +223,27 @@
 
             <!-- Script for search functionality -->
             <script>
-                function searchTable() {
-                    var input, filter, table, tr, td, i, txtValue;
-                    input = document.getElementById("searchInput");
-                    filter = input.value.toLowerCase();
-                    table = document.getElementById("dataTable");
-                    tr = table.getElementsByTagName("tr");
+                                        function searchTable() {
+                                            var input, filter, table, tr, td, i, txtValue;
+                                            input = document.getElementById("searchInput");
+                                            filter = input.value.toLowerCase();
+                                            table = document.getElementById("dataTable");
+                                            tr = table.getElementsByTagName("tr");
 
-                    for (i = 1; i < tr.length; i++) {
-                        tr[i].style.display = "none";
-                        td = tr[i].getElementsByTagName("td");
-                        for (var j = 0; j < td.length; j++) {
-                            if (td[j]) {
-                                txtValue = td[j].textContent || td[j].innerText;
-                                if (txtValue.toLowerCase().indexOf(filter) > -1) {
-                                    tr[i].style.display = "";
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
+                                            for (i = 1; i < tr.length; i++) {
+                                                tr[i].style.display = "none";
+                                                td = tr[i].getElementsByTagName("td");
+                                                for (var j = 0; j < td.length; j++) {
+                                                    if (td[j]) {
+                                                        txtValue = td[j].textContent || td[j].innerText;
+                                                        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                                                            tr[i].style.display = "";
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
             </script>
     </body>
 

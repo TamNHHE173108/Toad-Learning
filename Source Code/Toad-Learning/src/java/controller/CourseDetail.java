@@ -33,7 +33,7 @@ public class CourseDetail extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String courseID = request.getParameter("course_ID");
+        String courseID = request.getParameter("courseID");
         CourseDAO dao = new CourseDAO();
         Course course = dao.getCourseByID(courseID);   
         request.setAttribute("detailcourse", course);

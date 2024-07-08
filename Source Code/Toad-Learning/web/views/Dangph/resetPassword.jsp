@@ -40,7 +40,7 @@
                         </c:if>
 
                         <form class="user" action="ResetPassword" method="post">
-                            <input type="hidden" name="token" value="${param.token}">
+                            <input type="hidden" name="email" value="${email}">
 
                             <div class="form-group">
                                 <input type="password" class="form-control form-control-user"
@@ -54,7 +54,7 @@
                         </form>
                         <hr>
                         <div class="text-center">
-                            <a class="small" href="login.jsp">Back to Login</a>
+                            <a class="small" href="Login">Back to Login</a>
                         </div>
                     </div>
                 </div>

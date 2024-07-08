@@ -4,7 +4,9 @@
  */
 package controller;
 
+import dao.AddCourseDAO;
 import dao.CourseDAO;
+import dao.GetCourseByUID;
 import dao.ListCourseDAO;
 import entity.Course;
 import entity.User;
@@ -40,13 +42,18 @@ public class MyCourse extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         User a = (User)session.getAttribute("user");
+        String CID = request.getParameter("id");
         if (a != null) {
             String id = a.getUser_id();
             ListCourseDAO dao = new ListCourseDAO();
+            AddCourseDAO add = new AddCourseDAO();
+            
             List<Course> list = dao.listCoursesLecture(id);
-
+            Course course = add.getCourseByID(CID);
+            
+            request.setAttribute("course", course);
             request.setAttribute("listC", list);
-
+            
             request.getRequestDispatcher("/views/Havt/HomePageForLectures/MyCourse.jsp").forward(request, response);
         } else {
             // Xử lý trường hợp không có đối tượng User trong session

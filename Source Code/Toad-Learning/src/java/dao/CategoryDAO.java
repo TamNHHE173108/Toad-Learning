@@ -20,15 +20,15 @@ public class CategoryDAO {
 
     public List<Category> listCategories() throws Exception {
         List<Category> list = new ArrayList<>();
-        String sql = "SELECT * FROM Category";
+        String sql = "SELECT * FROM Topics";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Category c = new Category();
-                c.setCategoryID(rs.getString("CategoryID"));
-                c.setName(rs.getString("Name"));
+                c.setCategoryID(rs.getString("TopicID"));
+                c.setName(rs.getString("TopicName"));
                 c.setDescription(rs.getString("Description"));
                 list.add(c);
             }
