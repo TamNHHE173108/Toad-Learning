@@ -68,7 +68,7 @@
                                             <td>${p.status}</td>
                                             
                                              <td>
-                                                <a href="EditLesson?courseID=${p.courseID}"><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+                                                <a href="EditLesson?lesson_ID=${p.lessonID}"><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
                                             </td>
                                             <td>
                                                 <a href="deleteLesson?lessonID=${p.lessonID}?courseID=${p.courseID}" onclick="return confirm('Are you sure you want to delete ${c.lessonID}?');">
