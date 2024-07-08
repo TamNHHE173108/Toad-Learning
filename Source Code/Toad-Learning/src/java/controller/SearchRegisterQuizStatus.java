@@ -5,11 +5,7 @@
 
 package controller;
 
-import dao.AddCourseDAO;
-import dao.ListCourseDAO;
-import dao.ListRegistrationDAO;
-import dao.ListUserDAO;
-import entity.Course;
+import dao.SearchRegisterDAO;
 import entity.Registrations;
 import entity.User;
 import java.io.IOException;
@@ -26,8 +22,8 @@ import java.util.List;
  *
  * @author Admin
  */
-@WebServlet(name="ListRegistration", urlPatterns={"/listregistration"})
-public class ListRegistration extends HttpServlet {
+@WebServlet(name="SearchRegisterQuizStatus", urlPatterns={"/searchregisterquizstatus"})
+public class SearchRegisterQuizStatus extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,19 +34,17 @@ public class ListRegistration extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        User a = (User)session.getAttribute("user");
+        User a = (User) session.getAttribute("user");
         if (a != null) {
-            String id = a.getUser_id();          
-            AddCourseDAO add = new AddCourseDAO();
-            ListRegistrationDAO dao = new ListRegistrationDAO();
-            
-            List<Registrations> list = dao.ListRegistration(id);
-            
-            request.setAttribute("listR", list);
-  
-            
+            String quizStatus = request.getParameter("quizStatus");
+            SearchRegisterDAO dao = new SearchRegisterDAO();
+
+            List<Registrations> listC = dao.searchRegisterByQuizStatus(a.getUser_id(), quizStatus);
+            request.setAttribute("listR", listC);
             request.getRequestDispatcher("/views/Havt/HomePageForLectures/MyRegistration.jsp").forward(request, response);
+
         } else {
             // Xử lý trường hợp không có đối tượng User trong session
             // Ví dụ: chuyển hướng hoặc hiển thị thông báo lỗi
@@ -93,11 +87,5 @@ public class ListRegistration extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private static class ListRegistrations {
-
-        public ListRegistrations() {
-        }
-    }
 
 }

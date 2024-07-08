@@ -5,12 +5,8 @@
 
 package controller;
 
-import dao.AddCourseDAO;
-import dao.ListCourseDAO;
-import dao.ListRegistrationDAO;
-import dao.ListUserDAO;
-import entity.Course;
-import entity.Registrations;
+import dao.GetRegisterByID;
+import dao.GetUserByID;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,14 +16,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.List;
 
 /**
  *
  * @author Admin
  */
-@WebServlet(name="ListRegistration", urlPatterns={"/listregistration"})
-public class ListRegistration extends HttpServlet {
+@WebServlet(name="RegisterDetail", urlPatterns={"/registerdetail"})
+public class RegisterDetail extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,19 +33,15 @@ public class ListRegistration extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        User a = (User)session.getAttribute("user");
+        User a = (User) session.getAttribute("user");
         if (a != null) {
-            String id = a.getUser_id();          
-            AddCourseDAO add = new AddCourseDAO();
-            ListRegistrationDAO dao = new ListRegistrationDAO();
-            
-            List<Registrations> list = dao.ListRegistration(id);
-            
-            request.setAttribute("listR", list);
-  
-            
-            request.getRequestDispatcher("/views/Havt/HomePageForLectures/MyRegistration.jsp").forward(request, response);
+            String user_id = request.getParameter("userID");
+            GetRegisterByID dao = new GetRegisterByID();
+            User u = dao.GetRegisterByID(user_id);
+            request.setAttribute("detail", u);
+            request.getRequestDispatcher("/views/Havt/HomePageForLectures/RegisterDetail.jsp").forward(request, response);
         } else {
             // Xử lý trường hợp không có đối tượng User trong session
             // Ví dụ: chuyển hướng hoặc hiển thị thông báo lỗi
@@ -93,11 +84,5 @@ public class ListRegistration extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private static class ListRegistrations {
-
-        public ListRegistrations() {
-        }
-    }
 
 }
