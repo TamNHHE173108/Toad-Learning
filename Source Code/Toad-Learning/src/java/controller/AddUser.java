@@ -39,17 +39,24 @@ public class AddUser extends HttpServlet {
         User a = (User) session.getAttribute("user");
         if (a != null) {
             String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            String name = request.getParameter("name");
-            String gender = request.getParameter("gender");
-            String role = request.getParameter("role");
-            String email = request.getParameter("email");
-            String mobile = request.getParameter("mobile");
-            String address = request.getParameter("address");
-            String status = request.getParameter("status");
             AddUserDAO dao = new AddUserDAO();
-            dao.insertUser(username, password, name, gender, email, mobile, role, status, address);
-            response.sendRedirect("listuser");
+            if (!dao.doesUsernameExist(username)) {
+                String password = request.getParameter("password");
+                String name = request.getParameter("name");
+                String gender = request.getParameter("gender");
+                String role = request.getParameter("role");
+                String email = request.getParameter("email");
+                String mobile = request.getParameter("mobile");
+                String address = request.getParameter("address");
+                String status = request.getParameter("status");
+                dao.insertUser(username, password, name, gender, email, mobile, role, status, address);
+                session.setAttribute("successMessage", "User added successfully.");
+                response.sendRedirect("listuser"); // Redirect to listuser page
+            } else {
+                // Handle the case where the username already exists
+                session.setAttribute("errorMessage", "Username already exists. Please choose a different username.");
+                response.sendRedirect("listuser");
+            }
         } else {
             // Xử lý trường hợp không có đối tượng User trong session
             // Ví dụ: chuyển hướng hoặc hiển thị thông báo lỗi

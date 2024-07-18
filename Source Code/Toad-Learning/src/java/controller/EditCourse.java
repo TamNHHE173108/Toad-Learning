@@ -47,6 +47,7 @@ public class EditCourse extends HttpServlet {
         if (a != null) {
             CourseDAO dao = new CourseDAO();
             dao.editCourse(title, topicID, description, thumbnail, price, salePrice, status, courseID);
+            session.setAttribute("successMessage", "Edit course successfully.");
             response.sendRedirect("listcourse");
         } else {
             // Xử lý trường hợp không có đối tượng User trong session

@@ -45,7 +45,7 @@ public class ListUserDAO {
         }
         return list;
     }
-
+        
     public static void main(String[] args) {
         ListUserDAO dao = new ListUserDAO();
         List<User> list = dao.getUserList();

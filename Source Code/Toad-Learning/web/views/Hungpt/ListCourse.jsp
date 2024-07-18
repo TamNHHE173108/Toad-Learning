@@ -3,7 +3,11 @@
 <html lang="en">
 
     <head>
-
+        <script type="text/javascript">
+            function showSuccess(message) {
+                alert(message);
+            }
+        </script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -142,7 +146,12 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
-
+                            <c:if test="${not empty successMessage}">
+                                <script type="text/javascript">
+                                showSuccess('${successMessage}');
+                                    <c:remove var="successMessage" scope="session"/><!-- Clear message after displaying -->
+                                </script>
+                            </c:if>
                         </div>
                     </div>
                 </div>
