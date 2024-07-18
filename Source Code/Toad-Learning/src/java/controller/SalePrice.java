@@ -5,13 +5,9 @@
 
 package controller;
 
-import dao.AddCourseDAO;
-import dao.ListCourseDAO;
-import dao.ListRegistrationDAO;
-import dao.ListUserDAO;
+import dao.CourseDAO;
+import dao.SearchCourseDAO;
 import entity.Course;
-import entity.Registrations;
-import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -19,15 +15,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
 /**
  *
- * @author Admin
+ * @author lehoa
  */
-@WebServlet(name="ListRegistration", urlPatterns={"/listregistration"})
-public class ListRegistration extends HttpServlet {
+@WebServlet(name="SalePrice", urlPatterns={"/SalePrice"})
+public class SalePrice extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,25 +33,23 @@ public class ListRegistration extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        User a = (User)session.getAttribute("user");
-        if (a != null) {
-            String id = a.getUser_id();          
-            AddCourseDAO add = new AddCourseDAO();
-            ListRegistrationDAO dao = new ListRegistrationDAO();
-            
-            List<Registrations> list = dao.ListRegistration(id);
-            
-            request.setAttribute("listR", list);
-  
-            
-            request.getRequestDispatcher("/views/Havt/HomePageForLectures/MyRegistration.jsp").forward(request, response);
-        } else {
-            // Xử lý trường hợp không có đối tượng User trong session
-            // Ví dụ: chuyển hướng hoặc hiển thị thông báo lỗi
-            response.sendRedirect("Login"); // Ví dụ chuyển hướng đến trang đăng nhập
+        response.setContentType("text/html;charset=UTF-8");
+        String sortSalePrice = request.getParameter("sortSalePrice");
+            List<Course> listC;
+            CourseDAO dal = new CourseDAO();
+            SearchCourseDAO dao = new SearchCourseDAO();
+        if ("SalePriceASC".equals(sortSalePrice)) {
+                listC = dao.sortListStudentCourseByPriceASC();
+            } else if ("SalePriceDESC".equals(sortSalePrice)) {
+                listC = dao.sortListStudentCourseByPriceDESC();
+            } else {
+                listC = dal.getCourseByStatus();
+            }
+            request.setAttribute("listC", listC);
+            request.setAttribute("txtSale", sortSalePrice);
+            request.getRequestDispatcher("/views/Hoanglh/ListCourseStudent.jsp").forward(request, response);
         }
-    } 
+     
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -93,11 +86,5 @@ public class ListRegistration extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private static class ListRegistrations {
-
-        public ListRegistrations() {
-        }
-    }
 
 }

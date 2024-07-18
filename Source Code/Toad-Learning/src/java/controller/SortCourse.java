@@ -41,6 +41,7 @@ public class SortCourse extends HttpServlet {
         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("user");
         if (a != null) {
+            String id = a.getUser_id();
             String sortPrice = request.getParameter("sortPrice");
             List<Course> listC;
             CourseDAO dal = new CourseDAO();
@@ -67,6 +68,18 @@ public class SortCourse extends HttpServlet {
             request.setAttribute("listC", listC);
             request.setAttribute("txtSort", sortPrice);
             request.getRequestDispatcher("/views/Havt/HomePageForLectures/MyCourse.jsp").forward(request, response);
+            }
+            else if (a.getRole().equals("Student")){
+                if ("PriceASC".equals(sortPrice)) {
+                listC = dao.sortStudentCourseByPriceASC(id);
+            } else if ("PriceDESC".equals(sortPrice)) {
+                listC = dao.sortStudentCourseByPriceDESC(id);
+            } else {
+                listC = dal.listCourses();
+            }
+            request.setAttribute("listC", listC);
+            request.setAttribute("txtSort", sortPrice);
+            request.getRequestDispatcher("/views/Hoanglh/CourseStudent.jsp").forward(request, response);
             }
         } else {
             // Xử lý trường hợp không có đối tượng User trong session

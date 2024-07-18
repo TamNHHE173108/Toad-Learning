@@ -10,24 +10,22 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="icon" href="./img/logo/logo2.png" type="image/png">
     </head>
     <body>
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="Home">
                 <div class="sidebar-brand-icon">
-                    <img style="width: 120px" src="./img/logo/logo.png" alt="New Logo">
+                    <img style="width: 150px" src="./img/logo/logo.png" alt="New Logo">
                 </div>
-                <div class="sidebar-brand-text mx-2"></div>
             </a>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="Dashboard">
+                <a class="nav-link" href="dashboardlectures">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -41,34 +39,10 @@
             </div>
 
             <!-- Nav Item - Pages Professors Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePro"
-                   aria-expanded="true" aria-controls="collapsePro">
-                    <i class="fas fa-fw fa-user-circle"></i>
-                    <span>User</span>
-                </a>
-                <div id="collapsePro" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom User</h6>
-                        <a class="collapse-item" href="listuser">List User</a>
-                    </div>
-                </div>
-            </li>
+
 
             <!-- Nav Item - Pages Students Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStu"
-                   aria-expanded="true" aria-controls="collapseStu">
-                    <i class="fas fa-fw fa-user-friends"></i>
-                    <span>Setting</span>
-                </a>
-                <div id="collapseStu" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Setting</h6>
-                        <a class="collapse-item" href="ListSetting">Setting List</a>
-                    </div>
-                </div>
-            </li>
+            
 
             <!-- Nav Item - Pages Courses Menu -->
             <li class="nav-item">
@@ -79,8 +53,10 @@
                 </a>
                 <div id="collapseCou" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Courses</h6>
-                        <a class="collapse-item" href="listcourse">List Courses</a>
+                        <h6 class="collapse-header"> Courses</h6>
+                        <a class="collapse-item" href="CourseStudent">My Courses</a>
+                        <a class="collapse-item" href="ListCourseStudent">List Course</a>
+                        
                     </div>
                 </div>
             </li>
@@ -135,6 +111,19 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                   aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -282,14 +271,14 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hello ${user.name}</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
                                 <img class="img-profile rounded-circle"
-                                     src="img/admin.jpg" alt="profile">
+                                     src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="profile">
+                                <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
@@ -299,12 +288,19 @@
                                 </a>
                                 <a class="dropdown-item" href="ChangePassword">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Change Password
+                                   Change Password
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+
+                                
+                                
+                                    
+
+                                        <a class="dropdown-item" href="logout" >
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Logout </a>
+                                    
+                               
                                 </a>
                             </div>
                         </li>

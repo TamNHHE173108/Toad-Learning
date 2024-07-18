@@ -5,9 +5,8 @@
 
 package controller;
 
-import dao.ListRegistrationDAO;
-import dao.SearchRegisterDAO;
-import entity.Registrations;
+import dao.CourseDAO;
+import entity.Course;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,10 +20,10 @@ import java.util.List;
 
 /**
  *
- * @author Admin
+ * @author lehoa
  */
-@WebServlet(name="SortScoreRegister", urlPatterns={"/sortscore"})
-public class SortScoreRegister extends HttpServlet {
+@WebServlet(name="ListCourseStudent", urlPatterns={"/ListCourseStudent"})
+public class ListCourseStudent extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -35,31 +34,29 @@ public class SortScoreRegister extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        User a = (User) session.getAttribute("user");
+         HttpSession session = request.getSession();
+        User a = (User)session.getAttribute("user");
+       
         if (a != null) {
-            String sortScore = request.getParameter("sortScore");
-            List<Registrations> listC;
-            ListRegistrationDAO dal = new ListRegistrationDAO();
-            SearchRegisterDAO dao = new SearchRegisterDAO();
-
-            if ("ScoreASC".equals(sortScore)) {
-                listC = dao.sortByScoreASC(a.getUser_id());
-            } else if ("ScoreDESC".equals(sortScore)) {
-                listC = dao.sortByScoreDESC(a.getUser_id());
-            } else {
-                listC = dal.ListRegistration(a.getUser_id());
-            }
-            request.setAttribute("listR", listC);
-            request.getRequestDispatcher("/views/Havt/HomePageForLectures/MyRegistration.jsp").forward(request, response);
-
+            
+            CourseDAO dao = new CourseDAO();
+            
+            
+            List<Course> list = dao.getCourseByStatus();
+           
+            
+            
+            request.setAttribute("listC", list);
+            
+            request.getRequestDispatcher("/views/Hoanglh/ListCourseStudent.jsp").forward(request, response);
         } else {
             // Xử lý trường hợp không có đối tượng User trong session
             // Ví dụ: chuyển hướng hoặc hiển thị thông báo lỗi
             response.sendRedirect("Login"); // Ví dụ chuyển hướng đến trang đăng nhập
         }
     } 
+        
+   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 

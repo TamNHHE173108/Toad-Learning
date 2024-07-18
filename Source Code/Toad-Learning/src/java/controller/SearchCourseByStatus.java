@@ -59,7 +59,14 @@ public class SearchCourseByStatus extends HttpServlet {
                 request.setAttribute("listC", listC);
                 request.getRequestDispatcher("/views/Havt/HomePageForLectures/MyCourse.jsp").forward(request, response);
 
+            } else if (role.equals("Student")) {
+                
+                listC = dao.searchCourseStudentByStatus(status,userid);
+                request.setAttribute("listC", listC);
+                request.getRequestDispatcher("/views/Hoanglh/CourseStudent.jsp").forward(request, response);
+
             } 
+            
         }else {
                 // Xử lý trường hợp không có đối tượng User trong session
                 // Ví dụ: chuyển hướng hoặc hiển thị thông báo lỗi

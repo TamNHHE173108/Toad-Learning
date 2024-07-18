@@ -44,7 +44,7 @@ public class MyCourse extends HttpServlet {
         User a = (User)session.getAttribute("user");
         String CID = request.getParameter("id");
         if (a != null) {
-            String id = a.getUser_id();
+                String id = a.getUser_id();
             ListCourseDAO dao = new ListCourseDAO();
             AddCourseDAO add = new AddCourseDAO();
             
