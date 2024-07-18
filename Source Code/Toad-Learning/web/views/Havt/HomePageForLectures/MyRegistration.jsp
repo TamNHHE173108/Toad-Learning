@@ -31,7 +31,7 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">List Course</h1> 
+                <h1 class="h3 mb-2 text-gray-800">Registration List</h1> 
 
                 <!-- DataTales -->
                 <div class="card shadow mb-4">
@@ -49,9 +49,7 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 text-right">
-                                                <a href="#addNewCourse" class="btn btn-success" data-toggle="modal"><i class="material-icons"></i> <span>Add New Course</span></a>
-                                            </div>
+                                            
                                         </form>
                                     </div>
                                 </div>

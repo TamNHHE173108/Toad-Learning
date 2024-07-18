@@ -31,7 +31,7 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">List Course</h1> 
+                <h1 class="h3 mb-2 text-gray-800">Course Detail</h1> 
 
                 <!-- DataTales -->
                 <div class="card shadow mb-4">

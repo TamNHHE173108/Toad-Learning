@@ -29,7 +29,7 @@
             <%@include file ="SideBar.jsp" %>
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <h1 class="h3 mb-2 text-gray-800">Detail User</h1> 
+                <h1 class="h3 mb-2 text-gray-800">Register Detail</h1> 
                 <!-- DataTales -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
