@@ -40,6 +40,7 @@ public class SearchUserByStatus extends HttpServlet {
         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("user");
         if (a != null) {
+            
             String status = request.getParameter("status");
             List<User> list;
             SearchUserDAO dao = new SearchUserDAO();

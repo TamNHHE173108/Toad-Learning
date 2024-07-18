@@ -5,7 +5,7 @@
 
 package controller;
 
-import dao.SearchRegisterDAO;
+import dao.RegistrationDAO;
 import entity.Registrations;
 import entity.User;
 import java.io.IOException;
@@ -16,14 +16,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.List;
 
 /**
  *
- * @author Admin
+ * @author lehoa
  */
-@WebServlet(name="SearchRegisterQuizStatus", urlPatterns={"/searchregisterquizstatus"})
-public class SearchRegisterQuizStatus extends HttpServlet {
+@WebServlet(name="AddCourseStudent", urlPatterns={"/AddCourseStudent"})
+public class AddCourseStudent extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -35,22 +34,21 @@ public class SearchRegisterQuizStatus extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
+         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("user");
-        if (a != null) {
-            String quizStatus = request.getParameter("quizStatus");
-            SearchRegisterDAO dao = new SearchRegisterDAO();
-
-            List<Registrations> listC = dao.searchRegisterByQuizStatus(a.getUser_id(), quizStatus);
-            request.setAttribute("listR", listC);
-            request.getRequestDispatcher("/views/Havt/HomePageForLectures/MyRegistration.jsp").forward(request, response);
-
-        } else {
-            // Xử lý trường hợp không có đối tượng User trong session
-            // Ví dụ: chuyển hướng hoặc hiển thị thông báo lỗi
-            response.sendRedirect("Login"); // Ví dụ chuyển hướng đến trang đăng nhập
-        }
-    } 
+        String stringcourseID = request.getParameter("courseID");
+        String id = a.getUser_id();
+        
+        Registrations rs = new Registrations(id, stringcourseID);
+        RegistrationDAO re = new RegistrationDAO();
+        re.addRegistration(rs);
+        response.sendRedirect("/Toad-Learning/CourseStudent");
+        
+        
+        
+    
+    }
+     
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 

@@ -41,6 +41,7 @@ public class SearchCourseByTopic extends HttpServlet {
         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("user");
         if (a != null) {
+            String id = a.getUser_id();
             String topicName = request.getParameter("topicname");
             List<Course> listC;
             SearchCourseDAO dao = new SearchCourseDAO();
@@ -65,6 +66,17 @@ public class SearchCourseByTopic extends HttpServlet {
             request.setAttribute("listC", listC);
             request.setAttribute("txtTo", topicName);
             request.getRequestDispatcher("/views/Havt/HomePageForLectures/MyCourse.jsp").forward(request, response);
+            }
+            else if(a.getRole().equals("Student")){
+                if ("All".equals(topicName)) {
+                listC = dal.getCourseByUserID(id); // Implement a method to fetch all users
+            } else {
+
+                listC = dao.searchCourseStudentByTopic(topicName,id); // 
+            }
+            request.setAttribute("listC", listC);
+            request.setAttribute("txtTo", topicName);
+            request.getRequestDispatcher("/views/Hoanglh/CourseStudent.jsp").forward(request, response);
             }
         } else {
             // Xử lý trường hợp không có đối tượng User trong session

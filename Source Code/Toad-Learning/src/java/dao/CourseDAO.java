@@ -76,7 +76,103 @@ public class CourseDAO extends MyDAO {
 //            if (conn != null) conn.close();
         }
         return list;
+    }    
+    public List<Course> getCourseByUserID(String userID) {
+
+        List<Course> list = new ArrayList<>();
+        String query = "SELECT \n"
+             + "    [Courses].[CourseID],\n"
+             + "    [Courses].[Title],\n"
+             + "    t.TopicName,\n"
+             + "    [Courses].[Description],\n"
+             + "    [Courses].[Thumbnail],\n"
+             + "    [Courses].[Price],\n"
+             + "    [Courses].[SalePrice],\n"
+             + "    [Courses].[CreatedDate],\n"
+             + "    [Courses].[UpdatedDate],\n"
+             + "    [Courses].[Status]\n"
+             + "FROM [SWP391_1].[dbo].[Courses]\n"
+             + "JOIN [SWP391_1].[dbo].[Registrations]\n"
+             + "    ON [Courses].[CourseID] = [Registrations].[CourseID]\n"
+             + "LEFT JOIN [SWP391_1].[dbo].[Topics] t\n"
+             + "    ON [Courses].[TopicID] = t.[TopicID]\n"
+             + "WHERE [Registrations].[UserID] = ?;";
+
+        try {
+            ps = con.prepareStatement(query);
+            ps.setString(1, userID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String courseID = rs.getString(1);
+                String title = rs.getString(2);
+                String topicName = rs.getString(3);
+                String description = rs.getString(4);
+                String thumbnail = rs.getString(5);
+                String price = rs.getString(6);
+                String salePrice = rs.getString(7);
+                String createDate = rs.getString(8);
+                String updateDate = rs.getString(9);
+                String status = rs.getString(10);
+                Topic topic = new Topic(topicName);
+
+                 Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                list.add(course);
+            }
+        } catch (Exception e) {
+            // Xử lý các exception tại đây
+
+        }
+        return list;
     }
+    public List<Course> getCourseByStatus() {
+
+        List<Course> list = new ArrayList<>();
+        String query = "SELECT \n"
+                     + "    [Courses].[CourseID],\n"
+                     + "    [Courses].[Title],\n"
+                     + "    t.TopicName,\n"
+                     + "    [Courses].[Description],\n"
+                     + "    [Courses].[Thumbnail],\n"
+                     + "    [Courses].[Price],\n"
+                     + "    [Courses].[SalePrice],\n"
+                     + "    [Courses].[CreatedDate],\n"
+                     + "    [Courses].[UpdatedDate],\n"
+                     + "    [Courses].[Status]\n"
+                     + "FROM [SWP391_1].[dbo].[Courses]\n"
+                    
+                     + "LEFT JOIN [SWP391_1].[dbo].[Topics] t\n"
+                     + "    ON [Courses].[TopicID] = t.[TopicID]\n"
+                     + "WHERE [Courses].[Status] = 'Active';";
+
+        try {
+            ps = con.prepareStatement(query);
+            
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String courseID = rs.getString(1);
+                String title = rs.getString(2);
+                String topicName = rs.getString(3);
+                String description = rs.getString(4);
+                String thumbnail = rs.getString(5);
+                String price = rs.getString(6);
+                String salePrice = rs.getString(7);
+                String createDate = rs.getString(8);
+                String updateDate = rs.getString(9);
+                String status = rs.getString(10);
+                Topic topic = new Topic(topicName);
+
+                 Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                list.add(course);
+            }
+        } catch (Exception e) {
+            // Xử lý các exception tại đây
+
+        }
+        return list;
+    }
+    
+    
+
 
     public void editCourse(String title, String topicID, String description,
             String thumbnail, String price, String salePrice, String status, String courseID) {
@@ -176,6 +272,7 @@ public class CourseDAO extends MyDAO {
         return null;
     }
 
+   
     public void deleteCourse(String course_ID) {
         String query = "DELETE FROM Media\n"
                 + "WHERE LessonID IN (SELECT LessonID FROM Lessons WHERE CourseID = ?);\n"
