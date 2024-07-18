@@ -51,6 +51,7 @@ public class EditProfile extends HttpServlet {
         user.setEmail(email);
         user.setMobile(mobile);
         user.setAddress(address);
+        session.setAttribute("successMessage", "Profile edit successfully.");
         // Redirect về trang profile sau khi chỉnh sửa thành công
         response.sendRedirect("profile");
 

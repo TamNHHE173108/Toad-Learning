@@ -41,7 +41,7 @@ public class ResetPassword extends HttpServlet {
                 return;
             }
         }
-        response.sendRedirect("forgot-password.jsp?error=Invalid or expired token");
+//        response.sendRedirect("forgot-password.jsp?error=Invalid or expired token");
     }
 
     @Override

@@ -40,6 +40,7 @@ public class DeleteUser extends HttpServlet {
             String user_id = request.getParameter("uid");
             DeleteUserDAO dao = new DeleteUserDAO();
             dao.deleteUser(user_id);
+            session.setAttribute("successMessage", "Delete successfully.");
             response.sendRedirect("listuser");
         } else {
             // Xử lý trường hợp không có đối tượng User trong session

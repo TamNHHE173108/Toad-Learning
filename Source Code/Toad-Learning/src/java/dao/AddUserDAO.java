@@ -14,12 +14,13 @@ import java.sql.ResultSet;
  * @author laptop lenovo
  */
 public class AddUserDAO {
+
     Connection connection = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    public void insertUser( String username, String password, String name, String gender,
-            String email, String mobile,String role, String status, String address) {
+    public void insertUser(String username, String password, String name, String gender,
+            String email, String mobile, String role, String status, String address) {
         String query = "INSERT [dbo].[Users] \n"
                 + "([Username], [Password], [FullName], [Gender], [Email], [Mobile], [Role] , [Status],[Address])\n"
                 + "VALUES(?,?,?,?,?,?,?,?,?)";
@@ -35,9 +36,40 @@ public class AddUserDAO {
             ps.setString(7, role);
             ps.setString(8, status);
             ps.setString(9, address);
-            
+
             ps.executeUpdate();
         } catch (Exception e) {
+        }
+    }
+
+    public boolean doesUsernameExist(String username) {
+        String query = "SELECT 1 FROM users WHERE username = ?";
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            connection = new DBContext().getConnection();
+            ps = connection.prepareStatement(query);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            return rs.next();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.Date;
 
 /**
  *
@@ -41,9 +42,10 @@ public class EditCourseLectures extends HttpServlet {
         String price = request.getParameter("price");
         String salePrice = request.getParameter("salePrice");
         String status = request.getParameter("status");
+        Date updatedDate = new Date();
         if (a != null) {
             CourseDAO dao = new CourseDAO();
-            dao.editCourse(title, topicID, description, thumbnail, price, salePrice, status, courseID);
+            dao.editCourse(title, topicID, description, thumbnail, price, salePrice, status,updatedDate, courseID);
             response.sendRedirect("mycourse");
         } else {
             // Xử lý trường hợp không có đối tượng User trong session

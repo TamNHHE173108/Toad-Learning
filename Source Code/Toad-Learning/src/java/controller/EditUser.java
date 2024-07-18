@@ -51,6 +51,7 @@ public class EditUser extends HttpServlet {
             String status = request.getParameter("status");
             EditUserDAO dao = new EditUserDAO();
             dao.editUser(username, password, name, gender, email, mobile, role, address, status, uid);
+            session.setAttribute("successMessage", "User edit successfully.");
             response.sendRedirect("listuser");
         } else {
             // Xử lý trường hợp không có đối tượng User trong session
