@@ -175,7 +175,7 @@ public class CourseDAO extends MyDAO {
 
 
     public void editCourse(String title, String topicID, String description,
-            String thumbnail, String price, String salePrice, String status, String courseID) {
+            String thumbnail, String price, String salePrice, String status,Date updatedDate, String courseID) {
         String query = "UPDATE Courses\n"
                 + "SET [Title] = ?,\n "
                 + "[TopicID] = ?,\n"
@@ -183,7 +183,8 @@ public class CourseDAO extends MyDAO {
                 + "[Thumbnail] = ?,\n"
                 + "[Price] = ?,\n"
                 + "[SalePrice] = ?,\n"
-                + "[Status] = ?\n"
+                + "[Status] = ?,\n"
+                + "[UpdatedDate]= ?\n"
                 + "WHERE CourseID = ?";
         try {
             ps = con.prepareStatement(query);
@@ -194,7 +195,8 @@ public class CourseDAO extends MyDAO {
             ps.setString(5, price);
             ps.setString(6, salePrice);
             ps.setString(7, status);
-            ps.setString(8, courseID);
+            ps.setTimestamp(8, new java.sql.Timestamp(updatedDate.getTime()));
+            ps.setString(9, courseID);
             ps.executeUpdate();
         } catch (Exception e) {
         }

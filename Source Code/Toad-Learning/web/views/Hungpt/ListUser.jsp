@@ -202,7 +202,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input name="email" class="form-control" type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"required>
+                                    <input name="email" class="form-control" type="email" pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}"required>
                                 </div>
                                 <div class="form-group">
                                     <label>Mobile</label>
