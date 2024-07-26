@@ -49,7 +49,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex flex-column align-items-center text-center">
-                                            <img src="img/admin.jpg" alt="Admin" class="rounded-circle" width="200">
+                                            <img src="img/imgwhite.jpg" alt="Img" class="rounded-circle" width="200">
                                             <div class="mt-3">
                                                 <h4>${user.name}</h4>
                                                 <p class="text-secondary mb-1">${user.role}</p>
@@ -90,7 +90,7 @@
                                                     <h6 class="mb-0">Email</h6>
                                                 </div>
                                                 <div class="col-sm-9 text-secondary">
-                                                    <input value="${user.email}" name="email" type="text" class="form-control" >
+                                                    <input value="${user.email}" name="email" type="text" class="form-control" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
@@ -98,7 +98,7 @@
                                                     <h6 class="mb-0">Mobile</h6>
                                                 </div>
                                                 <div class="col-sm-9 text-secondary">
-                                                    <input value="${user.mobile}" name="mobile" type="text" class="form-control" >
+                                                    <input value="${user.mobile}" name="mobile" type="text" class="form-control" pattern="[0-9]{10,11}">
                                                 </div>
                                             </div>
                                             <div class="row mb-3">

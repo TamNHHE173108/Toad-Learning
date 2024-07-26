@@ -24,14 +24,29 @@ public class Registrations {
     public Registrations() {
     }
 
+<<<<<<< HEAD
     
 
     public Registrations(User userID, String courseID) {
         this.userID = userID;
+=======
+    public Registrations(User userID, String courseID, String totalCost, String status, String validFrom, String validTO, String updateBy, String registrationTime, String scoreID, String score, String quizStatus) {
+        this.userID = userID;   
+>>>>>>> c53fbdab994328ffde6a25c8c89c0148868ba6a0
         this.courseID = courseID;
+        this.totalCost = totalCost;
+        this.status = status;
+        this.validFrom = validFrom;
+        this.validTO = validTO;
+        this.updateBy = updateBy;
+        this.registrationTime = registrationTime;
+        this.scoreID = scoreID;
+        this.score = score;
+        this.quizStatus = quizStatus;
     }
     
 
+<<<<<<< HEAD
     public Registrations(User userID, String courseID, String totalCost, String status, String validFrom, String validTO, String updateBy, String registrationTime, String scoreID, String score, String quizStatus) {
         this.userID = userID;   
         this.courseID = courseID;
@@ -46,6 +61,8 @@ public class Registrations {
         this.quizStatus = quizStatus;
     }
 
+=======
+>>>>>>> c53fbdab994328ffde6a25c8c89c0148868ba6a0
     public User getUserID() {
         return userID;
     }
@@ -137,7 +154,12 @@ public class Registrations {
     }
 
     @Override
+<<<<<<< HEAD
     public String toString() {return "Registrations{" + "userID=" + userID + ", courseID=" + courseID + ", totalCost=" + totalCost + ", status=" + status + ", validFrom=" + validFrom + ", validTO=" + validTO + ", updateBy=" + updateBy + ", registrationTime=" + registrationTime + ", scoreID=" + scoreID + ", score=" + score + ", quizStatus=" + quizStatus + '}';
+=======
+    public String toString() {
+        return "Registrations{" + "userID=" + userID + ", courseID=" + courseID + ", totalCost=" + totalCost + ", status=" + status + ", validFrom=" + validFrom + ", validTO=" + validTO + ", updateBy=" + updateBy + ", registrationTime=" + registrationTime + ", scoreID=" + scoreID + ", score=" + score + ", quizStatus=" + quizStatus + '}';
+>>>>>>> c53fbdab994328ffde6a25c8c89c0148868ba6a0
     }
     
     

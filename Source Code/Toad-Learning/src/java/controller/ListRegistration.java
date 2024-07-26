@@ -5,9 +5,13 @@
 
 package controller;
 
-import dao.FilterCourseStudent;
-import dao.CourseDAO;
+import dao.AddCourseDAO;
+import dao.ListCourseDAO;
+import dao.ListRegistrationDAO;
+import dao.ListUserDAO;
 import entity.Course;
+import entity.Registrations;
+import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,14 +19,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
 /**
  *
- * @author lehoa
+ * @author Admin
  */
-@WebServlet(name="ActiveTopic", urlPatterns={"/ActiveTopic"})
-public class ActiveTopic extends HttpServlet {
+@WebServlet(name="ListRegistration", urlPatterns={"/listregistration"})
+public class ListRegistration extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -33,23 +38,25 @@ public class ActiveTopic extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        
-            String topicName = request.getParameter("topicname");
-            List<Course> listC;
-            FilterCourseStudent fc = new FilterCourseStudent();
-            CourseDAO dal = new CourseDAO();
-            if ("All".equals(topicName)) {
-                listC = dal.getCourseByStatus(); // Implement a method to fetch all users
-            } else {
-
-                listC = fc.searchCourseStudentByTopic(topicName); // 
-            }
-            request.setAttribute("listC", listC);
-            request.setAttribute("txtTo", topicName);
-            request.getRequestDispatcher("/views/Hoanglh/ListCourseStudent.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        User a = (User)session.getAttribute("user");
+        if (a != null) {
+            String id = a.getUser_id();          
+            AddCourseDAO add = new AddCourseDAO();
+            ListRegistrationDAO dao = new ListRegistrationDAO();
+            
+            List<Registrations> list = dao.ListRegistration(id);
+            
+            request.setAttribute("listR", list);
+  
+            
+            request.getRequestDispatcher("/views/Havt/HomePageForLectures/MyRegistration.jsp").forward(request, response);
+        } else {
+            // Xử lý trường hợp không có đối tượng User trong session
+            // Ví dụ: chuyển hướng hoặc hiển thị thông báo lỗi
+            response.sendRedirect("Login"); // Ví dụ chuyển hướng đến trang đăng nhập
         }
-     
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 

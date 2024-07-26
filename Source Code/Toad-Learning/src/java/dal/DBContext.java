@@ -22,7 +22,7 @@ public class DBContext {
         String user = "sa";
         String pass = "123";
 
-        String url = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=SWP391_1";
+        String url = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=ToadLearn";
 
 
 
