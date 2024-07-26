@@ -57,7 +57,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Title</label>
-                                                <input value="${detailcourse.title}" name="title" type="text" class="form-control" >
+                                                <input value="${detailcourse.title}" name="title" type="text" class="form-control" required>
                                             </div>
                                             <label>Topip Name</label>
                                             <select name="topicID" class="form-select" aria-label="Default select example">                              
@@ -68,15 +68,15 @@
                                             </select>
                                             <div class="form-group">
                                                 <label>	Description</label>
-                                                <input value="${detailcourse.description}" name="description" type="text" class="form-control">
+                                                <input value="${detailcourse.description}" name="description" type="text" class="form-control" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Price ($)</label>
-                                                <input value="${detailcourse.price}" name="price" type="text" class="form-control">
+                                                <input value="${detailcourse.price}" name="price" type="text" class="form-control" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>SalePrice ($)</label>
-                                                <input value="${detailcourse.salePrice}" name="salePrice" type="text" class="form-control">
+                                                <input value="${detailcourse.salePrice}" name="salePrice" type="text" class="form-control" required>
                                             </div>
                                             <div class="form-group">
                                                 <input value="${detailcourse.updateDate}" name="updateDate" type="date" class="form-control" hidden>
