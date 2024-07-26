@@ -70,7 +70,7 @@
                                             
                                             
                                             <td>
-                                                <a href="EditLesson?courseID=${p.courseID}"><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+                                                <a href="EditLesson?lessonID=${p.lessonID}"><i class="fas fa-edit" data-toggle="tooltip" title="Edit"></i></a>
 
                                             </td>
                                             <td>

@@ -9,6 +9,7 @@ import dao.AddCourseDAO;
 import dao.CourseDAO;
 import dao.ListCourseDAO;
 import entity.Course;
+import entity.Registrations;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -42,6 +43,7 @@ public class CourseStudent extends HttpServlet {
         if (a != null) {
             String id = a.getUser_id();
             CourseDAO dao = new CourseDAO();
+            Registrations dal = new Registrations();
             
             
             List<Course> list = dao.getCourseByUserID(id);

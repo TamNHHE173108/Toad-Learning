@@ -61,7 +61,7 @@ public class EditLesson extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
       
-        String lessonID = request.getParameter("lesson_ID");
+        String lessonID = request.getParameter("lessonID");
         LessonDAO dao = new LessonDAO();
         Lesson lesson = dao.getLessonByLessonID(lessonID);   
         request.setAttribute("detaillesson", lesson);

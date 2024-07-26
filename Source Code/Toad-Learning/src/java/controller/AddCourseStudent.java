@@ -39,7 +39,7 @@ public class AddCourseStudent extends HttpServlet {
         String stringcourseID = request.getParameter("courseID");
         String id = a.getUser_id();
         
-        Registrations rs = new Registrations(id, stringcourseID);
+        Registrations rs = new Registrations(new User(id), stringcourseID);
         RegistrationDAO re = new RegistrationDAO();
         re.addRegistration(rs);
         response.sendRedirect("/Toad-Learning/CourseStudent");
