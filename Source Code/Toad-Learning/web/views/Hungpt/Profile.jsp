@@ -54,7 +54,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex flex-column align-items-center text-center">
-                                            <img src="img/admin.jpg" alt="Admin" class="rounded-circle" width="200">
+                                            <img src="img/imgwhite.jpg" alt="Admin" class="rounded-circle" width="200">
                                             <div class="mt-3">
                                                 <h4>${user.name}</h4>
                                                 <p class="text-secondary mb-1">${user.role}</p>
