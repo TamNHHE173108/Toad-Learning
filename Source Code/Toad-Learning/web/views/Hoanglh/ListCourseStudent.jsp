@@ -122,8 +122,8 @@
                                             <td><a href="AddCourseStudent?courseID=${c.courseID}" onclick="return confirm('Are you sure you want to add ${c.courseID}?');">${c.title}</a></td>
                                             <td>${c.topicID.topicName}</td>
                                             <td>${c.description}</td>
-                                            <td>${c.createDate}</td>
-                                            <td>${c.updateDate}</td>
+                                            <td>${c.formattedCreateDate}</td>
+                                            <td>${c.formattedUpdateDate}</td>
                                             <td>${c.price}$</td>
                                             <td>${c.salePrice}$</td>
                                             <td>${c.status}</td>

@@ -127,8 +127,8 @@
                                             <td>${c.title}</td>
                                             <td>${c.topicID.topicName}</td>
                                             <td>${c.description}</td>
-                                            <td>${c.createDate}</td>
-                                            <td>${c.updateDate}</td>
+                                            <td>${c.formattedCreateDate}</td>
+                                            <td>${c.formattedUpdateDate}</td>
                                             <td>${c.price}$</td>
                                             <td>${c.salePrice}$</td>
                                             <td>${c.status}</td>

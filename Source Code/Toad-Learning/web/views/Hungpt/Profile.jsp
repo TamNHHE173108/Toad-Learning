@@ -39,7 +39,7 @@
                     <%@ include file="/views/Havt/HomePageForLectures/SideBar.jsp" %>
                 </c:when>
                 <c:when test="${sessionScope.user.role == 'Student'}">
-                    <%@ include file="/views/Dangph/SideBarStudent.jsp" %>
+                    <%@ include file="/views/Hoanglh/StudentNavbarSidebar.jsp" %>
                 </c:when>
             </c:choose>
             <!-- Begin Page Content -->
