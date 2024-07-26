@@ -47,7 +47,7 @@
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <label>Course_ID</label>
-                                                <input value="${detailcourse.courseID}" name="courseID" type="text" class="form-control">
+                                                <input value="${detailcourse.courseID}" name="courseID" type="text" class="form-control" readonly required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="thumbnail" >Thumbnail</label>                                         
@@ -71,11 +71,11 @@
                                                 <input value="${detailcourse.description}" name="description" type="text" class="form-control">
                                             </div>
                                             <div class="form-group">
-                                                <label>Price</label>
+                                                <label>Price ($)</label>
                                                 <input value="${detailcourse.price}" name="price" type="text" class="form-control">
                                             </div>
                                             <div class="form-group">
-                                                <label>SalePrice</label>
+                                                <label>SalePrice ($)</label>
                                                 <input value="${detailcourse.salePrice}" name="salePrice" type="text" class="form-control">
                                             </div>
                                             <div class="form-group">

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controller;
+package dao;
 
 import dal.DBContext;
 import entity.Course;
@@ -60,8 +60,8 @@ public class FilterCourseStudent {
             String thumbnail = rs.getString(5);
             String price = rs.getString(6);
             String salePrice = rs.getString(7);
-            String createDate = rs.getString(8);
-            String updateDate = rs.getString(9);
+            java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
             String status = rs.getString(10);
             entity.Topic topic = new entity.Topic(topicName);
 

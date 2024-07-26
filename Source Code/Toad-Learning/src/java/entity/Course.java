@@ -4,14 +4,18 @@
  */
 package entity;
 
+
+
+import java.text.SimpleDateFormat;
+import java.sql.Timestamp;
 public class Course {
 
     private String courseID;
     private String title;
     private Topic topicID;
     private String description;
-    private String createDate;
-    private String updateDate;
+    private Timestamp  createDate;
+    private Timestamp  updateDate;
     private String thumbnail;
     private String price;
     private String salePrice;
@@ -21,7 +25,7 @@ public class Course {
     public Course() {
     }
 
-    public Course(String courseID, String title, Topic topicID, String description, String thumbnail, String price, String salePrice, String createDate, String updateDate, String status) {
+    public Course(String courseID, String title, Topic topicID, String description, String thumbnail, String price, String salePrice, Timestamp createDate, Timestamp updateDate, String status) {
         this.courseID = courseID;
         this.title = title;
         this.topicID = topicID;
@@ -81,23 +85,23 @@ public class Course {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    public String getCreateDate() {
+    
+    public Timestamp getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
     }
 
-    public String getUpdateDate() {
+    public Timestamp getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(String updateDate) {
+    public void setUpdateDate(Timestamp updateDate) {
         this.updateDate = updateDate;
     }
-
+    
     public String getPrice() {
         return price;
     }
@@ -126,5 +130,16 @@ public class Course {
     public void setUserID(User UserID) {
         this.userID = UserID;
     }
+     public String getFormattedCreateDate() {
+        return formatDate(createDate);
+    }
 
+    public String getFormattedUpdateDate() {
+        return formatDate(updateDate);
+    }
+
+    private String formatDate(Timestamp timestamp) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return sdf.format(timestamp);
+    }
 }
