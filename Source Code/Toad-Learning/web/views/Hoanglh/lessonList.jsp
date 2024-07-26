@@ -31,7 +31,7 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">List Course</h1> 
+                <h1 class="h3 mb-2 text-gray-800">List Lesson</h1> 
 
                 <!-- DataTales -->
                 <div class="card shadow mb-4">
@@ -74,7 +74,7 @@
 
                                             </td>
                                             <td>
-                                                <a href="deleteLesson?lessonID=${p.lessonID}?courseID=${p.courseID}" onclick="return confirm('Are you sure you want to delete ${c.lessonID}?');">
+                                                <a href="deleteLesson?lessonID=${p.lessonID}&courseID=${p.courseID}" onclick="return confirm('Are you sure you want to delete ${c.lessonID}?');">
                                                     <i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
                                             </td>
                                         </tr>
