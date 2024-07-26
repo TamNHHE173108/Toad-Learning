@@ -68,9 +68,6 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Courses</h6>
                         <a class="collapse-item" href="mycourse">My Courses</a>
-                        <a class="collapse-item" href="/Toad-Learning/AddNewCourse">Add Courses</a>
-                        <a class="collapse-item" href="#">Edit Courses</a>
-                        <a class="collapse-item" href="#">About Courses </a>
                     </div>
                 </div>
             </li>

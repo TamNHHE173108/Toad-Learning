@@ -107,8 +107,7 @@
                                         </div>
                                         <hr>
                                         <div class="row">
-                                                <input onclick="window.location.href = 'listuser'" type="button" class="btn btn-default"  value="Back">
-                                                <a class="btn btn-success " href="load?uid=${detail.user_id}">Edit</a>
+                                                <input onclick="window.location.href = 'listregistration'" type="button" class="btn btn-default"  value="Back">
                                         </div>
 
                                     </div>
