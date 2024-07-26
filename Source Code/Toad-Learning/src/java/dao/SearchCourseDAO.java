@@ -44,8 +44,8 @@ public class SearchCourseDAO {
                 String thumbnail = rs.getString(5);
                 String price = rs.getString(6);
                 String salePrice = rs.getString(7);
-                String createDate = rs.getString(8);
-                String updateDate = rs.getString(9);
+                java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
@@ -81,8 +81,8 @@ public class SearchCourseDAO {
                 String thumbnail = rs.getString(5);
                 String price = rs.getString(6);
                 String salePrice = rs.getString(7);
-                String createDate = rs.getString(8);
-                String updateDate = rs.getString(9);
+                java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
@@ -98,127 +98,138 @@ public class SearchCourseDAO {
         }
         return list;
     }
+
     public List<Course> searchCourseStudentByTopic(String topicname, String UserID) {
-    List<Course> list = new ArrayList<>();
-    String sql = "SELECT \n"
-               + "    [Courses].[CourseID],\n"
-               + "    [Courses].[Title],\n"
-               + "    t.TopicName,\n"
-               + "    [Courses].[Description],\n"
-               + "    [Courses].[Thumbnail],\n"
-               + "    [Courses].[Price],\n"
-               + "    [Courses].[SalePrice],\n"
-               + "    [Courses].[CreatedDate],\n"
-               + "    [Courses].[UpdatedDate],\n"
-               + "    [Courses].[Status]\n"
-               + "FROM [SWP391_1].[dbo].[Courses]\n"
-               + "JOIN [SWP391_1].[dbo].[Registrations]\n"
-               + "    ON [Courses].[CourseID] = [Registrations].[CourseID]\n"
-               + "LEFT JOIN [SWP391_1].[dbo].[Topics] t\n"
-               + "    ON [Courses].[TopicID] = t.[TopicID]\n"
-               + "WHERE t.TopicName = ?\n" // Corrected WHERE clause
-               + "    AND [Registrations].[UserID] = ?;"; // Added AND for second condition
+        List<Course> list = new ArrayList<>();
+        String sql = "SELECT \n"
+                + "    [Courses].[CourseID],\n"
+                + "    [Courses].[Title],\n"
+                + "    t.TopicName,\n"
+                + "    [Courses].[Description],\n"
+                + "    [Courses].[Thumbnail],\n"
+                + "    [Courses].[Price],\n"
+                + "    [Courses].[SalePrice],\n"
+                + "    [Courses].[CreatedDate],\n"
+                + "    [Courses].[UpdatedDate],\n"
+                + "    [Courses].[Status]\n"
+                + "FROM [SWP391_1].[dbo].[Courses]\n"
+                + "JOIN [SWP391_1].[dbo].[Registrations]\n"
+                + "    ON [Courses].[CourseID] = [Registrations].[CourseID]\n"
+                + "LEFT JOIN [SWP391_1].[dbo].[Topics] t\n"
+                + "    ON [Courses].[TopicID] = t.[TopicID]\n"
+                + "WHERE t.TopicName = ?\n" // Corrected WHERE clause
+                + "    AND [Registrations].[UserID] = ?;"; // Added AND for second condition
 
-    Connection conn = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
 
-    try {
-        conn = new DBContext().getConnection();
-        ps = conn.prepareStatement(sql);
-        ps.setString(1, topicname);
-        ps.setString(2, UserID); // Set second parameter for UserID
-        rs = ps.executeQuery();
-        while (rs.next()) {
-            String courseID = rs.getString(1);
-            String title = rs.getString(2);
-            String topicName = rs.getString(3);
-            String description = rs.getString(4);
-            String thumbnail = rs.getString(5);
-            String price = rs.getString(6);
-            String salePrice = rs.getString(7);
-            String createDate = rs.getString(8);
-            String updateDate = rs.getString(9);
-            String status = rs.getString(10);
-            Topic topic = new Topic(topicName);
-
-            Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
-            list.add(course);
-        }
-    } catch (SQLException e) {
-        e.printStackTrace(); // Handle or log the exception
-    } finally {
-        // Close resources in finally block
         try {
-            if (rs != null) rs.close();
-            if (ps != null) ps.close();
-            if (conn != null) conn.close();
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, topicname);
+            ps.setString(2, UserID); // Set second parameter for UserID
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String courseID = rs.getString(1);
+                String title = rs.getString(2);
+                String topicName = rs.getString(3);
+                String description = rs.getString(4);
+                String thumbnail = rs.getString(5);
+                String price = rs.getString(6);
+                String salePrice = rs.getString(7);
+                java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
+                String status = rs.getString(10);
+                Topic topic = new Topic(topicName);
+
+                Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                list.add(course);
+            }
         } catch (SQLException e) {
             e.printStackTrace(); // Handle or log the exception
+        } finally {
+            // Close resources in finally block
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace(); // Handle or log the exception
+            }
         }
+        return list;
     }
-    return list;
-}
+
     public List<Course> searchCourseStudentByStatus(String status, String UserID) {
-    List<Course> list = new ArrayList<>();
-    String sql = "SELECT \n"
-               + "    [Courses].[CourseID],\n"
-               + "    [Courses].[Title],\n"
-               + "    t.TopicName,\n"
-               + "    [Courses].[Description],\n"
-               + "    [Courses].[Thumbnail],\n"
-               + "    [Courses].[Price],\n"
-               + "    [Courses].[SalePrice],\n"
-               + "    [Courses].[CreatedDate],\n"
-               + "    [Courses].[UpdatedDate],\n"
-               + "    [Courses].[Status]\n"
-               + "FROM [SWP391_1].[dbo].[Courses]\n"
-               + "JOIN [SWP391_1].[dbo].[Registrations]\n"
-               + "    ON [Courses].[CourseID] = [Registrations].[CourseID]\n"
-               + "LEFT JOIN [SWP391_1].[dbo].[Topics] t\n"
-               + "    ON [Courses].[TopicID] = t.[TopicID]\n"
-               + "WHERE [Courses].[Status] = ?\n" // Corrected WHERE clause
-               + "    AND [Registrations].[UserID] = ?;"; // Added AND for second condition
+        List<Course> list = new ArrayList<>();
+        String sql = "SELECT \n"
+                + "    [Courses].[CourseID],\n"
+                + "    [Courses].[Title],\n"
+                + "    t.TopicName,\n"
+                + "    [Courses].[Description],\n"
+                + "    [Courses].[Thumbnail],\n"
+                + "    [Courses].[Price],\n"
+                + "    [Courses].[SalePrice],\n"
+                + "    [Courses].[CreatedDate],\n"
+                + "    [Courses].[UpdatedDate],\n"
+                + "    [Courses].[Status]\n"
+                + "FROM [SWP391_1].[dbo].[Courses]\n"
+                + "JOIN [SWP391_1].[dbo].[Registrations]\n"
+                + "    ON [Courses].[CourseID] = [Registrations].[CourseID]\n"
+                + "LEFT JOIN [SWP391_1].[dbo].[Topics] t\n"
+                + "    ON [Courses].[TopicID] = t.[TopicID]\n"
+                + "WHERE [Courses].[Status] = ?\n" // Corrected WHERE clause
+                + "    AND [Registrations].[UserID] = ?;"; // Added AND for second condition
 
-    
-
-    try {
-        conn = new DBContext().getConnection();
-        ps = conn.prepareStatement(sql);
-        ps.setString(1, status);
-        ps.setString(2, UserID); // Set second parameter for UserID
-        rs = ps.executeQuery();
-        while (rs.next()) {
-            String courseID = rs.getString(1);
-            String title = rs.getString(2);
-            String topicName = rs.getString(3);
-            String description = rs.getString(4);
-            String thumbnail = rs.getString(5);
-            String price = rs.getString(6);
-            String salePrice = rs.getString(7);
-            String createDate = rs.getString(8);
-            String updateDate = rs.getString(9);
-            String status1 = rs.getString(10);
-            Topic topic = new Topic(topicName);
-
-            Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status1);
-            list.add(course);
-        }
-    } catch (SQLException e) {
-        e.printStackTrace(); // Handle or log the exception
-    } finally {
-        // Close resources in finally block
         try {
-            if (rs != null) rs.close();
-            if (ps != null) ps.close();
-            if (conn != null) conn.close();
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, status);
+            ps.setString(2, UserID); // Set second parameter for UserID
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String courseID = rs.getString(1);
+                String title = rs.getString(2);
+                String topicName = rs.getString(3);
+                String description = rs.getString(4);
+                String thumbnail = rs.getString(5);
+                String price = rs.getString(6);
+                String salePrice = rs.getString(7);
+                java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
+                String status1 = rs.getString(10);
+                Topic topic = new Topic(topicName);
+
+                Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status1);
+                list.add(course);
+            }
         } catch (SQLException e) {
             e.printStackTrace(); // Handle or log the exception
+        } finally {
+            // Close resources in finally block
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace(); // Handle or log the exception
+            }
         }
+        return list;
     }
-    return list;
-}
-
 
     public List<Course> searchCourseByStatus(String statuss) {
         List<Course> list = new ArrayList<>();
@@ -239,8 +250,8 @@ public class SearchCourseDAO {
                 String thumbnail = rs.getString(5);
                 String price = rs.getString(6);
                 String salePrice = rs.getString(7);
-                String createDate = rs.getString(8);
-                String updateDate = rs.getString(9);
+                java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
@@ -275,8 +286,8 @@ public class SearchCourseDAO {
                 String thumbnail = rs.getString(5);
                 String price = rs.getString(6);
                 String salePrice = rs.getString(7);
-                String createDate = rs.getString(8);
-                String updateDate = rs.getString(9);
+                java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
@@ -311,8 +322,8 @@ public class SearchCourseDAO {
                 String thumbnail = rs.getString(5);
                 String price = rs.getString(6);
                 String salePrice = rs.getString(7);
-                String createDate = rs.getString(8);
-                String updateDate = rs.getString(9);
+                java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
@@ -347,8 +358,8 @@ public class SearchCourseDAO {
                 String thumbnail = rs.getString(5);
                 String price = rs.getString(6);
                 String salePrice = rs.getString(7);
-                String createDate = rs.getString(8);
-                String updateDate = rs.getString(9);
+                java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
@@ -364,83 +375,89 @@ public class SearchCourseDAO {
         }
         return list;
     }
-   public List<Course> sortStudentCourseBySalePriceASC(String userID) {
-    List<Course> list = new ArrayList<>();
-    String sql = "SELECT \n"
-               + "    [Courses].[CourseID],\n"
-               + "    [Courses].[Title],\n"
-               + "    t.TopicName,\n"
-               + "    [Courses].[Description],\n"
-               + "    [Courses].[Thumbnail],\n"
-               + "    [Courses].[Price],\n"
-               + "    [Courses].[SalePrice],\n"
-               + "    [Courses].[CreatedDate],\n"
-               + "    [Courses].[UpdatedDate],\n"
-               + "    [Courses].[Status]\n"
-               + "FROM [SWP391_1].[dbo].[Courses]\n"
-               + "JOIN [SWP391_1].[dbo].[Registrations]\n"
-               + "    ON [Courses].[CourseID] = [Registrations].[CourseID]\n"
-               + "LEFT JOIN [SWP391_1].[dbo].[Topics] t\n"
-               + "    ON [Courses].[TopicID] = t.[TopicID]\n"
-               + "WHERE [Registrations].[UserID] = ?\n"
-               + "ORDER BY [Courses].[SalePrice] ASC;";
 
-    
-    try {
-        conn = new DBContext().getConnection(); // Kết nối tới cơ sở dữ liệu
-        ps = conn.prepareStatement(sql);
-        ps.setString(1, userID); // Thiết lập giá trị tham số `userID`
-        rs = ps.executeQuery();
+    public List<Course> sortStudentCourseBySalePriceASC(String userID) {
+        List<Course> list = new ArrayList<>();
+        String sql = "SELECT \n"
+                + "    [Courses].[CourseID],\n"
+                + "    [Courses].[Title],\n"
+                + "    t.TopicName,\n"
+                + "    [Courses].[Description],\n"
+                + "    [Courses].[Thumbnail],\n"
+                + "    [Courses].[Price],\n"
+                + "    [Courses].[SalePrice],\n"
+                + "    [Courses].[CreatedDate],\n"
+                + "    [Courses].[UpdatedDate],\n"
+                + "    [Courses].[Status]\n"
+                + "FROM [SWP391_1].[dbo].[Courses]\n"
+                + "JOIN [SWP391_1].[dbo].[Registrations]\n"
+                + "    ON [Courses].[CourseID] = [Registrations].[CourseID]\n"
+                + "LEFT JOIN [SWP391_1].[dbo].[Topics] t\n"
+                + "    ON [Courses].[TopicID] = t.[TopicID]\n"
+                + "WHERE [Registrations].[UserID] = ?\n"
+                + "ORDER BY [Courses].[SalePrice] ASC;";
 
-        while (rs.next()) {
-            String courseID = rs.getString(1);
-            String title = rs.getString(2);
-            String topicName = rs.getString(3);
-            String description = rs.getString(4);
-            String thumbnail = rs.getString(5);
-            String price = rs.getString(6);
-            String salePrice = rs.getString(7);
-            String createDate = rs.getString(8);
-            String updateDate = rs.getString(9);
-            String status = rs.getString(10);
-            Topic topic = new Topic(topicName);
-
-            Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
-            list.add(course);
-        }
-    } catch (SQLException e) {
-        e.printStackTrace(); // In ra lỗi nếu có
-    } finally {
-        // Đóng các tài nguyên
         try {
-            if (rs != null) rs.close();
-            if (ps != null) ps.close();
-            if (conn != null) conn.close();
+            conn = new DBContext().getConnection(); // Kết nối tới cơ sở dữ liệu
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, userID); // Thiết lập giá trị tham số `userID`
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String courseID = rs.getString(1);
+                String title = rs.getString(2);
+                String topicName = rs.getString(3);
+                String description = rs.getString(4);
+                String thumbnail = rs.getString(5);
+                String price = rs.getString(6);
+                String salePrice = rs.getString(7);
+               java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
+                String status = rs.getString(10);
+                Topic topic = new Topic(topicName);
+
+                Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                list.add(course);
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // In ra lỗi nếu có
+        } finally {
+            // Đóng các tài nguyên
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+        return list;
     }
-    return list;
-}
-  
+
     public List<Course> sortListStudentCourseByPriceASC() {
         List<Course> list = new ArrayList<>();
         String sql = "SELECT \n"
-                     + "    [Courses].[CourseID],\n"
-                     + "    [Courses].[Title],\n"
-                     + "    t.[TopicName],\n"
-                     + "    [Courses].[Description],\n"
-                     + "    [Courses].[Thumbnail],\n"
-                     + "    [Courses].[Price],\n"
-                     + "    [Courses].[SalePrice],\n"
-                     + "    [Courses].[CreatedDate],\n"
-                     + "    [Courses].[UpdatedDate],\n"
-                     + "    [Courses].[Status]\n"
-                     + "FROM [SWP391_1].[dbo].[Courses]\n"
-                     + "LEFT JOIN [SWP391_1].[dbo].[Topics] t\n"
-                     + "    ON [Courses].[TopicID] = t.[TopicID]\n"
-                     + "WHERE [Courses].[Status] = 'Active'\n"
-                     + "ORDER BY [Courses].[Price] ASC;";
+                + "    [Courses].[CourseID],\n"
+                + "    [Courses].[Title],\n"
+                + "    t.[TopicName],\n"
+                + "    [Courses].[Description],\n"
+                + "    [Courses].[Thumbnail],\n"
+                + "    [Courses].[Price],\n"
+                + "    [Courses].[SalePrice],\n"
+                + "    [Courses].[CreatedDate],\n"
+                + "    [Courses].[UpdatedDate],\n"
+                + "    [Courses].[Status]\n"
+                + "FROM [SWP391_1].[dbo].[Courses]\n"
+                + "LEFT JOIN [SWP391_1].[dbo].[Topics] t\n"
+                + "    ON [Courses].[TopicID] = t.[TopicID]\n"
+                + "WHERE [Courses].[Status] = 'Active'\n"
+                + "ORDER BY [Courses].[Price] ASC;";
 
         try {
             conn = new DBContext().getConnection(); // Kết nối tới cơ sở dữ liệu
@@ -455,8 +472,8 @@ public class SearchCourseDAO {
                 String thumbnail = rs.getString(5);
                 String price = rs.getString(6);
                 String salePrice = rs.getString(7);
-                String createDate = rs.getString(8);
-                String updateDate = rs.getString(9);
+                java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
@@ -468,35 +485,41 @@ public class SearchCourseDAO {
         } finally {
             // Đóng các tài nguyên
             try {
-                if (rs != null) rs.close();
-                if (ps != null) ps.close();
-                if (conn != null) conn.close();
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
         return list;
-    
 
-}
-   public List<Course> sortListStudentCourseByPriceDESC() {
+    }
+
+    public List<Course> sortListStudentCourseByPriceDESC() {
         List<Course> list = new ArrayList<>();
         String sql = "SELECT \n"
-                     + "    [Courses].[CourseID],\n"
-                     + "    [Courses].[Title],\n"
-                     + "    t.[TopicName],\n"
-                     + "    [Courses].[Description],\n"
-                     + "    [Courses].[Thumbnail],\n"
-                     + "    [Courses].[Price],\n"
-                     + "    [Courses].[SalePrice],\n"
-                     + "    [Courses].[CreatedDate],\n"
-                     + "    [Courses].[UpdatedDate],\n"
-                     + "    [Courses].[Status]\n"
-                     + "FROM [SWP391_1].[dbo].[Courses]\n"
-                     + "LEFT JOIN [SWP391_1].[dbo].[Topics] t\n"
-                     + "    ON [Courses].[TopicID] = t.[TopicID]\n"
-                     + "WHERE [Courses].[Status] = 'Active'\n"
-                     + "ORDER BY [Courses].[Price] DESC;";
+                + "    [Courses].[CourseID],\n"
+                + "    [Courses].[Title],\n"
+                + "    t.[TopicName],\n"
+                + "    [Courses].[Description],\n"
+                + "    [Courses].[Thumbnail],\n"
+                + "    [Courses].[Price],\n"
+                + "    [Courses].[SalePrice],\n"
+                + "    [Courses].[CreatedDate],\n"
+                + "    [Courses].[UpdatedDate],\n"
+                + "    [Courses].[Status]\n"
+                + "FROM [SWP391_1].[dbo].[Courses]\n"
+                + "LEFT JOIN [SWP391_1].[dbo].[Topics] t\n"
+                + "    ON [Courses].[TopicID] = t.[TopicID]\n"
+                + "WHERE [Courses].[Status] = 'Active'\n"
+                + "ORDER BY [Courses].[Price] DESC;";
 
         try {
             conn = new DBContext().getConnection(); // Kết nối tới cơ sở dữ liệu
@@ -511,8 +534,8 @@ public class SearchCourseDAO {
                 String thumbnail = rs.getString(5);
                 String price = rs.getString(6);
                 String salePrice = rs.getString(7);
-                String createDate = rs.getString(8);
-                String updateDate = rs.getString(9);
+                java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
@@ -524,205 +547,226 @@ public class SearchCourseDAO {
         } finally {
             // Đóng các tài nguyên
             try {
-                if (rs != null) rs.close();
-                if (ps != null) ps.close();
-                if (conn != null) conn.close();
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
         return list;
-    
 
-}
+    }
+
     public List<Course> sortStudentCourseByPriceDESC(String userID) {
-    List<Course> list = new ArrayList<>();
-    String sql = "SELECT \n"
-               + "    [Courses].[CourseID],\n"
-               + "    [Courses].[Title],\n"
-               + "    t.TopicName,\n"
-               + "    [Courses].[Description],\n"
-               + "    [Courses].[Thumbnail],\n"
-               + "    [Courses].[Price],\n"
-               + "    [Courses].[SalePrice],\n"
-               + "    [Courses].[CreatedDate],\n"
-               + "    [Courses].[UpdatedDate],\n"
-               + "    [Courses].[Status]\n"
-               + "FROM [SWP391_1].[dbo].[Courses]\n"
-               + "JOIN [SWP391_1].[dbo].[Registrations]\n"
-               + "    ON [Courses].[CourseID] = [Registrations].[CourseID]\n"
-               + "LEFT JOIN [SWP391_1].[dbo].[Topics] t\n"
-               + "    ON [Courses].[TopicID] = t.[TopicID]\n"
-               + "WHERE [Registrations].[UserID] = ?\n"
-               + "ORDER BY [Courses].[Price] DESC;";
+        List<Course> list = new ArrayList<>();
+        String sql = "SELECT \n"
+                + "    [Courses].[CourseID],\n"
+                + "    [Courses].[Title],\n"
+                + "    t.TopicName,\n"
+                + "    [Courses].[Description],\n"
+                + "    [Courses].[Thumbnail],\n"
+                + "    [Courses].[Price],\n"
+                + "    [Courses].[SalePrice],\n"
+                + "    [Courses].[CreatedDate],\n"
+                + "    [Courses].[UpdatedDate],\n"
+                + "    [Courses].[Status]\n"
+                + "FROM [SWP391_1].[dbo].[Courses]\n"
+                + "JOIN [SWP391_1].[dbo].[Registrations]\n"
+                + "    ON [Courses].[CourseID] = [Registrations].[CourseID]\n"
+                + "LEFT JOIN [SWP391_1].[dbo].[Topics] t\n"
+                + "    ON [Courses].[TopicID] = t.[TopicID]\n"
+                + "WHERE [Registrations].[UserID] = ?\n"
+                + "ORDER BY [Courses].[Price] DESC;";
 
-    Connection conn = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
 
-    try {
-        conn = new DBContext().getConnection(); // Kết nối tới cơ sở dữ liệu
-        ps = conn.prepareStatement(sql);
-        ps.setString(1, userID); // Thiết lập giá trị tham số `userID`
-        rs = ps.executeQuery();
-
-        while (rs.next()) {
-            String courseID = rs.getString(1);
-            String title = rs.getString(2);
-            String topicName = rs.getString(3);
-            String description = rs.getString(4);
-            String thumbnail = rs.getString(5);
-            String price = rs.getString(6);
-            String salePrice = rs.getString(7);
-            String createDate = rs.getString(8);
-            String updateDate = rs.getString(9);
-            String status = rs.getString(10);
-            Topic topic = new Topic(topicName);
-
-            Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
-            list.add(course);
-        }
-    } catch (SQLException e) {
-        e.printStackTrace(); // In ra lỗi nếu có
-    } finally {
-        // Đóng các tài nguyên
         try {
-            if (rs != null) rs.close();
-            if (ps != null) ps.close();
-            if (conn != null) conn.close();
+            conn = new DBContext().getConnection(); // Kết nối tới cơ sở dữ liệu
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, userID); // Thiết lập giá trị tham số `userID`
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String courseID = rs.getString(1);
+                String title = rs.getString(2);
+                String topicName = rs.getString(3);
+                String description = rs.getString(4);
+                String thumbnail = rs.getString(5);
+                String price = rs.getString(6);
+                String salePrice = rs.getString(7);
+                java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
+                String status = rs.getString(10);
+                Topic topic = new Topic(topicName);
+
+                Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                list.add(course);
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // In ra lỗi nếu có
+        } finally {
+            // Đóng các tài nguyên
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+        return list;
     }
-    return list;
-}
+
     public List<Course> sortStudentCourseByPriceASC(String userID) {
-    List<Course> list = new ArrayList<>();
-    String sql = "SELECT \n"
-               + "    [Courses].[CourseID],\n"
-               + "    [Courses].[Title],\n"
-               + "    t.TopicName,\n"
-               + "    [Courses].[Description],\n"
-               + "    [Courses].[Thumbnail],\n"
-               + "    [Courses].[Price],\n"
-               + "    [Courses].[SalePrice],\n"
-               + "    [Courses].[CreatedDate],\n"
-               + "    [Courses].[UpdatedDate],\n"
-               + "    [Courses].[Status]\n"
-               + "FROM [SWP391_1].[dbo].[Courses]\n"
-               + "JOIN [SWP391_1].[dbo].[Registrations]\n"
-               + "    ON [Courses].[CourseID] = [Registrations].[CourseID]\n"
-               + "LEFT JOIN [SWP391_1].[dbo].[Topics] t\n"
-               + "    ON [Courses].[TopicID] = t.[TopicID]\n"
-               + "WHERE [Registrations].[UserID] = ?\n"
-               + "ORDER BY [Courses].[Price] ASC;";
+        List<Course> list = new ArrayList<>();
+        String sql = "SELECT \n"
+                + "    [Courses].[CourseID],\n"
+                + "    [Courses].[Title],\n"
+                + "    t.TopicName,\n"
+                + "    [Courses].[Description],\n"
+                + "    [Courses].[Thumbnail],\n"
+                + "    [Courses].[Price],\n"
+                + "    [Courses].[SalePrice],\n"
+                + "    [Courses].[CreatedDate],\n"
+                + "    [Courses].[UpdatedDate],\n"
+                + "    [Courses].[Status]\n"
+                + "FROM [SWP391_1].[dbo].[Courses]\n"
+                + "JOIN [SWP391_1].[dbo].[Registrations]\n"
+                + "    ON [Courses].[CourseID] = [Registrations].[CourseID]\n"
+                + "LEFT JOIN [SWP391_1].[dbo].[Topics] t\n"
+                + "    ON [Courses].[TopicID] = t.[TopicID]\n"
+                + "WHERE [Registrations].[UserID] = ?\n"
+                + "ORDER BY [Courses].[Price] ASC;";
 
-    Connection conn = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
 
-    try {
-        conn = new DBContext().getConnection(); // Kết nối tới cơ sở dữ liệu
-        ps = conn.prepareStatement(sql);
-        ps.setString(1, userID); // Thiết lập giá trị tham số `userID`
-        rs = ps.executeQuery();
-
-        while (rs.next()) {
-            String courseID = rs.getString(1);
-            String title = rs.getString(2);
-            String topicName = rs.getString(3);
-            String description = rs.getString(4);
-            String thumbnail = rs.getString(5);
-            String price = rs.getString(6);
-            String salePrice = rs.getString(7);
-            String createDate = rs.getString(8);
-            String updateDate = rs.getString(9);
-            String status = rs.getString(10);
-            Topic topic = new Topic(topicName);
-
-            Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
-            list.add(course);
-        }
-    } catch (SQLException e) {
-        e.printStackTrace(); // In ra lỗi nếu có
-    } finally {
-        // Đóng các tài nguyên
         try {
-            if (rs != null) rs.close();
-            if (ps != null) ps.close();
-            if (conn != null) conn.close();
+            conn = new DBContext().getConnection(); // Kết nối tới cơ sở dữ liệu
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, userID); // Thiết lập giá trị tham số `userID`
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String courseID = rs.getString(1);
+                String title = rs.getString(2);
+                String topicName = rs.getString(3);
+                String description = rs.getString(4);
+                String thumbnail = rs.getString(5);
+                String price = rs.getString(6);
+                String salePrice = rs.getString(7);
+               java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
+                String status = rs.getString(10);
+                Topic topic = new Topic(topicName);
+
+                Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                list.add(course);
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // In ra lỗi nếu có
+        } finally {
+            // Đóng các tài nguyên
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+        return list;
     }
-    return list;
-}
 
+    public List<Course> sortStudentCourseBySalePriceDESC(String userID) {
+        List<Course> list = new ArrayList<>();
+        String sql = "SELECT \n"
+                + "    [Courses].[CourseID],\n"
+                + "    [Courses].[Title],\n"
+                + "    t.TopicName,\n"
+                + "    [Courses].[Description],\n"
+                + "    [Courses].[Thumbnail],\n"
+                + "    [Courses].[Price],\n"
+                + "    [Courses].[SalePrice],\n"
+                + "    [Courses].[CreatedDate],\n"
+                + "    [Courses].[UpdatedDate],\n"
+                + "    [Courses].[Status]\n"
+                + "FROM [SWP391_1].[dbo].[Courses]\n"
+                + "JOIN [SWP391_1].[dbo].[Registrations]\n"
+                + "    ON [Courses].[CourseID] = [Registrations].[CourseID]\n"
+                + "LEFT JOIN [SWP391_1].[dbo].[Topics] t\n"
+                + "    ON [Courses].[TopicID] = t.[TopicID]\n"
+                + "WHERE [Registrations].[UserID] = ?\n"
+                + "ORDER BY [Courses].[SalePrice] DESC;";
 
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
 
-
-     public List<Course> sortStudentCourseBySalePriceDESC(String userID) {
-    List<Course> list = new ArrayList<>();
-    String sql = "SELECT \n"
-               + "    [Courses].[CourseID],\n"
-               + "    [Courses].[Title],\n"
-               + "    t.TopicName,\n"
-               + "    [Courses].[Description],\n"
-               + "    [Courses].[Thumbnail],\n"
-               + "    [Courses].[Price],\n"
-               + "    [Courses].[SalePrice],\n"
-               + "    [Courses].[CreatedDate],\n"
-               + "    [Courses].[UpdatedDate],\n"
-               + "    [Courses].[Status]\n"
-               + "FROM [SWP391_1].[dbo].[Courses]\n"
-               + "JOIN [SWP391_1].[dbo].[Registrations]\n"
-               + "    ON [Courses].[CourseID] = [Registrations].[CourseID]\n"
-               + "LEFT JOIN [SWP391_1].[dbo].[Topics] t\n"
-               + "    ON [Courses].[TopicID] = t.[TopicID]\n"
-               + "WHERE [Registrations].[UserID] = ?\n"
-               + "ORDER BY [Courses].[SalePrice] DESC;";
-
-    Connection conn = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
-
-    try {
-        conn = new DBContext().getConnection(); // Kết nối tới cơ sở dữ liệu
-        ps = conn.prepareStatement(sql);
-        ps.setString(1, userID); // Thiết lập giá trị tham số `userID`
-        rs = ps.executeQuery();
-
-        while (rs.next()) {
-            String courseID = rs.getString(1);
-            String title = rs.getString(2);
-            String topicName = rs.getString(3);
-            String description = rs.getString(4);
-            String thumbnail = rs.getString(5);
-            String price = rs.getString(6);
-            String salePrice = rs.getString(7);
-            String createDate = rs.getString(8);
-            String updateDate = rs.getString(9);
-            String status = rs.getString(10);
-            Topic topic = new Topic(topicName);
-
-            Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
-            list.add(course);
-        }
-    } catch (SQLException e) {
-        e.printStackTrace(); // In ra lỗi nếu có
-    } finally {
-        // Đóng các tài nguyên
         try {
-            if (rs != null) rs.close();
-            if (ps != null) ps.close();
-            if (conn != null) conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    return list;
-}
+            conn = new DBContext().getConnection(); // Kết nối tới cơ sở dữ liệu
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, userID); // Thiết lập giá trị tham số `userID`
+            rs = ps.executeQuery();
 
+            while (rs.next()) {
+                String courseID = rs.getString(1);
+                String title = rs.getString(2);
+                String topicName = rs.getString(3);
+                String description = rs.getString(4);
+                String thumbnail = rs.getString(5);
+                String price = rs.getString(6);
+                String salePrice = rs.getString(7);
+                java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
+                String status = rs.getString(10);
+                Topic topic = new Topic(topicName);
+
+                Course course = new Course(courseID, title, topic, description, thumbnail, price, salePrice, createDate, updateDate, status);
+                list.add(course);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // In ra lỗi nếu có
+        } finally {
+            // Đóng các tài nguyên
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
 
     public List<Course> sortBySalePriceDESC() {
         List<Course> list = new ArrayList<>();
@@ -742,8 +786,8 @@ public class SearchCourseDAO {
                 String thumbnail = rs.getString(5);
                 String price = rs.getString(6);
                 String salePrice = rs.getString(7);
-                String createDate = rs.getString(8);
-                String updateDate = rs.getString(9);
+                java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
@@ -780,8 +824,8 @@ public class SearchCourseDAO {
                 String thumbnail = rs.getString(5);
                 String price = rs.getString(6);
                 String salePrice = rs.getString(7);
-                String createDate = rs.getString(8);
-                String updateDate = rs.getString(9);
+                java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
@@ -820,8 +864,8 @@ public class SearchCourseDAO {
                 String thumbnail = rs.getString(5);
                 String price = rs.getString(6);
                 String salePrice = rs.getString(7);
-                String createDate = rs.getString(8);
-                String updateDate = rs.getString(9);
+                java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 

@@ -4,14 +4,10 @@
  */
 package dao;
 
-import dal.DBContext;
 import entity.Course;
 import entity.Topic;
 import entity.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -60,8 +56,8 @@ public class CourseDAO extends MyDAO {
                 String thumbnail = rs.getString(5);
                 String price = rs.getString(6);
                 String salePrice = rs.getString(7);
-                String createDate = rs.getString(8);
-                String updateDate = rs.getString(9);
+                java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
@@ -110,8 +106,8 @@ public class CourseDAO extends MyDAO {
                 String thumbnail = rs.getString(5);
                 String price = rs.getString(6);
                 String salePrice = rs.getString(7);
-                String createDate = rs.getString(8);
-                String updateDate = rs.getString(9);
+               java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
@@ -156,8 +152,8 @@ public class CourseDAO extends MyDAO {
                 String thumbnail = rs.getString(5);
                 String price = rs.getString(6);
                 String salePrice = rs.getString(7);
-                String createDate = rs.getString(8);
-                String updateDate = rs.getString(9);
+                java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 
@@ -220,8 +216,8 @@ public class CourseDAO extends MyDAO {
                 String thumbnail = rs.getString(5);
                 String price = rs.getString(6);
                 String salePrice = rs.getString(7);
-                String createDate = rs.getString(8);
-                String updateDate = rs.getString(9);
+                java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
                 String status = rs.getString(10);
                 User userID = new User();
                 userID.setUser_id(rs.getString("UserID"));
@@ -259,8 +255,8 @@ public class CourseDAO extends MyDAO {
                 String thumbnail = rs.getString(5);
                 String price = rs.getString(6);
                 String salePrice = rs.getString(7);
-                String createDate = rs.getString(8);
-                String updateDate = rs.getString(9);
+                java.sql.Timestamp createDate = rs.getTimestamp(8);
+                java.sql.Timestamp updateDate = rs.getTimestamp(9);
                 String status = rs.getString(10);
                 Topic topic = new Topic(topicName);
 

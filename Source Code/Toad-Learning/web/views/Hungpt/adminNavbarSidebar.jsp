@@ -16,7 +16,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="Home">
                 <div class="sidebar-brand-icon">
                     <img style="width: 120px" src="./img/logo/logo.png" alt="New Logo">
                 </div>
@@ -26,11 +26,11 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+<!--            <li class="nav-item active">
                 <a class="nav-link" href="Dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
-            </li>
+            </li>-->
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -56,7 +56,7 @@
             </li>
 
             <!-- Nav Item - Pages Students Menu -->
-            <li class="nav-item">
+<!--            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStu"
                    aria-expanded="true" aria-controls="collapseStu">
                     <i class="fas fa-fw fa-user-friends"></i>
@@ -68,7 +68,7 @@
                         <a class="collapse-item" href="ListSetting">Setting List</a>
                     </div>
                 </div>
-            </li>
+            </li>-->
 
             <!-- Nav Item - Pages Courses Menu -->
             <li class="nav-item">
@@ -86,29 +86,29 @@
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+<!--            <hr class="sidebar-divider">
 
-            <!-- Heading -->
+             Heading 
             <div class="sidebar-heading">
                 Addons
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+             Nav Item - Pages Collapse Menu 
 
 
-            <!-- Nav Item - Charts -->
+             Nav Item - Charts 
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Charts</span></a>
             </li>
 
-            <!-- Nav Item - Tables -->
+             Nav Item - Tables 
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
-            </li>
+            </li>-->
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -168,14 +168,14 @@
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
+<!--                                 Counter - Alerts -->
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+<!--                             Dropdown - Alerts 
+-->                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
-                                    Alerts Center
+<!--                                    Alerts Center-->
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="mr-3">
@@ -219,14 +219,14 @@
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
+<!--                                 Counter - Messages -->
                                 <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            </a><!--
+                             Dropdown - Messages 
+-->                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
-                                    Message Center
+<!--                                    Message Center-->
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
