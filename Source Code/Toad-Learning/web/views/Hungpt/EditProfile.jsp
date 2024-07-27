@@ -70,7 +70,7 @@
                                                     <h6 class="mb-0">Full Name</h6>
                                                 </div>
                                                 <div class="col-sm-9 text-secondary">
-                                                    <input value="${user.name}" name="name" type="text" class="form-control" >
+                                                    <input value="${user.name}" name="name" type="text" pattern="^.{0,255}$" class="form-control" >
                                                 </div>
                                             </div>
 
@@ -106,7 +106,7 @@
                                                     <h6 class="mb-0">Address</h6>
                                                 </div>
                                                 <div class="col-sm-9 text-secondary">
-                                                    <input value="${user.address}" name="address" type="text" class="form-control" >
+                                                    <input value="${user.address}" name="address" type="text" pattern="^.{0,255}$" class="form-control" >
                                                 </div>
                                             </div>
                                             <div class="row">

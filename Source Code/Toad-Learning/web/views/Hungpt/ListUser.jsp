@@ -175,15 +175,15 @@
                             <div class="modal-body">	
                                 <div class="form-group">
                                     <label>Username</label>
-                                    <input name="username" type="text" class="form-control" required>
+                                    <input name="username" type="text" class="form-control" pattern="^[a-zA-Z0-9]{6,20}$" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input name="password" type="password" class="form-control" required>
+                                    <input name="password" type="password" class="form-control" pattern="^[\w\W]{6,20}$" required>
                                 </div>
                                 <div class="form-group">
                                     <label>FullName</label>
-                                    <input name="name" type="text" class="form-control" required>
+                                    <input name="name" type="text" class="form-control" pattern="^.{0,255}$" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Gender</label>
@@ -210,7 +210,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Address</label>
-                                    <textarea name="address" class="form-control" required></textarea>
+                                    <textarea name="address" class="form-control" pattern="^.{0,255}$" required></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Status</label>

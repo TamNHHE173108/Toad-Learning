@@ -62,7 +62,7 @@
                                                 <input value="${detail.password}" name="password" type="password" class="form-control" readonly required>
                                             </div>
                                             <div class="form-group">
-                                                <label>Name</label>
+                                                <label>FullName</label>
                                                 <input value="${detail.name}" name="name" type="text" class="form-control" readonly required>
                                             </div>
                                             <div class="form-group">
