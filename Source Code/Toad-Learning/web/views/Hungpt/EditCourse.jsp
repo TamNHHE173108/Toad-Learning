@@ -68,7 +68,7 @@
                                             </select>
                                             <div class="form-group">
                                                 <label>	Description</label>
-                                                <input value="${detailcourse.description}" name="description" type="text" class="form-control" pattern="^.{0,255}$" required>
+                                                <input value="${detailcourse.description}" name="description" type="text" class="form-control" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Price ($)</label>
