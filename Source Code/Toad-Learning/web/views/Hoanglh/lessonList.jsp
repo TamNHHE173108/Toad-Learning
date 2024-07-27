@@ -37,10 +37,7 @@
                 <div class="card shadow mb-4">
                     <div class="card-header py-3"> 
                         <div class="box">
-                            <div class="container-2">
-                                <span class="icon"><i class="fa fa-search"></i></span>
-                                <input type="search" id="search" style = "margin-bottom: 5px" placeholder="Search..." />
-                            </div>
+                            
                         </div>
                         <div class="col-sm-6">
                             <a href="#addNewLesson"  class="btn btn-success" data-toggle="modal"><i class="material-icons"></i> <span>Add New Lesson</span></a>					

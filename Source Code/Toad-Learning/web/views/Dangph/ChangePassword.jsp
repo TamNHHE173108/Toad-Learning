@@ -47,7 +47,7 @@
                         </form>
                         <hr>
                         <div class="text-center">
-                            <a class="small" href="homes">Home</a>
+                            <a class="small" href="Login">Login</a>
                         </div>
                     </div>
                 </div>

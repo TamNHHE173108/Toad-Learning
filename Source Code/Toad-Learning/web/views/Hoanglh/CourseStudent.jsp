@@ -115,7 +115,7 @@
                                                     </select>
                                                 </div>
                                             </form></th>
-                                        <th><div class="form-control border-0 font-weight-bold">Delete</div></th>
+                                       
                                     </tr>
                                     
                                 </thead>
@@ -132,10 +132,7 @@
                                             <td>${c.price}$</td>
                                             <td>${c.salePrice}$</td>
                                             <td>${c.status}</td>
-                                            <td>
-                                                <a href="deleteRegistration?courseID=${c.courseID}" onclick="return confirm('Are you sure you want to delete ${c.courseID}?');">
-                                                    <i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-                                            </td>
+                                            
                                                                                     
                                         </tr>
                                     </c:forEach>
