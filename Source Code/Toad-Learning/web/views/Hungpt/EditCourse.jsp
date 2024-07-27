@@ -57,7 +57,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Title</label>
-                                                <input value="${detailcourse.title}" name="title" type="text" class="form-control" required>
+                                                <input value="${detailcourse.title}" name="title" type="text" class="form-control" pattern="^.{0,255}$" required>
                                             </div>
                                             <label>Topip Name</label>
                                             <select name="topicID" class="form-select" aria-label="Default select example">                              
@@ -68,7 +68,7 @@
                                             </select>
                                             <div class="form-group">
                                                 <label>	Description</label>
-                                                <input value="${detailcourse.description}" name="description" type="text" class="form-control" required>
+                                                <input value="${detailcourse.description}" name="description" type="text" class="form-control" pattern="^.{0,255}$" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Price ($)</label>
